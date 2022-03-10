@@ -1,7 +1,7 @@
 # loki_a2
 <h3>Kelompok 2</h3>
 
-Anggota Kelompok
+Anggota Kelompok :
 1. Nada Safarina
 2. Dwisuci Insani Karimah
 3. Annisa Ulfa
