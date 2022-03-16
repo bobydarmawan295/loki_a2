@@ -1,4 +1,6 @@
 # loki_a2
+<h2>SI Manajemen RPS</h2>
+
 <h3>Kelompok 2</h3>
 
 Anggota Kelompok :
@@ -7,3 +9,8 @@ Anggota Kelompok :
 3. Annisa Ulfa                2011522015
 4. Muhammad Rayhan Rizaldi    2011522021
 5. Boby Darmawan              2011522023
+
+
+<h3>Progress Project</h3> 
+
+  * Mampu memahami struktur database dan scope project
