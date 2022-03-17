@@ -1,0 +1,23 @@
+{
+  "name": "loki_a2",
+  "version": "1.0.0",
+  "description": "SI Manajemen RPS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobydarmawan295/loki_a2.git"
+  },
+  "author": "Kelompok 2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bobydarmawan295/loki_a2/issues"
+  },
+  "homepage": "https://github.com/bobydarmawan295/loki_a2#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
