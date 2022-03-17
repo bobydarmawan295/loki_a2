@@ -4,6 +4,11 @@ const path = require("path");
 const app = express();
 const port = 8000;
 
+//request halaman homepage
+app.get('/', (req, res) => {
+  res.send('Selamat Datang (> <)')
+})
+
 //request halaman profil
 app.get("/profile", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
