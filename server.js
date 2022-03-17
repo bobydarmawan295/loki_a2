@@ -1,4 +1,4 @@
-// import modul express
+// import modul 
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -8,6 +8,11 @@ const port = 8000;
 app.get('/', (req, res) => {
   res.send('Selamat Datang (> <)')
 })
+
+//request halaman login
+app.get('/login', (req, res) => {
+  res.send("<h3>Ini adalah Halaman login</h3>")
+});
 
 //request halaman profil
 app.get("/profile", (req, res) => {
