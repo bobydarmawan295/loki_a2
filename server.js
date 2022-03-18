@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const port = 8000;
 
-//request halaman homepage
+//request halaman depan
 app.get('/', (req, res) => {
   res.send('Selamat Datang (> <)')
 })
@@ -12,6 +12,16 @@ app.get('/', (req, res) => {
 //request halaman login
 app.get('/login', (req, res) => {
   res.send("<h3>Ini adalah Halaman login</h3>")
+});
+
+//request halaman homepage (beranda)
+app.get('/home', (req, res) => {
+  res.send("Ini adalah Halaman Home")
+});
+
+//request halaman about
+app.get('/about', (req, res) => {
+  res.send("Ini Adalah Halaman about")
 });
 
 //request halaman profil
