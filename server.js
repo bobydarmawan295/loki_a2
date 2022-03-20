@@ -1,39 +1,11 @@
-// import modul 
+// import modul
 const express = require("express");
 const path = require("path");
 const app = express();
 const port = 8000;
+const router = require("./router/router");
 
-//request halaman depan
-app.get('/', (req, res) => {
-  res.send('Selamat Datang (> <)')
-})
-
-//request halaman login
-app.get('/login', (req, res) => {
-  res.send("<h3>Ini adalah Halaman login</h3>")
-});
-
-//request halaman homepage (beranda)
-app.get('/home', (req, res) => {
-  res.send("Ini adalah Halaman Home")
-});
-
-//request halaman about
-app.get('/about', (req, res) => {
-  res.send("Ini Adalah Halaman about")
-});
-
-//request halaman profil
-app.get("/profile", (req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Halooo");
-});
-
-//request halaman salam, nama, nim
-app.get("/salam/:nama/:nim", function (req, res) {
-  res.send("Selamat Sore " + req.params.nama + " <br>nim anda " + req.params.nim);
-});
+app.use(router);
 
 //connect dengan port
 app.listen(port, () => {
