@@ -11,8 +11,13 @@ router.get("/", (req, res) => {
 
 //request halaman login
 router.get("/login", (req, res) => {
-  res.send("<h3>Ini adalah Halaman login</h3>");
+  const login = {
+    "messagge" : "login sukses",
+    "code_error" : 200
+  }
+  res.json(login)
 });
+
 
 //request halaman homepage (beranda)
 router.get("/home", (req, res) => {
