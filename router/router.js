@@ -27,7 +27,7 @@ router.get("/logout", (req, res) => {
   res.json(logout);
 });
 
-//Buat RPS
+//Tambah RPS
 router.post('/admin/buatRPS',(req, res) => {
   const rps = {
     id_rps : data.rps.length + 1,
@@ -37,6 +37,15 @@ router.post('/admin/buatRPS',(req, res) => {
   }
   data.rps.push(rps);
   res.send(data.rps);
+});
+
+// Ubah/Edit RPS
+router.put('/admin/ubahRPS/:id', (req, res)=>{
+  const ubah_rps = data.rps.find(c => c.id_rps === parseInt(req.params.id));
+  ubah_rps.matkul =  req.body.matkul;
+  ubah_rps.nip =  req.body.nip;
+  ubah_rps.nama_dosen =  req.body.nama_dosen;
+  res.send(ubah_rps);
 });
 
 //request halaman homepage (beranda)
