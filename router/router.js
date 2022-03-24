@@ -52,6 +52,10 @@ router.post('/admin/tambahDosen', (req, res)=>{
   res.send(data.dosen);
 });
 
+router.get('/admin/lihatLaporan', (req, res)=>{
+  res.send("<h1>Ini adalah halaman laporan</h1>")
+});
+
 //request halaman homepage (beranda)
 router.get("/home", (req, res) => {
   res.send("Ini adalah Halaman Home");
