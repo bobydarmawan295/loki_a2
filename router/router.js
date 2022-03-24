@@ -94,4 +94,20 @@ router.put('/dosen/ubahRef/:id', (req, res)=>{
   res.send(ubahRef);
 });
 
+router.delete('/dosen/hapusRef/:id', (req, res)=>{
+  const hapusRef = data.ref.find(c => c.kode_ref === req.params.id);
+  const index = data.ref.indexOf(hapusRef);
+  data.ref.splice(index, 1);
+  res.send(hapusRef);
+});
+
+router.post('/dosen/tambahKomPen/:id', (req, res)=>{
+  const komponen = {
+    id : req.body.id,
+    persentase : req.body.persentase,
+  }
+  data.komponen_penilaian.push(komponen);
+  res.send(data.komponen_penilaian);
+});
+
 module.exports = router;
