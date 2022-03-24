@@ -15,3 +15,5 @@ Anggota Kelompok :
 
   * Mampu memahami struktur database dan scope project
   * Mampu membuat web server dan merespon request pengguna dengan menggunakan ExpressJS
+  * Mampu membuat router 
+  * Mampu mendesain RestFul API dan struktur data JSON
