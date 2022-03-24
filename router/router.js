@@ -122,4 +122,17 @@ router.post('/dosen/tambahKomPen/:id', (req, res)=>{
   res.send(data.komponen_penilaian);
 });
 
+router.put('/dosen/ubahKomPen/:id', (req, res)=>{
+  const ubahKomPen = data.komponen_penilaian.find(c => c.id === req.params.id);
+  ubahKomPen.persentase =  req.body.persentase
+  res.send(ubahKomPen);
+});
+
+router.delete('/dosen/hapusKomPen/:id', (req, res)=>{
+  const hapusKomPen = data.komponen_penilaian.find(c => c.id === req.params.id);
+  const index = data.komponen_penilaian.indexOf(hapusKomPen);
+  data.komponen_penilaian.splice(index, 1);
+  res.send(hapusKomPen);
+});
+
 module.exports = router;
