@@ -4,12 +4,10 @@ const data = require("../data.json");
 
 router.use(express.json())
 
-//request halaman depan
 router.get("/", (req, res) => {
   res.send("Selamat Datang (> <)");
 });
 
-//request halaman login
 router.get("/login", (req, res) => {
   const login = {
     "messagge" : "login sukses",
@@ -18,7 +16,6 @@ router.get("/login", (req, res) => {
   res.json(login)
 });
 
-//halaman log out
 router.get("/logout", (req, res) => {
   const logout = {
     "messagge" : "logout sukses",
@@ -27,7 +24,6 @@ router.get("/logout", (req, res) => {
   res.json(logout);
 });
 
-//Tambah RPS
 router.post('/admin/buatRPS',(req, res) => {
   const rps = {
     id_rps : data.rps.length + 1,
@@ -39,13 +35,21 @@ router.post('/admin/buatRPS',(req, res) => {
   res.send(data.rps);
 });
 
-// Ubah/Edit RPS
 router.put('/admin/ubahRPS/:id', (req, res)=>{
   const ubah_rps = data.rps.find(c => c.id_rps === parseInt(req.params.id));
   ubah_rps.matkul =  req.body.matkul;
   ubah_rps.nip =  req.body.nip;
   ubah_rps.nama_dosen =  req.body.nama_dosen;
   res.send(ubah_rps);
+});
+
+router.post('/admin/tambahDosen', (req, res)=>{
+  const rps = {
+    nip : req.body.nip,
+    nama : req.body.nama
+  }
+  data.dosen.push(rps);
+  res.send(data.dosen);
 });
 
 //request halaman homepage (beranda)
