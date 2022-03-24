@@ -27,6 +27,18 @@ router.get("/logout", (req, res) => {
   res.json(logout);
 });
 
+//Buat RPS
+router.post('/admin/buatRPS',(req, res) => {
+  const rps = {
+    id_rps : data.rps.length + 1,
+    matkul : req.body.matkul,
+    nip : req.body.nip,
+    nama_dosen : req.body.nama_dosen
+  }
+  data.rps.push(rps);
+  res.send(data.rps);
+});
+
 //request halaman homepage (beranda)
 router.get("/home", (req, res) => {
   res.send("Ini adalah Halaman Home");
