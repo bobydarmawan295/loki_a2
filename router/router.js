@@ -163,5 +163,9 @@ router.put('/dosen/ubahRPS/:id', (req, res)=>{
   res.send(ubah_rps);
 });
 
+//request halaman homepage (beranda)
+router.get("/dosen/lihatPertemuan", (req, res) => {
+  res.send(data.pertemuan_mingguan);
+});
 
 module.exports = router;
