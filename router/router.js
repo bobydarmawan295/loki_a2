@@ -68,5 +68,14 @@ router.post('/dosen/cetakLaporan', (req, res)=>{
   res.send("<h1>Ini adalah halaman Cetak laporan</h1>")
 });
 
+router.get('/dosen/lihatRef', (req, res)=>{
+  res.send(data.ref);
+});
+
+router.put('/dosen/ubahRef/:id', (req, res)=>{
+  const ubahRef = data.ref.find(c => c.kode_ref === req.params.id);
+  ubahRef.judul_ref =  req.body.judul_ref;
+  res.send(ubahRef);
+});
 
 module.exports = router;
