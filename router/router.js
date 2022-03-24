@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const data = require("../data.json");
+
+router.use(express.json())
 
 //request halaman depan
 router.get("/", (req, res) => {
