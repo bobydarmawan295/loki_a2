@@ -18,6 +18,14 @@ router.get("/login", (req, res) => {
   res.json(login)
 });
 
+//halaman log out
+router.get("/logout", (req, res) => {
+  const logout = {
+    "messagge" : "logout sukses",
+    "code_error" : 200
+  }
+  res.json(logout);
+});
 
 //request halaman homepage (beranda)
 router.get("/home", (req, res) => {
