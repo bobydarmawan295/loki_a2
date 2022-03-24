@@ -144,4 +144,24 @@ router.delete('/dosen/hapusKomPen/:id', (req, res)=>{
   res.send(hapusKomPen);
 });
 
+router.post('/dosen/buatRPS',(req, res) => {
+  const rps = {
+    id_rps : data.rps.length + 1,
+    matkul : req.body.matkul,
+    nip : req.body.nip,
+    nama_dosen : req.body.nama_dosen
+  }
+  data.rps.push(rps);
+  res.send(data.rps);
+});
+
+router.put('/dosen/ubahRPS/:id', (req, res)=>{
+  const ubah_rps = data.rps.find(c => c.id_rps === parseInt(req.params.id));
+  ubah_rps.matkul =  req.body.matkul;
+  ubah_rps.nip =  req.body.nip;
+  ubah_rps.nama_dosen =  req.body.nama_dosen;
+  res.send(ubah_rps);
+});
+
+
 module.exports = router;
