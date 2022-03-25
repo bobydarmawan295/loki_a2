@@ -76,7 +76,7 @@ router.get("/profile", (req, res) => {
 router.get("/salam/:nama/:nim", function (req, res) {
   res.send("Selamat Sore " + req.params.nama + " <br>nim anda " + req.params.nim);
 });
-
+//request menambah cpmk
 router.post('/admin/CPLtoCPMK', (req, res)=>{
   const cp = {
     kode_cpmk : req.body.kode_cpmk,
@@ -86,22 +86,22 @@ router.post('/admin/CPLtoCPMK', (req, res)=>{
   data.cp.push(cp);
   res.send(data.cp);
 });
-
-router.post('/admin/viewLaporan/RPS', (req, res)=>{
+//request halaman rps
+router.get('/admin/viewLaporan/RPS', (req, res)=>{
   res.send("<h1>Ini adalah list rps beserta jumlah revisinya</h1>")
 });
-
+//request melihat cpmk
 router.get('/dosen/lihatCPMK', (req, res)=>{
   res.send(data.cp);
 });
-
+//request mengubah cpmk
 router.put('/dosen/ubahCPMK/:id', (req, res)=>{
   const ubahCPMK = data.cp.find(c => c.kode_cpmk === parseInt(req.params.id));
   ubahCPMK.cpmk =  req.body.cpmk;
   ubahCPMK.cpps =  req.body.cpps;
   res.send(ubahCPMK);
 });
-
+//request menghapus cpmk
 router.delete('/dosen/hapusCPMK/:id', (req, res)=>{
   const hapusCPMK = data.cp.find(c => c.kode_cpmk === parseInt(req.params.id));
   const index = data.cp.indexOf(hapusCPMK);
