@@ -176,4 +176,38 @@ router.get("/dosen/lihatPertemuan", (req, res) => {
   res.send(data.pertemuan_mingguan);
 });
 
+router.post('/dosen/tambahPertemuan/:id',(req, res) => {
+  const minggu = {
+    id_pertemuan : req.body.id_pertemuan,
+    Minggu : req.body.Minggu
+  }
+  data.pertemuan_mingguan.push(minggu);
+  res.send(data.pertemuan_mingguan);
+});
+
+router.put('/dosen/ubahPertemuan/:id',(req, res) => {
+  const ubah_pertemuan = data.pertemuan_mingguan.find(c => c.id_pertemuan === req.params.id);
+  ubah_pertemuan.id_pertemuan = req.body.id_pertemuan,
+  ubah_pertemuan.Minggu = req.body.Minggu
+  res.send(ubah_pertemuan);
+});
+
+router.delete('/dosen/hapusPertemuan/:id',(req, res) => {
+  const ubah_pertemuan = data.pertemuan_mingguan.find(c => c.id_pertemuan === req.params.id);
+  const index = data.pertemuan_mingguan.indexOf(ubah_pertemuan);
+  data.pertemuan_mingguan.splice(index, 1);
+  res.send(ubah_pertemuan);
+});
+
+router.get("/mahasiswa/lihatMatkul", (req, res) => {
+  res.send(data.matkul);
+});
+
+router.get('/mahasiswa/detailRPS',(req, res) => {
+  res.send(data.rps);
+});
+
+router.get('/mahasiswa/eksporPDF',(req, res) => {
+  res.send("<h1>Disini ekspor PDF</h1>");
+});
 module.exports = router;
