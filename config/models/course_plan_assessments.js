@@ -1,48 +1,52 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize ("mysql://root@localhost:8080/loki");
+//skema orm course_plan_assessments.js
+const Sequelize = require('sequelize');
+const db = require ("../database/conn");
 
 
-const assessment = sequelize.define('course_plan_assessments', {
+const cpAssess = db.define( "cpAssess", {
     id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
 
     course_plan_id: { //masih ragu karena FK
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true
     },
 
     name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
     percentage: {
-        type: DataTypes.DOUBLE,
+        type: Sequelize.DOUBLE,
         allowNull: false
     },
 
     flag: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
 
     created_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false
     },
 
     update_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false
     }
  }, 
  
     {
     tableName: 'course_plan_assessments',
-    timestamps: true 
+    timestamps: false 
+    }
     
-})
+ );
+
+module.exports = cpAssess;
