@@ -3,37 +3,38 @@ const sequelize = new Sequelize ("mysql://root@localhost:3306/loki")
 
 const detail_assessment = sequelize.define('course_plan_detail_assessment', {
     id : {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
 
     course_plan_detail_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
     },
 
     course_plan_assessment_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
     },
 
     percentage: {
-        type: DataTypes.DOUBLE,
+        type: Sequelize.DOUBLE,
         allowNull: false,
     },
 
     created_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
     },
 
     update_at: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: Sequelize.DATE,
     }
 }, {
     tableName: 'course_plan_detail_assesment',
     timestamps: true  
 });
+
+module.exports = detail_assessment;
