@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const { Sequelize, DataTypes } = require('sequelize');
 
 const Sequelize = require('sequelize');
@@ -54,3 +55,6 @@ const courses = db.define('courses', {
 });
 
 module.exports = courses;
+=======
+console.log("ini model")
+>>>>>>> 6120a048f6448268bdb0c5765b9eca5783696d97
