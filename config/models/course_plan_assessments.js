@@ -2,41 +2,31 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize ("mysql://root@localhost:8080/loki");
 
 
-const assessment = sequelize.define('course_plan_references', {
+const assessment = sequelize.define('course_plan_assessments', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
 
-    course_plan_id: {
+    course_plan_id: { //masih ragu karena FK
         type: DataTypes.INTEGER,
         autoIncrement: true,
         foreignKey: true
     },
 
-    tittle: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-    author: {
-        type: DataTypes.STRING,
+    percentage: {
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
 
-    publisher: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    year: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-
-    description: {
-        type: DataTypes.STRING,
+    flag: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
 
@@ -52,7 +42,7 @@ const assessment = sequelize.define('course_plan_references', {
  }, 
  
     {
-    tableName: 'course_plan_references',
+    tableName: 'course_plan_assessments',
     timestamps: true 
     
 })

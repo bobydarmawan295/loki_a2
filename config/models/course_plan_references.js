@@ -11,9 +11,9 @@ const referensi = db.define('course_plan_references', {
         primaryKey: true
     },
 
-    course_plan_id: {
+    course_plan_id: {  //masih ragu karena FK
         type: DataTypes.INTEGER,
-        // autoIncrement: true,
+        autoIncrement: true,
         foreignKey: true
     },
 
