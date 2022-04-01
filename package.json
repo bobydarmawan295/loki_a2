@@ -19,6 +19,8 @@
   "homepage": "https://github.com/bobydarmawan295/loki_a2#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.17.0"
   }
 }
