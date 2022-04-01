@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const Sequelize = require('sequelize');
 const sequelize = new Sequelize ("mysql://root@localhost:3306/loki")
 
 const detail_assessment = sequelize.define('course_plan_detail_assessment', {
