@@ -1,27 +1,37 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
+const Se = require('sequelize');
 const sequelize = new Sequelize ("mysql://root@localhost:3306/loki")
 
-const detail_assessment = sequelize.define('course_plan_detail_assessment', {
+const course_los = sequelize.define('course_los', {
     id : {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
 
-    course_plan_detail_id: {
+    course_plan_id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
     },
 
-    course_plan_assessment_id: {
+    type: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true,
+        allowNull: false,
     },
 
-    percentage: {
-        type: Sequelize.DOUBLE,
+    code: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+
+    parent_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
 
@@ -33,8 +43,8 @@ const detail_assessment = sequelize.define('course_plan_detail_assessment', {
         type: Sequelize.DATE,
     }
 }, {
-    tableName: 'course_plan_detail_assesment',
+    tableName: 'course_los',
     timestamps: true  
 });
 
-module.exports = detail_assessment;
+module.exports = course_los;
