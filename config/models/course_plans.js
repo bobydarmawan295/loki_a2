@@ -1,43 +1,43 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("mysql://root@localhost:8080/loki");
+// skema orm course_plans
+const Sequelize = require('sequelize');
+const db= require('../database/conn');
 
-module.exports = (sequelize, DataTypes) => {
-  const cp = sequelize.define(
+const cp = db.define(
     "course_plan",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
 
       course_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
       },
 
       rev: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
 
       code: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
 
       name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
 
       alias_name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
 
       credit: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
 
@@ -47,40 +47,39 @@ module.exports = (sequelize, DataTypes) => {
       },
 
       description: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
 
       material: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
 
       created_by: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
       },
 
       validated_by: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true,
       },
 
       validated_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
       created_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
       update_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
     },
 
     {
       tableName: "course_plan",
-      timestamps: true,
+      timestamps: false,
     }
   );
-  return cp;
-};
+module.exports = cp;
