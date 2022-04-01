@@ -1,4 +1,3 @@
-// const { Sequelize, DataTypes } = require('sequelize');
 // skema orm lecturers
 const Sequelize = require('sequelize');
 const db= require('../database/conn');

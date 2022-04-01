@@ -1,60 +1,64 @@
-// const { Sequelize, DataTypes } = require('sequelize');
+//skema orm course_plan_references.js
+
+// const { Sequelize, Sequelize } = require('sequelize');
 // const sequelize = new Sequelize ("mysql://root@localhost:8080/loki");
-const { Sequelize, DataTypes } = require('sequelize');
-const db= require('../database/conn');
+const Sequelize = require('sequelize');
+const db = require('../database/conn');
 
 
-const referensi = db.define('course_plan_references', {
+const cpReferensi = db.define(cpReferensi, {
     id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
 
-    course_plan_id: {  //masih ragu karena FK
-        type: DataTypes.INTEGER,
+    course_plan_id: {
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         foreignKey: true
     },
 
     tittle: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
     author: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
     publisher: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
     year: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false
     },
 
     description: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
 
     created_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false
     },
 
     update_at: {
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
         allowNull: false
     }
  }, 
  
     {
     tableName: 'course_plan_references',
-    timestamps: true 
+    timestamps: false 
     
-})
+});
+
+module.exports = cpReferensi;
