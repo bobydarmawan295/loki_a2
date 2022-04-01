@@ -1,4 +1,4 @@
-
+//controller lecturers
 const model = require('../config/models/index');
 const controller = {};
 
