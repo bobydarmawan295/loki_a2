@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // const { Sequelize, DataTypes } = require('sequelize');
 
 const Sequelize = require('sequelize');
@@ -41,8 +40,3 @@ const curriculum_profiles = db.define('curriculum_profiles', {
     // freezeTableName: true
     
 });
-
-module.exports = curriculum_profiles;
-=======
-console.log("ini model")
->>>>>>> 6120a048f6448268bdb0c5765b9eca5783696d97
