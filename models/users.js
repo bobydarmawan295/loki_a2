@@ -19,7 +19,7 @@ const users = config.define(
       allowNull: false,
     },
     email_verified_at: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATE,
     },
     password: {
       type: Sequelize.STRING,
@@ -29,7 +29,7 @@ const users = config.define(
       type: Sequelize.STRING,
     },
     type: {
-      type: Sequelize.ENUM,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     created_at: {
@@ -46,5 +46,4 @@ const users = config.define(
     // freezeTableName: true
   }
 );
-
 module.exports = users;
