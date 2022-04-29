@@ -3,8 +3,8 @@
 const Sequelize = require("sequelize");
 const db = require("../database/conn");
 
-const curriculum_lo_details = db.define(
-  "curriculum_lo_details",
+const course_lo_details = db.define(
+  "course_lo_details",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -28,10 +28,10 @@ const curriculum_lo_details = db.define(
   },
 
   {
-    tableName: "curriculum_lo_details",
+    tableName: "course_lo_details",
     timestamps: false, //Karena created_at dan update_at akan dibuat otomatis oleh sequelize
     // freezeTableName: true
   }
 );
 
-module.exports = curriculum_lo_details;
+module.exports = course_lo_details;
