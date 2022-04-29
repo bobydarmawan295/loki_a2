@@ -1,25 +1,33 @@
-<<<<<<< HEAD
+
 // const { Sequelize, DataTypes } = require('sequelize');
 
 const Sequelize = require('sequelize');
 const db= require('../database/conn');
 
-const course_requirements = db.define('course_requirements', {
+const curricula = db.define('curricula', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    course_id: {
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    active: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    year_start: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    required_course_id: {
+    year_end: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    required_level: {
-        type: Sequelize.INTEGER,
+    description: {
+        type: Sequelize.TEXT,
         allowNull: false
     },
     created_at: {
@@ -32,13 +40,11 @@ const course_requirements = db.define('course_requirements', {
 
 {  
 
-    tableName: 'course_requirements',
+    tableName: 'curricula',
     timestamps: false  //Karena created_at dan update_at akan dibuat otomatis oleh sequelize
     // freezeTableName: true
     
 });
 
-module.exports = course_requirements;
-=======
-console.log("ini model")
->>>>>>> 6120a048f6448268bdb0c5765b9eca5783696d97
+module.exports = curricula;
+
