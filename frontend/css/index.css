@@ -157,6 +157,9 @@ a {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+.logout {
+  margin-top: 230px;
+}
 
 .side-menu:hover {
   background: #ffaa7b;
