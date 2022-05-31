@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const authController = require('../controller/auth');
+const express = require("express");
 
 const router = Router();
+router.use(express.json());
 
 router.get('/signup', authController.signup_get);
 router.post('/signup', authController.signup_post);

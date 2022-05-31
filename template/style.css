@@ -29,9 +29,7 @@
 }
 
 .sidebar .logo-details img{
-  
   margin-right: 20px;
-  
 }
 
 .sidebar .logo-details .logo_name{
@@ -77,7 +75,7 @@
   transition: all 0.3s ease;
 }
 
-.sidebar .nav-links li a{
+.sidebar .nav-links li a {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -87,6 +85,7 @@
 .sidebar .nav-links li .logout a{
   color: #55B8FF;
 }
+
 .sidebar .nav-links li a .link_name{
   font-size: 18px;
   font-weight: 400;
@@ -116,7 +115,7 @@
 
 .sidebar .nav-links li .sub-menu:hover{
   background-color: #55B8FF;
-  color: #F0F0F0;;
+  color: #F0F0F0;
 }
 
 .sidebar .nav-links li .sub-menu a:hover{

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const users = require('../models/users');
+const dotenv = require('dotenv');
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -40,5 +41,33 @@ const checkUser = async (req, res, next) => {
   }
 };
 
+const adminAuth = (req, res, next) => {
+  
+  dotenv.config();
+  const token = req.cookies.jwt;
 
-module.exports = { requireAuth, checkUser };
+  let secret = process.env.TOKEN_SECRET; 
+  if (token == null) return res.sendStatus(401)
+  
+  // check json web token exists & is verified
+  if (token) {
+    jwt.verify(token,secret, (err, decodedToken) => {
+      if (err) {
+        console.log(err.message);
+        res.redirect('/login');
+      } else {
+        console.log(decodedToken);
+        if(decodedToken.type == "D"){
+          next();
+        }else{
+          res.redirect('/login')
+        }
+      }
+    });
+  } else {
+    res.redirect('/login');
+  }
+};
+
+
+module.exports = { requireAuth, checkUser, adminAuth};
