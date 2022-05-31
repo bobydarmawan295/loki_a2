@@ -1,6 +1,6 @@
 // skema orm lecturers
 const Sequelize = require("sequelize");
-const config = require("../config/database/conn");
+const config = require("../config/conn");
 
 const users = config.define(
   "users",

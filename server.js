@@ -2,17 +2,22 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-const router = require("./routes/lecturers");
 const routers = require("./routes/auth");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const cookieParser = require('cookie-parser');
+const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 require("dotenv/config");
 
-app.use(bodyParser.json());
-app.use(cors());
-
-app.use(router);
 app.use(routers);
+
+app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
+app.set('view engine', 'ejs');
+// app.use(cors());
+
+app.get('*', checkUser);
+app.get('/', (req, res) => res.render('home'));
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
 
 //connect dengan port
 app.listen(port, () => {

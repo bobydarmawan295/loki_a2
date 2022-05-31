@@ -12,16 +12,29 @@
   <link rel="stylesheet" type="text/css" href="/index.css" />
 </head>
 <body>
-  <nav>
-    <h1><a href="/">LOKI</a></h1>
-    <ul>
-      <% if (user) { %>
-        <li>Welcome, <%= user.email %></li>
-        <li><a href="/logout">Log out</a></li>
-      <% } else { %>
-        <li><a href="/login">Log in</a></li>
-        <li><a href="/signup" class="btn">Sign up</a></li>
-      <% } %>
-    </ul>
-  </nav>
+  <div class="wrapper hover_collapse">
+    <div class="top_navbar">
+      <img src="img/burger_small.png" alt="" />
+      <div class="logo"><h1>PORTAL</h1></div>
+      <div class="menu">
+        <div class="profile_wrap">
+          <div class="profile">
+            <% if (user) { %>
+              <li>Welcome, <%= user.email %></li>
+              <div class="profile-logo">
+                <i class="bx bxs-user"></i>
+              </div>
+              <h2 class="name">Admin</h2>
+              <span class="icon"> </span>
+              <li><a href="/logout">Log out</a></li>
+            <% } else { %>
+              <li><a href="/login">Log in</a></li>
+              <li><a href="/signup" class="btn">Sign up</a></li>
+            <% } %>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
   
