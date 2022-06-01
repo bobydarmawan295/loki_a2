@@ -57,11 +57,7 @@ const adminAuth = (req, res, next) => {
         res.redirect('/login');
       } else {
         console.log(decodedToken);
-        if(decodedToken.type == "D"){
-          next();
-        }else{
-          res.redirect('/login')
-        }
+        next();
       }
     });
   } else {
