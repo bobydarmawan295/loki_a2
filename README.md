@@ -13,7 +13,15 @@ Anggota Kelompok :
 
 <h3>Progress Project</h3> 
 
-  * Mampu memahami struktur database dan scope project
-  * Mampu membuat web server dan merespon request pengguna dengan menggunakan ExpressJS
-  * Mampu membuat router 
-  * Mampu mendesain RestFul API dan struktur data JSON
+   <h4>A. Frontend</h4>
+     <li>Desain front end telah selesai</li>
+
+   <h4>B. Backend</h4>
+     <li>Mampu memahami struktur database dan scope project</li>
+     <li>Mampu membuat web server dan merespon request pengguna dengan menggunakan ExpressJS</li>
+     <li>Mampu membuat router</li>
+     <li>Mampu mendesain RestFul API dan struktur data JSON</li>
+     <li>Aplikasi sudah terkoneksi ke database</li>
+     <li>Aplikasi memiliki fitur login dan logout</li>
+
+
