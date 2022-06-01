@@ -1,50 +1,66 @@
-const { Sequelize } = require('sequelize');
-const Se = require('sequelize');
-const sequelize = new Sequelize ("mysql://root@localhost:3306/loki")
+const { Sequelize, DataTypes } = require('sequelize');
 
-const course_los = sequelize.define('course_los', {
-    id : {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
+const db = require("../config/conn");
 
-    course_plan_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true,
-    },
 
-    type: {
-        type: Sequelize.INTEGER,
+const course_plans = require("./course_plans");
+
+const course_los = db.define('course_los', {
+    id:
+    {
+        type : DataTypes.BIGINT,
         allowNull: false,
+        primaryKey : true,
+        autoIncrement: true
     },
 
-    code: {
-        type: Sequelize.STRING,
-        allowNull: false,
+    course_plan_id:
+    {
+        type: DataTypes.BIGINT,
+        allowNull : false,
+        references: {
+          model: course_plans,
+          key: 'id'
+        }
+    },
+    
+    type:
+    {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
 
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+    code:
+    {
+        type : DataTypes.STRING,
+        allowNull: false
+    }, 
+
+    name:
+    {
+        type : DataTypes.TEXT,
+        allowNull: false 
     },
 
-    parent_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+    parent_id:
+    {
+        type: DataTypes.BIGINT,
+        allowNull: false
     },
 
-    created_at: {
-        type: Sequelize.DATE,
+    created_at:
+    {
+        type : DataTypes.DATE,
     },
 
-    update_at: {
-        type: Sequelize.DATE,
+    updated_at:
+    {
+        type : DataTypes.DATE,
     }
+
 }, {
     tableName: 'course_los',
-    timestamps: true  
+    timestamps: false 
 });
 
 module.exports = course_los;

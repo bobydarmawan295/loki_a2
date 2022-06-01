@@ -1,49 +1,60 @@
 //skema orm course_plan_assessments.js
-const Sequelize = require('sequelize');
-const db = require ("../database/conn");
+const db = require ("../config/conn");
+const course_plans = require("./course_plans");
+const { Sequelize, DataTypes } = require('sequelize');
 
 
-const cpAssess = db.define( "cpAssess", {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
+const cpAssess = db.define( "course_plan_assessments", {
+    id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        primaryKey : true,
+        autoIncrement: true
     },
 
-    course_plan_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true
+    course_plan_id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+          model: course_plans,
+          key: 'id'
+        }
     },
 
-    name: {
-        type: Sequelize.STRING,
+    name:
+    {
+        type : DataTypes.STRING,
+        allowNull: false 
+    }, 
+
+    percentage:
+    {
+        type : DataTypes.DOUBLE,
+        allowNull: false 
+    },
+
+    flag:
+    {
+        type : DataTypes.INTEGER,
         allowNull: false
     },
 
-    percentage: {
-        type: Sequelize.DOUBLE,
-        allowNull: false
+    created_at:
+    {
+        type : DataTypes.DATE,
     },
 
-    flag: {
-        type: Sequelize.INTEGER,
-    },
+    updated_at:
+    {
+        type : DataTypes.DATE,
 
-    created_at: {
-        type: Sequelize.DATE,
-        allowNull: false
-    },
-
-    update_at: {
-        type: Sequelize.DATE,
-        allowNull: false
     }
  }, 
- 
     {
-    tableName: 'course_plan_assessments',
-    timestamps: false
+        tableName: 'course_plan_assessments',
+        timestamps: false
     }
     );
 

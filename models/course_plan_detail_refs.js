@@ -1,42 +1,56 @@
 // skema orm course_plan_detail_refs
-const Sequelize = require("sequelize");
-const db = require("../database/conn");
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const cpDetailRef = db.define(
-  "cpDetailRef",
+const course_plans_details = require("./course_plans_details");
+const course_plan_references = require("./course_plan_references");
+
+const course_plan_detail_refs = db.define(
+  "course_plan_detail_refs",
   {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
+    id:
+    {
+      type: DataTypes.BIGINT,
+      allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
 
-    course_plan_detail_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      foreignKey: true,
-    },
-
-    course_plan_reference_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      foreignKey: true,
-    },
-
-    category: {
-      type: Sequelize.INTEGER,
+    course_plan_detail_id:
+    {
+      type: DataTypes.BIGINT,
       allowNull: false,
+      references: {
+        model: course_plans_details,
+        key: 'id'
+      }
     },
 
-    created_at: {
-      type: Sequelize.DATE,
+    course_plan_reference_id:
+    {
+      type: DataTypes.BIGINT,
       allowNull: false,
+      references: {
+        model: course_plan_references,
+        key: 'id'
+      }
     },
 
-    update_at: {
-      type: Sequelize.DATE,
-      allowNull: false,
+    category:
+    {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
+
+    created_at:
+    {
+      type: DataTypes.DATE,
+    },
+
+    updated_at:
+    {
+      type: DataTypes.DATE,
+    }
   },
 
   {
@@ -44,4 +58,4 @@ const cpDetailRef = db.define(
     timestamps: false,
   }
 );
-module.exports = cpDetailRef;
+module.exports = course_plan_detail_refs;

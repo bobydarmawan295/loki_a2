@@ -1,50 +1,72 @@
-// const { Sequelize, DataTypes } = require('sequelize');
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const Sequelize = require("sequelize");
-const db = require("../database/conn");
+const curricula = require("./curricula");
 
 const courses = db.define(
   "courses",
   {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
+    id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        primaryKey : true,
+        autoIncrement: true
     },
-    curriculum_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+
+    curriculum_id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+          model: curricula,
+          key: 'id'
+        }
     },
-    code: {
-      type: Sequelize.STRING,
-      allowNull: false,
+
+    code:
+    {
+        type : DataTypes.STRING,
+        allowNull: false 
+    }, 
+
+    name:
+    {
+        type : DataTypes.TEXT,
+        allowNull: false 
     },
-    name: {
-      type: Sequelize.TEXT,
-      allowNull: false,
+
+    alias_name:
+    {
+        type : DataTypes.TEXT
     },
-    alias_name: {
-      type: Sequelize.TEXT,
-      allowNull: false,
+
+    credit:
+    {
+        type : DataTypes.INTEGER,
+        allowNull : false
     },
-    credit: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+
+    semester:
+    {
+        type : DataTypes.INTEGER,
+        allowNull : false
     },
-    semester: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+
+    description:
+    {
+        type : DataTypes.TEXT
     },
-    description: {
-      type: Sequelize.TEXT,
-      allowNull: false,
+
+    created_at:
+    {
+        type : DataTypes.DATE,
     },
-    created_at: {
-      type: Sequelize.DATE,
-    },
-    updated_at: {
-      type: Sequelize.DATE,
-    },
+
+    updated_at:
+    {
+        type : DataTypes.DATE,
+    }
   },
 
   {

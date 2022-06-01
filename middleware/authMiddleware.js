@@ -1,73 +1,19 @@
 const jwt = require('jsonwebtoken');
-const users = require('../models/users');
 const dotenv = require('dotenv');
+dotenv.config();
 
-const requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
 
-  // check json web token exists & is verified
-  if (token) {
-    jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
-      if (err) {
-        console.log(err.message);
-        res.redirect('/login');
-      } else {
-        console.log(decodedToken);
-        next();
-      }
-    });
-  } else {
-    res.redirect('/login');
-  }
-};
+  if (token == null) return res.status(401).send(`Akses ditolak`);
 
-// check current user
-const checkUser = async (req, res, next) => {
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(token, 'net ninja secret', async (err, decodedToken) => {
-      if (err) {
-        res.locals.user = null;
-        next();
-      } else {
-        let user = await users.findByPk(decodedToken.id);
-        res.locals.user = user;
-        next();
-      }
-    });
-  } else {
-    res.locals.user = null;
-    next();
-  }
-};
+  jwt.verify(token, process.env.TOKEN, (err, user) => {
+    console.log(err)
+    if (err) return res.status(403).send(`Token tidak valid`)
+    req.user = user
+    next()
+  })
+}
 
-const adminAuth = (req, res, next) => {
-  
-  dotenv.config();
-  const token = req.cookies.jwt;
-
-  let secret = process.env.TOKEN_SECRET; 
-  if (token == null) return res.sendStatus(401)
-  
-  // check json web token exists & is verified
-  if (token) {
-    jwt.verify(token,secret, (err, decodedToken) => {
-      if (err) {
-        console.log(err.message);
-        res.redirect('/login');
-      } else {
-        console.log(decodedToken);
-        if(decodedToken.type == "D"){
-          next();
-        }else{
-          res.redirect('/login')
-        }
-      }
-    });
-  } else {
-    res.redirect('/login');
-  }
-};
-
-
-module.exports = { requireAuth, checkUser, adminAuth};
+module.exports = authenticateToken;

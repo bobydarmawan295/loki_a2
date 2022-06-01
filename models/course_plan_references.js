@@ -1,12 +1,8 @@
-//skema orm course_plan_references.js
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-// const { Sequelize, Sequelize } = require('sequelize');
-// const sequelize = new Sequelize ("mysql://root@localhost:8080/loki");
-const Sequelize = require("sequelize");
-const db = require("../database/conn");
-
-const cpReferensi = db.define(
-  "cpReferensi",
+const course_plan_references = db.define(
+  "course_plan_references",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -62,4 +58,4 @@ const cpReferensi = db.define(
   }
 );
 
-module.exports = cpReferensi;
+module.exports = course_plan_references;

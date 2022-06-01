@@ -7,8 +7,8 @@ const db = new Sequelize('loki', 'root', '', {
 
 try {
     db.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log('Koneksi berhasil');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error('Tidak dapat koneksi ke database:', error);
   }
 module.exports = db;

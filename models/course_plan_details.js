@@ -1,50 +1,64 @@
-// skema orm course_plan_details
-const Sequelize = require("sequelize");
-const db = require("../database/conn");
+// skema orm course_plan_detail_refs
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const cpDetail = db.define(
-  "cpDetail",
+const course_plans = require("./course_plans");
+
+const course_plan_details = db.define(
+  "course_plan_details",
   {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
+    id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        primaryKey : true,
+        autoIncrement: true
     },
 
-    course_plan_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      foreignKey: true,
+    course_plan_id:
+    {
+        type : DataTypes.BIGINT,
+        allowNull: false,
+        references: {
+          model: course_plans,
+          key: 'id'
+        }
     },
 
-    week: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+    week:
+    {
+        type : DataTypes.INTEGER,
+        allowNull: false 
+    }, 
+
+    material:
+    {
+        type : DataTypes.TEXT,
+        allowNull: false 
     },
 
-    material: {
-      type: Sequelize.STRING,
-      allowNull: false,
+    method:
+    {
+        type : DataTypes.TEXT,
+        allowNull: false
     },
 
-    method: {
-      type: Sequelize.STRING,
-      allowNull: false,
+    student_experience:
+    {
+        type : DataTypes.TEXT,
+        allowNull: false
     },
 
-    student_experience: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    created_at: {
-      type: Sequelize.DATE,
-      allowNull: false,
+    created_at:
+    {
+        type : DataTypes.DATE,
     },
 
-    updated_at: {
-      type: Sequelize.DATE,
-      allowNull: false,
-    },
+    updated_at:
+    {
+        type : DataTypes.DATE,
+
+    }
   },
 
   {
@@ -52,4 +66,4 @@ const cpDetail = db.define(
     timestamps: false,
   }
 );
-module.exports = cpDetail;
+module.exports = course_plan_details ;

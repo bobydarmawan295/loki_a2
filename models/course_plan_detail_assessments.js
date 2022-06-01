@@ -1,39 +1,55 @@
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mysql://root@localhost:3306/loki");
+const db = require ("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const detail_assessment = sequelize.define(
+const course_plans_details = require("./course_plans_details");
+const course_plan_assessments = require("./course_plan_assessments");
+
+const detail_assessment = db.define(
   "course_plan_detail_assessments",
   {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-
-    course_plan_detail_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      foreignKey: true,
-    },
-
-    course_plan_assessment_id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      foreignKey: true,
-    },
-
-    percentage: {
-      type: Sequelize.DOUBLE,
+    id:
+    {
+      type: DataTypes.BIGINT,
       allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
     },
 
-    created_at: {
-      type: Sequelize.DATE,
+    course_plan_detail_id:
+    {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      references: {
+        model: course_plans_details,
+        key: 'id'
+      }
     },
 
-    update_at: {
-      type: Sequelize.DATE,
+    course_plan_assessment_id:
+    {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      references: {
+        model: course_plan_assessments,
+        key: 'id'
+      }
     },
+
+    percentage:
+    {
+      type: DataTypes.DOUBLE,
+      allowNull: false
+    },
+
+    created_at:
+    {
+      type: DataTypes.DATE,
+    },
+
+    updated_at:
+    {
+      type: DataTypes.DATE,
+    }
   },
   {
     tableName: "course_plan_detail_assessments",

@@ -54,8 +54,8 @@ const handleErrors = (err) => {
 const maxAge = 3 * 24 * 60 * 60;
 dotenv.config();
 let secret = process.env.TOKEN_SECRET; 
-const createToken = (type) => {
-  return jwt.sign({ type }, secret, {
+const createToken = (id, type) => {
+  return jwt.sign({ id, type }, secret, {
     expiresIn: maxAge
   });
 };
@@ -74,9 +74,9 @@ module.exports.signup_post = async (req, res) => {
 
   try {
     const user = await users.create({ email, password });
-    const token = createToken(user._id);
+    const token = createToken(user.id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ user: user._id });
+    res.status(201).json({ user: user.id, type: user.type });
   }
   catch(err) {
     const errors = handleErrors(err);
@@ -89,9 +89,10 @@ module.exports.login_post = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await login(email, password);
-    const token = createToken(user.type);
+    const token = createToken(user.id, user.type);
     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({ user: user.type })
+    res.status(200).json({ user: user.id,
+    type: user.type})
   } 
   catch (err) {
     const errors = handleErrors(err);
@@ -101,6 +102,7 @@ module.exports.login_post = async (req, res) => {
 }
 
 module.exports.logout_get = (req, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
+  // res.cookie('jwt', '', { maxAge: 1 });
+  res.clearCookie('jwt');
   res.redirect('/login');
 }

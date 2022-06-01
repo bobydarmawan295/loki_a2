@@ -1,80 +1,101 @@
-// skema orm course_plans
-const Sequelize = require('sequelize');
-const db= require('../database/conn');
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const cp = db.define(
-    "course_plan",
+const courses = require("./courses");
+
+const course_plans = db.define(
+    "course_plans",
     {
-      id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+      id:
+      {
+          type : DataTypes.BIGINT,
+          allowNull: false,
+          primaryKey : true,
+          autoIncrement: true
       },
-
-      course_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true,
+  
+      course_id:
+      {
+          type : DataTypes.BIGINT,
+          allowNull: false,
+          references: {
+            model: courses,
+            key: 'id'
+          }
       },
-
-      rev: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+  
+      rev:
+      {
+          type : DataTypes.INTEGER,
+          allowNull: false 
+      }, 
+  
+      code:
+      {
+          type : DataTypes.STRING,
+          allowNull: false 
       },
-
-      code: {
-        type: Sequelize.STRING,
-        allowNull: false,
+  
+      name:
+      {
+          type : DataTypes.TEXT,
+          allowNull: false
       },
-
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+  
+      alias_name:
+      {
+          type : DataTypes.TEXT
       },
-
-      alias_name: {
-        type: Sequelize.STRING,
+      
+      credit:
+      {
+          type : DataTypes.INTEGER,
+          allowNull : false
       },
-
-      credit: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+  
+      semester:
+      {
+          type : DataTypes.INTEGER,
+          allowNull : false
       },
-
-      semester: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+  
+      description:
+      {
+          type : DataTypes.TEXT
       },
-
-      description: {
-        type: Sequelize.STRING,
+  
+      material:
+      {
+          type : DataTypes.TEXT
       },
-
-      material: {
-        type: Sequelize.STRING,
+      
+      
+      created_by:
+      {
+          type : DataTypes.BIGINT,
       },
-
-      created_by: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true,
+  
+      validated_by:
+      {
+          type : DataTypes.BIGINT,
       },
-
-      validated_by: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        foreignKey: true,
+      
+      
+      validated_at:
+      {
+          type : DataTypes.BIGINT,
       },
-
-      validated_at: {
-        type: Sequelize.DATE,
+  
+      created_at:
+      {
+          type : DataTypes.DATE,
       },
-      created_at: {
-        type: Sequelize.DATE,
-      },
-      update_at: {
-        type: Sequelize.DATE,
-      },
+  
+      updated_at:
+      {
+          type : DataTypes.DATE,
+  
+      }
     },
 
     {
@@ -82,4 +103,4 @@ const cp = db.define(
       timestamps: false,
     }
   );
-  module.exports = cp;
+  module.exports = course_plans;

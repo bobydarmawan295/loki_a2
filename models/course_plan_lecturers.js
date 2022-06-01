@@ -1,9 +1,9 @@
 // skema orm course_plan_lectures
-const Sequelize = require('sequelize');
-const db= require('../database/conn');
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
-const cpl = db.define(
-    "cpl",
+const course_plan_lecturers = db.define(
+    "course_plan_lecturers",
     {
       id: {
         type: Sequelize.INTEGER,
@@ -44,4 +44,4 @@ const cpl = db.define(
       timestamps: false,
     }
     );
-    module.exports = cpl;
+    module.exports = course_plan_lecturers;

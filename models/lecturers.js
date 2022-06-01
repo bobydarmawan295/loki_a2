@@ -1,6 +1,5 @@
-// skema orm lecturers
-const Sequelize = require("sequelize");
-const config = require("../config/database/conn");
+const db = require("../config/conn");
+const { Sequelize, DataTypes } = require('sequelize');
 
 const lecturers = config.define(
   "lecturers",
