@@ -61,11 +61,9 @@
         emailError.textContent = data.errors.email;
         passwordError.textContent = data.errors.password;
       }
-      if(data.user.type == "M") {
+      if(data.user.type) {
         location.assign('/');
         console.log(data.user);
-      }else{
-        location.assign('/admin')
       }
     }
     catch (err) {
