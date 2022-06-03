@@ -1,19 +1,22 @@
-const { Router } = require('express');
-const authController = require('../controller/auth');
-const {getUsers}= require('../controller/users');
-const express = require("express");
-const { get } = require('express/lib/request');
-
-const router = Router();
-router.use(express.json());
-
-router.get('/signup',  authController.signup_get);
-router.post('/signup', authController.signup_post);
-router.get('/login', authController.login_get);
-router.post('/login', authController.login_post);
-router.get('/logout', authController.logout_get);
+const express = require('express');
+const {signup_get, signup_post, login_get, login_post, logout_get, logout_post} = require('../controller/users');
+const {authenticateToken} = require('../middleware/verifyToken');
+const cookieParser =  require('cookie-parser');
 
 
-router.get('/res', getUsers);
+const router = express.Router();
 
-module.exports = router;
+router.use(express.static('public'));
+router.use(express.json()); 
+router.use(cookieParser());
+
+router.get('/register', signup_get);
+router.post('/register', signup_post);
+router.get('/login', login_get)
+router.post('/login', login_post)
+router.get('/logout', logout_get)
+router.post('/logout', logout_post)
+
+
+
+module.exports = router 

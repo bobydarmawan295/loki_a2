@@ -12,39 +12,33 @@
   top: 0;
   left: 0;
   height: 100%;
+  width: 260px;
   background: #F0F0F0;
-  width: 230px;
-  z-index: 2;
+  z-index: 100;
   transition: all 0.5s ease;
 }
 .sidebar.close{
   width: 78px;
 }
-
-.navbar.logo-details .bx-menu{
-  cursor: pointer;
-  margin-top: 40px;
+.sidebar .logo-details{
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 25px;
 }
 
-#logo-image{
-  margin-left: 20px;
-  margin-bottom: 2px;
+.sidebar .logo-details img{
+  margin-right: 20px;
 }
 
-.navbar .nav-item .logo_name{
+.sidebar .logo-details .logo_name{
   font-size: 22px;
-  color: #55B8FF;
+  color: #44B54F;
   font-weight: 600;
   transition: 0.3s ease;
   transition-delay: 0.1s;
-  margin-left: 7px;
 }
-
-.navbar-brand{
-  margin-left: 20px;
-  display: inline-block;
-}
-
 .sidebar.close .logo-details .logo_name{
   transition-delay: 0s;
   opacity: 0;
@@ -52,7 +46,7 @@
 }
 .sidebar .nav-links{
   height: 100%;
-  padding: 100px 0 150px 0;
+  padding: 30px 0 150px 0;
   overflow: auto;
 }
 .sidebar.close .nav-links{
@@ -65,11 +59,9 @@
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
-  /* background: #F0F0F0; */
-  padding-top: 5px;
 }
-.sidebar .nav-links li a:hover{
-  background-color: #55B8FF;
+.sidebar .nav-links li :hover{
+  background-color: #44B54F;
   color: #fff;
 }
 
@@ -87,11 +79,11 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #55B8FF;
+  color: #44B54F;
 }
 
 .sidebar .nav-links li .logout a{
-  color: #55B8FF;
+  color: #44B54F;
 }
 
 .sidebar .nav-links li a .link_name{
@@ -103,7 +95,6 @@
   opacity: 0;
   pointer-events: none;
 }
-
 .sidebar .nav-links li .sub-menu{
   padding: 6px 6px 14px 80px;
   margin-top: -10px;
@@ -123,7 +114,7 @@
 }
 
 .sidebar .nav-links li .sub-menu:hover{
-  background-color: #55B8FF;
+  background-color: #44B54F;
   color: #F0F0F0;
 }
 
@@ -133,7 +124,7 @@
 .sidebar.close .nav-links li .sub-menu{
   position: absolute;
   left: 100%;
-  color: #55B8FF;
+  color: #44B54F;
   top: -10px;
   margin-top: 0;
   padding: 10px 20px;
@@ -142,34 +133,27 @@
   display: block;
   pointer-events: none;
   transition: 0s;
-  height: 50px;
 }
 .sidebar.close .nav-links li:hover .sub-menu{
+  top: 0;
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li .sub-menu .link_name{
   display: none;
-  margin-top: 12px;
 }
 .sidebar.close .nav-links li .sub-menu .link_name{
   font-size: 18px;
   opacity: 1;
   display: block;
-  height: 20px;
-  display: flex;
-  text-align: center;
-  padding-bottom: 20px;
 }
-
-.sidebar .nav-links li .sub-menu.blank {
-  opacity: 0;
+.sidebar .nav-links li .sub-menu.blank{
+  opacity: 1;
   pointer-events: auto;
-  padding: 3px 10px;
+  padding: 3px 20px 6px 16px;
+  opacity: 0;
   pointer-events: none;
-  display: absolute;
-  top:0;
 }
 .sidebar .nav-links li:hover .sub-menu.blank{
   top: 50%;
@@ -182,6 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #1d1b31;
   padding: 12px 0;
   transition: all 0.5s ease;
 }
@@ -224,7 +209,7 @@
 }
 .home-section{
   position: relative;
-  background-color: #fff;
+  background: #E4E9F7;
   min-height: 100vh;
   left: 260px;
   width: calc(100% - 260px);
@@ -238,6 +223,8 @@
 .home-content{
   display: flex;
   flex-wrap: wrap;
+  position: absolute;
+  top: 0;
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
@@ -253,25 +240,54 @@
   font-weight: 600;
 }
 
-img{
-  padding-bottom: 4px;
+.home-section{
+  background-color: #fff;
+  
 }
 
 .main{
   margin: 40px;
+  min-width: 1100px;
 }
 
 .navbar{
   background-color: #F0F0F0;
+  color: #44B54F;
 }
 
-.navbar-brand .logo-details{
-  margin-right: 20px;
-  margin-bottom: 30px;
+.navbar-right{
+  margin-right: 60px;
+}
+
+.welcome{
+  margin-top: 7px;
 }
 
 #user{
-  color: #55B8FF;
+  color: #44B54F;
+}
+
+.bg-light:hover{
+  background-color: #F0F0F0;
+  color: #44B54F;
+}
+
+.jumbotron{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color:  #F0F0F0;
+  min-height: 500px;
+  min-width: 1000px;
+  box-shadow: 5px 5px 5px #44B54F;
+}
+
+
+
+.main .jumbotron .btn-primary{
+  display: block;
+  justify-content: end;
 }
 
 .logout{

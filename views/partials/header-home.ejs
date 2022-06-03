@@ -3,34 +3,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" type="text/css" href="/vendor/boxicons/css/boxicons.min.css" />
   <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-  <link rel="stylesheet" type="text/css" href="/util.css" />
+  <link rel="stylesheet" type="text/css" href="css/util.css" />
   <!-- <link rel="stylesheet" type="text/css" href="/login.css" /> -->
-  <link rel="stylesheet" type="text/css" href="/index.css" />
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 <body>
   <div class="wrapper hover_collapse">
     <div class="top_navbar">
-      <img src="img/burger_small.png" alt="" />
+      <img src="images/burger_small.png" alt="" />
       <div class="logo"><h1>PORTAL</h1></div>
       <div class="menu">
         <div class="profile_wrap">
           <div class="profile">
-            <% if (user) { %>
-              <li>Welcome, <%= user.email %></li>
+         
+              <li>Welcome</li>
               <div class="profile-logo">
                 <i class="bx bxs-user"></i>
               </div>
               <h2 class="name">Admin</h2>
               <span class="icon"> </span>
-              <li><a href="/logout">Log out</a></li>
-            <% } else { %>
-              <li><a href="/login">Log in</a></li>
-              <li><a href="/signup" class="btn">Sign up</a></li>
-            <% } %>
+              <li>
+                <form method="POST" action="/auth/logout">
+                    <button type="submit" class="dropdown-item"><i  class="icon-mid bi bi-box-arrow-left me-2"></i> Keluar</button>                                
+              </form>
+     
+              
+     
             
           </div>
         </div>
