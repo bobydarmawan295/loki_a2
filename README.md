@@ -3,7 +3,7 @@
 
 ┳┻|<br>
 ┻┳|<br>
-┳┻|∧ &nbsp;&nbsp;∧   【нёllо｡ gaёz】<br>
+┳┻|∧ &nbsp;&nbsp;∧   【Wёlcomё｡ gaёz】<br>
 ┻┳| - ω -`). <br>
 ┳┻|⊂ノ<br>
 ┻┳|Ｊ<br>
