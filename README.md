@@ -1,6 +1,13 @@
 # loki_a2
 <h2>SI Manajemen RPS</h2>
 
+┳┻|
+┻┳|
+┳┻|ヘ ∧   【нёllо｡ gaёz】
+┻┳| - w - ). 
+┳┻|⊂ノ
+┻┳|Ｊ
+
 <h3>Kelompok 2</h3>
 
 Anggota Kelompok :
