@@ -1,12 +1,13 @@
 # loki_a2
 <h2>SI Manajemen RPS</h2>
 
-┳┻|
-┻┳|
-┳┻|ヘ ∧   【нёllо｡ gaёz】
-┻┳| - w - ). 
-┳┻|⊂ノ
-┻┳|Ｊ
+┳┻|<br>
+┻┳|<br>
+┳┻|∧ &nbsp;&nbsp;∧   【нёllо｡ gaёz】<br>
+┻┳| - ω -`). <br>
+┳┻|⊂ノ<br>
+┻┳|Ｊ<br>
+
 
 <h3>Kelompok 2</h3>
 
