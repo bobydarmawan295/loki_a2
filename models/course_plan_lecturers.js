@@ -2,18 +2,19 @@
 const db = require("../config/conn");
 const { Sequelize, DataTypes } = require('sequelize');
 
+const course_plans = require("./course_plans")
+
 const course_plan_lecturers = db.define(
     "course_plan_lecturers",
     {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
+        // autoIncrement: true,
         primaryKey: true,
       },
 
       course_plan_id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         foreignKey: true,
       },
 
@@ -44,4 +45,5 @@ const course_plan_lecturers = db.define(
       timestamps: false,
     }
     );
-    module.exports = course_plan_lecturers;
+  
+module.exports = course_plan_lecturers;

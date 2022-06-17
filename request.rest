@@ -1,0 +1,45 @@
+GET http://localhost:8000/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTY1LCJ0eXBlIjoiVCIsImlhdCI6MTY1NDEzMzIwMywiZXhwIjoxNjU0MzkyNDAzfQ.O-xnz_C4UXruwHrTSLmPXkflsWf4_ru3ugh5lmO4mgE
+
+###
+POST http://localhost:8000/auth/register
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "email" : "admin@unand.ac.id",
+    "password" : "12345",
+    "confPassword" : "12345",
+    "type": "T"
+}
+
+###
+POST http://localhost:8000/dosen/add-course
+Content-Type: application/json
+
+{
+    "id": 5,
+    "curriculum_id": 2,
+    "name": "njvfdf",
+    "code":"code",
+    "alias": "alias",
+    "credit": 3,
+    "semester": 2, 
+    "description": "description"
+}
+
+            
+###
+POST http://localhost:8000/auth/login
+Content-Type: application/json
+
+{
+    "email" : "198201182008121002@unand.ac.id",
+    "password" : "12345"
+} 
+
+###
+GET http://localhost:8000/dosen/coursesPlan/1
+
+###
+GET http://localhost:8000/dosen/courses

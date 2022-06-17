@@ -1,13 +1,28 @@
 </div>
 </section>
 
-<script src="js/script.js"></script>
+
+<script>
+
+    function success(){
+        Swal.fire(
+        'Good job!',
+        'Data saved',
+        'success'
+        ).then(function(){ 
+            // document.getElementById('form').submit();
+            window.setTimeout( function(){
+              window.location = "/dosen/courses";
+             }, 700 );
+        }).catch(error => console.log(error));
+    }
+</script>
 
 
+<script src="/js/script.js"></script>
 <!-- <footer>Copyright 2022 Kelompok 2</footer> -->
-
-    <script src="/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+<script src="/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/js/datatables-simple-demo.js"></script>
 
 </body>
 </html>

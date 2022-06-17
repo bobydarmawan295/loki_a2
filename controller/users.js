@@ -1,7 +1,7 @@
 const users = require("../models/users");
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 const login = async function(email, password) {
   const user = await users.findOne({where: { email: email } });
@@ -67,14 +67,24 @@ const signup_get = (req, res) => {
 const login_get = (req, res) => {
   res.render('login');
 }
+
 const signup_post = async (req, res) => {
-  const { email, password } = req.body;
+  const {name, email, password, confPassword, type } = req.body;
+  if (password !== confPassword) return res.status(400).json({ msg: "Password dan Confirm Password tidak cocok" });
+  const salt = await bcrypt.genSalt();
+  const hashPassword = await bcrypt.hash(password, salt);
+
+  const emailExist = await users.findOne({ where: { email: req.body.email } });
+  if (emailExist) return res.status(400).send("Email sudah dipakai");
 
   try {
-    const user = await users.create({ email, password });
-    const token = createToken(user.id);
-    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ user: user.id, type: user.type });
+    await users.create({
+      name: name,
+      email: email,
+      password: hashPassword,
+      type: type,
+    });
+    res.redirect("/auth/login");
   }
   catch(err) {
     const errors = handleErrors(err);
@@ -87,16 +97,36 @@ const login_post = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await login(email, password);
+    if (!user) return res.status(400).send("Email tidak ditemukan");
+
+    // Cek Password
+    const validPass = await bcrypt.compare(req.body.password, user.password);
+    if (!validPass) return res.status(400).send("Password Salah");
+
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date+' '+time;
+
     const token = createToken(user.id, user.type);
+    const type = user.type;
 
     await users.update(
-      { remember_token: token },
+      { 
+        remember_token: token,
+        email_verified_at: dateTime
+      },
       {
         where: { email: req.body.email },
       }
     );
     
-    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+    res
+      .cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
+      .cookie("type", type, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
     res.status(200).json({user : user.id})
     // res.redirect('/')
   } 
@@ -104,17 +134,14 @@ const login_post = async (req, res) => {
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
-
 }
 
 const logout_get = (req, res) => {
-  res.render('login');
-}
 
-const logout_post = (req, res) => {
-  // res.cookie('jwt', '', { maxAge: 1 });
-  res.clearCookie('jwt');
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.cookie('type', '', { maxAge: 1 });
+  // res.clearCookie('jwt');
   res.redirect('/auth/login');
 }
 
-module.exports = {signup_get, signup_post, login_get, login_post, logout_get, logout_post}
+module.exports = {signup_get, signup_post, login_get, login_post, logout_get}

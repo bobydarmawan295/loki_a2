@@ -36,42 +36,6 @@ function authDosen(req, res, next) {
   })
 }
 
-function authAdmin(req, res, next) {
-  const token = req.cookies.jwt;
-
-  if (token == null) return res.status(401).send(`Akses ditolak`);
-
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedToken) => {
-    console.log(err)
-    if (err) return res.status(403).send(`Token tidak valid`)
-    if(decodedToken.type == "T"){
-      next();
-    }else{
-      res.sendStatus(401).send('Unathorized')
-      // res.redirect('/auth/login')
-    }
-    
-  })
-}
-
-
-function authMahasiswa(req, res, next) {
-  const token = req.cookies.jwt;
-
-  if (token == null) return res.status(401).send(`Akses ditolak`);
-
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedToken) => {
-    console.log(err)
-    if (err) return res.status(403).send(`Token tidak valid`)
-    if(decodedToken.type == "M"){
-      next();
-    }else{
-      res.sendStatus(401).send('Unathorized')
-      // res.redirect('/auth/login')
-    }
-    
-  })
-}
 
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -94,5 +58,5 @@ const checkUser = (req, res, next) => {
 
 
 
-module.exports = {authenticateToken, authAdmin, authDosen, authMahasiswa, checkUser};
+module.exports = {authenticateToken, checkUser};
 

@@ -1,0 +1,24 @@
+
+  <%- include('../partials/sidebar'); -%>
+
+    <div id="container">
+      <a href="/dosen/add-course">Tambah RPS</a>
+      <div class="row hidden-md-up">
+        <% items.forEach((item) => { %>
+        <div class="col-md-3">
+          <div class="card text-center mb-4">
+            <div class="card-body">
+              <img src="/images/frame.png" class="card-img-top" alt="...">
+              <h4 class="card-title"><%= item.name %></h4>
+              <h6 class="card-subtitle text-muted">Semester <%= item.semester %></h6>
+              <a href="/dosen/coursesPlan/<%= item.id %>" class="card-link">Lihat</a>
+              <a href="#" class="card-link">detail</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+  <%- include('../partials/footer'); -%>
+

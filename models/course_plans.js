@@ -2,6 +2,9 @@ const db = require("../config/conn");
 const { Sequelize, DataTypes } = require('sequelize');
 
 const courses = require("./courses");
+const lecturers = require("./lecturers");
+const course_plan_lecturers = require("./course_plan_lecturers");
+
 
 const course_plans = db.define(
     "course_plans",
@@ -18,10 +21,10 @@ const course_plans = db.define(
       {
           type : DataTypes.BIGINT,
           allowNull: false,
-          references: {
-            model: courses,
-            key: 'id'
-          }
+        //   references: {
+        //     model: courses,
+        //     key: 'id'
+        //   }
       },
   
       rev:
@@ -94,13 +97,21 @@ const course_plans = db.define(
       updated_at:
       {
           type : DataTypes.DATE,
-  
       }
     },
 
     {
-      tableName: "course_plan",
+      tableName: "course_plans",
       timestamps: false,
     }
   );
-  module.exports = course_plans;
+
+  
+course_plans.hasOne(courses);
+course_plans.belongsTo(courses, { foreignKey:'course_id'});
+
+course_plans.belongsToMany(lecturers, { through: course_plan_lecturers,foreignKey: "course_plan_id" });
+lecturers.belongsToMany(course_plans, { through: course_plan_lecturers,foreignKey: "lecturer_id" });
+
+
+ module.exports = course_plans;

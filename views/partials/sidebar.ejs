@@ -3,131 +3,129 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/">
-    
     <title>Home</title>
-    <link rel="stylesheet" 
-    href="<% if (user.type == "T") { %>
-      /css/style-admin.css
-     <% } else if (user.type == "D") { %>
-     /css/style-dosen.css
-     <% } else {%>
-     /css/style-mahasiswa.css
-     <% } %> ">
-
-
+    <link rel="stylesheet" href="<% if (user.type == "T") { %>
+        /css/style-admin.css
+       <% } else if (user.type == "D") { %>
+       /css/style-dosen.css
+       <% } else {%>
+       /css/style-mahasiswa.css
+       <% } %> ">
     <!-- Boxiocns CDN Link -->
+    <link href="/vendor/sweetalert2.all.min.css"></link>
+    <script src="/vendor/sweetalert2.all.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-     
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
 
-
-<div class="sidebar close">
-    <div class="logo-details">
-      <a href="#"><img 
-        src="<% if (user.type == "T") { %>
-          /images/burger_small_adm.png
-         <% } else if (user.type == "D") { %>
-          /images/burger_small_ds.png
-         <% } else {%>
-          /images/burger_small_mhs.png
-         <% } %>" alt=""></a>
-      <span class="logo_name">Portal</span>
-    </div>
-    <ul class="nav-links">
-      <li class="ls">
-        <a href="/">
-          <i class='bx bx-home-alt bx-sm'></i>
-          <span class="link_name">Home</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="/">Home</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="/dosen/list-rps">
-          <i class='bx bx-file bx-sm' ></i>
-          <span class="link_name">Mata Kuliah</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="/admin/rps">Mata Kuliah</a></li>
-        </ul>    
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-history bx-sm'></i>
-          <span class="link_name">History</span>
-        </a>
-        <ul class="sub-menu blank bx-sm">
-          <li><a class="link_name" href="#">History</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog bx-sm' ></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Setting</a></li>
-        </ul>
-      </li>
-      <div class="logout">
-        <li class="">
-          <a href="">
-            <i class='bx bx-info-circle bx-sm'></i>
-            <span class="link_name">Info</span>
-          </a>
-          <ul class="sub-menu blank bx-sm">
-            <li><a class="link_name" href="#">Info</a></li>
-          </ul>
-        </li>
-        <li>
-            <a href="/auth/logout">
-              <form method="POST" action="/auth/logout" ></form>
-              <i class='bx bx-log-out bx-sm'></i>
-              <button class="link_name">Logout</button>
-              </form>
+  <nav class="navbar container-fluid fixed-top">
+    <ul class="nav navbar-left">
+        <li class="nav-item">
+            <span class="logo-details">
+                <i id="user" class='bx bx-menu bx-md bx-fw'></i>
+            </span>
+            <a href="#" class="navbar-brand ">
+                <img src="<% if (user.type == "T") { %>
+                  /images/burger_small_adm.png
+                 <% } else if (user.type == "D") { %>
+                  /images/burger_small_ds.png
+                 <% } else {%>
+                  /images/burger_small_mhs.png
+                 <% } %>" alt="" width="30">
+                <span class="logo_name">Portal</span>
             </a>
-
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Logout</a></li>
-          </ul>
         </li>
-      </div>
-
-      
-         
-
-    </ul>
-  </div>
-
-  <section class="home-section">
+        </ul>
         
-    <div class="home-content">
-      <nav class="navbar container-fluid sticky-top">
-          <a class="navbar-brand"><i id="user" class='bx bx-menu' ></i></a>
-          <ul class="nav navbar-right ">
+        <ul class="nav navbar-right ">
             <li class="nav-item">
-              <% if (user) { %>
-                <li class="welcome">
-                    Welcome, <%= user.name %>
-                </li>
-                <% } %>
-                <a class="nav-link" href="#" id="user">
-                  <i  class='bx-fw bx bxs-user-circle bx-sm'></i>
-                  <% if (user.type == "D") { %>
-                     Dosen
-                  <% } else if(user.type == "T") { %>
-                      Admin
-                  <% } else { %>
-                      Mahasiswa
+                <% if (user) { %>
+                  <li class="welcome">
+                      Welcome, <%= user.name %>
+                  </li>
                   <% } %>
+                  <a class="nav-link" href="#" id="user">
+                    <i  class='bx-fw bx bxs-user-circle bx-sm'></i>
+                    <% if (user.type == "D") { %>
+                       Dosen
+                    <% } else if(user.type == "T") { %>
+                        Admin
+                    <% } else { %>
+                        Mahasiswa
+                    <% } %>
+                  </a>
+              </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar close">
+        <ul class="nav-links">
+            <li>
+                <a href="/">
+                <i class='bx bx-home-alt bx-sm'></i>
+                <span class="link_name">Home</span>
                 </a>
+                <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Home</a></li>
+                </ul>
             </li>
-          </ul>
-      </nav>
-      <div class="main">
+            <li>
+                <a href="<% if (user.type == "T") { %>
+                    /admin/rps
+                   <% } else if (user.type == "D") { %>
+                    /dosen/courses
+                   <% } else {%>
+                    /mahasiswa/
+                   <% } %>">
+                <i class='bx bx-folder bx-sm' ></i>
+                <span class="link_name">Mata Kuliah</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Mata Kuliah</a></li>
+                </ul>    
+            </li>
+            <li>
+                <a href="#">
+                <i class='bx bx-history bx-sm'></i>
+                <span class="link_name">History</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">History</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                <i class='bx bx-cog bx-sm' ></i>
+                <span class="link_name">Setting</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Setting</a></li>
+                </ul>
+            </li>
+            <div class="logout">
+                <li class="">
+                <a href="">
+                    <i class='bx bx-info-circle bx-sm'></i>
+                    <span class="link_name">Info</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Info</a></li>
+                </ul>
+                </li>
+                <li>
+                  <a href="/auth/logout">
+                    <i class='bx bx-log-out bx-sm'></i>
+                    <span class="link_name">Logout</span>
+                  </a>
+                  <ul class="sub-menu blank">
+                      <li><a class="link_name" href="#">Logout</a></li>
+                  </ul>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div class="main">
+     

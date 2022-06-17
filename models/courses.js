@@ -18,10 +18,10 @@ const courses = db.define(
     {
         type : DataTypes.BIGINT,
         allowNull: false,
-        references: {
-          model: curricula,
-          key: 'id'
-        }
+        // references: {
+        //     model: curricula,
+        //     key: 'id'
+        // }
     },
 
     code:
@@ -70,10 +70,16 @@ const courses = db.define(
   },
 
   {
+
     tableName: "courses",
     timestamps: false, //Karena created_at dan update_at akan dibuat otomatis oleh sequelize
     // freezeTableName: true
   }
 );
+
+courses.hasOne(curricula);
+courses.belongsTo(curricula, { foreignKey:'curriculum_id'});
+
+
 
 module.exports = courses;
