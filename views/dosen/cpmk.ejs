@@ -1,0 +1,43 @@
+<%- include('../partials/sidebar'); -%>
+<link rel="stylesheet" href="/public/css/table.css" />
+<div id="container">
+  <div class="">
+    <h1 class="navbar-brand mb-5">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
+    <div class="d-flex justify-content-end">
+      <button class="add1">
+        <% items.forEach((item) => { %>
+        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-cpmk" class=""><% }) %> TAMBAH </a>
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table id="table_id" class="table table-responsive-xl">
+            <thead class="thead">
+              <tr>
+                <th width="1%">KODE</th>
+                <th width="30%">DESKRIPSI</th>
+                <th width="3%">AKSI</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="alert">
+                <% items.forEach((item) => { %>
+                <td><%= item.code %></td>
+                <td><%= item.name %></td>
+                <td width="250px">
+                  <a class="editb" href=""><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb" href=""><i class="bx bx-trash" style="color: #a30d11"></i></a>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer'); -%>

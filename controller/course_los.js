@@ -1,14 +1,18 @@
-const courses = require("../models/courses");
+const course_los = require("../models/course_los");
+const { Op } = require("sequelize");
 
-const getAllCourses = async (req, res) => {
+const getCourseLos = async (req, res) => {
   try {
-    await courses
+    await course_los
       .findAll({
-        attributes: ["id", "name"],
+        attributes: ["id", "course_plan_id", "code", "name"],
+        where: {
+          course_plan_id: req.params.id,
+        },
       })
       .then((result) => {
         if (result.length > 0) {
-          res.render("dosen/courses", { items: result });
+          res.render("dosen/cpmk", { items: result });
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -22,18 +26,16 @@ const getAllCourses = async (req, res) => {
     });
   }
 };
-
-const createCourse = async (req, res) => {
+const createCourseLos = async (req, res) => {
   try {
-    const { curriculum_id, code, name, alias, credit, semester, description } = req.body;
-    await courses.create({
-      curriculum_id: curriculum_id,
+    const course_plan_id = req.params.id;
+    const { code, type, name, parent_id } = req.body;
+    await course_los.create({
+      course_plan_id: course_plan_id,
+      type: 1,
       code: code,
       name: name,
-      alias_name: alias,
-      credit: credit,
-      semester: semester,
-      description: description,
+      parent_id: parent_id,
     });
     //   res.redirect("/dosen/courses");
   } catch (error) {
@@ -41,6 +43,24 @@ const createCourse = async (req, res) => {
     // res.redirect("/dosen/add-course");
   }
 };
+// const createCourse = async (req, res) => {
+//   try {
+//     const { curriculum_id, code, name, alias, credit, semester, description } = req.body;
+//     await courses.create({
+//       curriculum_id: curriculum_id,
+//       code: code,
+//       name: name,
+//       alias_name: alias,
+//       credit: credit,
+//       semester: semester,
+//       description: description,
+//     });
+//     //   res.redirect("/dosen/courses");
+//   } catch (error) {
+//     res.json({ message: error.message });
+//     // res.redirect("/dosen/add-course");
+//   }
+// };
 
 // export const getProductById = async (req, res) => {
 //     try {
@@ -85,4 +105,4 @@ const createCourse = async (req, res) => {
 //     }
 // }
 
-module.exports = { getAllCourses, createCourse };
+module.exports = { getCourseLos, createCourseLos };
