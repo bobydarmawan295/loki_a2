@@ -5,6 +5,8 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <script src="../js/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/index.css" />
@@ -87,9 +89,13 @@
                 <h4>4. Pertemuan Mingguan</h4>
               </div>
             </div>
+            <div class="container-button100-form-btn m-t-30">
+              <button class="button100-form-btn" id="download">DOWNLOAD</button>
+              
+            </div>
             <div class="tampil-rps">
                 
-                <table class="rps-tabel">
+                <table class="rps-tabel" id="invoice">
                      <thead>
                         <tr>
                             
