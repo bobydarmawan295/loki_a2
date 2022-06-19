@@ -4,19 +4,19 @@
   <div class="content">
     <form id="form" class="login100-form validate-form flex-sb flex-w" action="./add-cpmk" method="post">
       <div class="row input">
-        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
-          <h5 class="txt1">KODE (CPMK-NO)</h5>
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
+          <h5 class="txt1">KODE*</h5>
           <input class="input100" type="text" name="code" required />
-          <span class="focus-input100"></span>
+          <span class="focus-input100">*Ex: CPMK-1, CPMK-2</span>
         </div>
-        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Isikkan id parent">
+        <div class="col-sm-6 wrap-input100 validate-input" data-validate="Isikkan id parent">
           <h5 class="txt1">PARENT ID</h5>
-          <input class="input100" type="number" name="parent_id" placeholder="pilih id parent" required />
+          <input class="input100" type="number" name="parent_id" placeholder="Pilih id parent" required />
           <span class="focus-input100"></span>
         </div>
       </div>
       <div class="row input">
-        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikan deskripsi CPMK">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikan deskripsi CPMK">
           <h5 class="txt1">DESKRIPSI</h5>
           <input class="input100" type="text" name="name" required />
           <span class="focus-input100"></span>
@@ -24,8 +24,8 @@
       </div>
 
       <div class="container-button100-form-btn m-t-30">
-        <button class="button100-form-btn" type="submit" onclick="success1()">TAMBAH</button>
-        <button class="button100-form-btn"><a href="./add-cpmk" class="nav-link">Back</a></button>
+        <button class="button100-form-btn" type="submit" onclick="success1()">SIMPAN</button>
+        <button class="button100-form-btn"><a href="./CPMK" class="nav-link">KEMBALI</a></button>
       </div>
     </form>
   </div>

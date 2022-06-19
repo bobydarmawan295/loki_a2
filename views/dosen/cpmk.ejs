@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="/public/css/table.css" />
 <div id="container">
   <div class="">
-    <h1 class="navbar-brand mb-5">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
+    <h1 class="navbar-brand mb-3">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
     <div class="d-flex justify-content-end">
-      <button class="add1">
+      <button class="button100-form-btn">
         <% items.forEach((item) => { %>
         <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-cpmk" class=""><% }) %> TAMBAH </a>
       </button>
@@ -27,8 +27,10 @@
                 <td><%= item.code %></td>
                 <td><%= item.name %></td>
                 <td width="250px">
-                  <a class="editb" href=""><i class="bx bxs-edit" style="color: #624de3"></i></a>
-                  <a onclick="return confirm('Anda yakin menghapus data ini ?')" class="editb" href=""><i class="bx bx-trash" style="color: #a30d11"></i></a>
+                  <a class="editb" href="/dosen/coursesPlan/<%= item.course_plan_id %>/edit-cpmk/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <form action="/dosen/coursesPlan/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" class="d-inline" method="post">
+                    <button onclick="success()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
+                  </form>
                 </td>
               </tr>
               <% }) %>
@@ -39,5 +41,15 @@
     </div>
   </div>
 </div>
-
+<script>
+  function success() {
+    Swal.fire("Good job!", "Data deleted", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "./CPMK";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+</script>
 <%- include('../partials/footer'); -%>

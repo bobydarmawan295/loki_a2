@@ -1,17 +1,18 @@
 <%- include('../partials/sidebar'); -%>
 
 <div id="container">
+  <h1 class="navbar-brand mb-5">Tambah Rencana Pembelajaran Semester (RPS)</h1>
   <div class="content">
-    <form id="form" class="login100-form validate-form flex-sb flex-w" action="/dosen/add-course" method="post">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="/dosen/add-course" method="post">
       <div class="row input">
         <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
           <h5 class="txt1">id Kurikulum</h5>
-          <input class="input100" type="number" name="curriculum_id" placeholder="pilih id kurikulum" />
+          <input class="input100" type="number" name="curriculum_id" placeholder="Pilih id kurikulum" required />
           <span class="focus-input100"></span>
         </div>
         <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
           <h5 class="txt1">Kode Matkul</h5>
-          <input class="input100" type="text" name="code" />
+          <input class="input100" type="text" name="code" required />
           <span class="focus-input100"></span>
         </div>
         <div class="col-sm-5 wrap-input100 validate-input" data-validate="Password is required">
@@ -23,17 +24,17 @@
       <div class="row input">
         <div class="col-sm-5 wrap-input100 validate-input" data-validate="Password is required">
           <h5 class="txt1">Mata Kuliah</h5>
-          <input class="input100" type="text" name="name" />
+          <input class="input100" type="text" name="name" required />
           <span class="focus-input100"></span>
         </div>
         <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
           <h5 class="txt1">Sks</h5>
-          <input class="input100" type="number" name="credit" />
+          <input class="input100" type="number" name="credit" required />
           <span class="focus-input100"></span>
         </div>
         <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
           <h5 class="txt1">Semester</h5>
-          <input class="input100" type="number" name="semester" />
+          <input class="input100" type="number" name="semester" required />
           <span class="focus-input100"></span>
         </div>
       </div>
@@ -52,8 +53,8 @@
           </div> -->
 
       <div class="container-button100-form-btn m-t-30">
-        <button class="button100-form-btn" type="submit" onclick="success()">TAMBAH</button>
-        <button class="button100-form-btn"><a href="/dosen/courses" class="nav-link">KEMBALI</a></button>
+        <button class="button100-form-btn" type="submit">SIMPAN</button>
+        <button class="button100-form-btn" type="button" onclick="page()">KEMBALI</button>
       </div>
     </form>
   </div>
@@ -68,6 +69,9 @@
         }, 700);
       })
       .catch((error) => console.log(error));
+  }
+  function page() {
+    window.location = "/dosen/courses";
   }
 </script>
 <%- include('../partials/footer'); -%>
