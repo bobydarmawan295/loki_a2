@@ -1,5 +1,5 @@
 const course_los = require("../models/course_los");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 const getCourseLos = async (req, res) => {
   try {
@@ -29,7 +29,7 @@ const getCourseLos = async (req, res) => {
 const createCourseLos = async (req, res) => {
   try {
     const course_plan_id = req.params.id;
-    const { code, type, name, parent_id } = req.body;
+    const { code, name, parent_id } = req.body;
     await course_los.create({
       course_plan_id: course_plan_id,
       type: 1,
@@ -41,6 +41,40 @@ const createCourseLos = async (req, res) => {
   } catch (error) {
     res.json({ message: error.message });
     // res.redirect("/dosen/add-course");
+  }
+};
+
+const updateCourseLos = async (req, res) => {
+  try {
+    const { code, name, parent_id } = req.body;
+    await course_los.update(
+      {
+        type: 1,
+        code: code,
+        name: name,
+        parent_id: parent_id,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+  } catch (error) {
+    res.json({ message: error.message });
+    // res.redirect("/dosen/add-course");
+  }
+};
+
+const deleteCourseLos = async (req, res) => {
+  try {
+    await course_los.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+  } catch (error) {
+    res.json({ message: error.message });
   }
 };
 // const createCourse = async (req, res) => {
@@ -55,7 +89,7 @@ const createCourseLos = async (req, res) => {
 //       semester: semester,
 //       description: description,
 //     });
-//     //   res.redirect("/dosen/courses");
+//     //
 //   } catch (error) {
 //     res.json({ message: error.message });
 //     // res.redirect("/dosen/add-course");
@@ -90,19 +124,4 @@ const createCourseLos = async (req, res) => {
 //     }
 // }
 
-// export const deleteProduct = async (req, res) => {
-//     try {
-//         await Product.destroy({
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.json({
-//             "message": "Product Deleted"
-//         });
-//     } catch (error) {
-//         res.json({ message: error.message });
-//     }
-// }
-
-module.exports = { getCourseLos, createCourseLos };
+module.exports = { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos };
