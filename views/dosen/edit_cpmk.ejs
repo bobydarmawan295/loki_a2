@@ -2,24 +2,24 @@
 
 <div id="container">
   <div class="content">
-    <form id="form" class="login100-form validate-form flex-sb flex-w" action="./<%= id %>?_method=PUT" method="POST">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" action="./<%= items.id %>?_method=PUT" method="POST">
       <input type="hidden" name="_method" value="PUT" />
       <div class="row input">
-        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
           <h5 class="txt1">KODE (CPMK-NO)</h5>
-          <input class="input100" type="text" name="code" required />
+          <input class="input100" type="text" value="<%= items.code %>" name="code" required />
           <span class="focus-input100"></span>
         </div>
-        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Isikkan id parent">
+        <div class="col-sm-6 wrap-input100 validate-input" data-validate="Isikkan id parent">
           <h5 class="txt1">PARENT ID</h5>
-          <input class="input100" type="number" name="parent_id" placeholder="pilih id parent" required />
+          <input class="input100" type="number" value="<%= items.parent_id %>" name="parent_id" placeholder="Pilih id parent" required />
           <span class="focus-input100"></span>
         </div>
       </div>
       <div class="row input">
-        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikan deskripsi CPMK">
+        <div class="col-sm-12 wrap-input100 validate-input textarea" data-validate="Isikan deskripsi CPMK">
           <h5 class="txt1">DESKRIPSI</h5>
-          <input class="input100" type="text" name="name" required />
+          <textarea class="input100" type="text" placeholder="<%= items.name %>" name="name" required wrap=""></textarea>
           <span class="focus-input100"></span>
         </div>
       </div>

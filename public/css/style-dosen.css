@@ -545,11 +545,21 @@ div .wrap-input100 {
   border-radius: 5px;
   margin-bottom: 50px;
 }
+.content div .textarea {
+  height: auto;
+}
 .wrap-input100 h5 {
   font-size: 0.9rem;
   color: #747b75;
   font-weight: 600;
   text-transform: uppercase;
+}
+textarea {
+  text-decoration: none;
+}
+textarea:focus {
+  border: none;
+  outline: none;
 }
 h4 {
   font-family: "Poppins";

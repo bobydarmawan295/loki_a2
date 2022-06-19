@@ -1,7 +1,7 @@
 const express = require("express");
 const { getAllCourses, createCourse } = require("../controller/courses");
 const { getCourses } = require("../controller/course_plan");
-const { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos } = require("../controller/course_los");
+const { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos, getCourseLosById } = require("../controller/course_los");
 
 const router = express.Router();
 
@@ -44,9 +44,7 @@ router.get("/coursesPlan/:id/add-cpmk", (req, res) => {
 });
 router.post("/coursesPlan/:id/add-cpmk", createCourseLos);
 
-router.get("/coursesPlan/:id/edit-cpmk/:id", (req, res) => {
-  res.render("dosen/edit_cpmk", { id: req.params.id });
-});
+router.get("/coursesPlan/:id/edit-cpmk/:id", getCourseLosById);
 router.put("/coursesPlan/:id/edit-cpmk/:id", updateCourseLos);
 
 router.delete("/coursesPlan/:id/CPMK/:id", deleteCourseLos);

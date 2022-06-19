@@ -26,6 +26,32 @@ const getCourseLos = async (req, res) => {
     });
   }
 };
+
+const getCourseLosById = async (req, res) => {
+  try {
+    await course_los
+      .findOne({
+        attributes: ["id", "code", "name", "parent_id"],
+        where: {
+          id: req.params.id,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.render("dosen/edit_cpmk", { items: result });
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
 const createCourseLos = async (req, res) => {
   try {
     const course_plan_id = req.params.id;
@@ -124,4 +150,4 @@ const deleteCourseLos = async (req, res) => {
 //     }
 // }
 
-module.exports = { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos };
+module.exports = { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos, getCourseLosById };
