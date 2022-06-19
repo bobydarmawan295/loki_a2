@@ -1,6 +1,7 @@
 <%- include('../partials/sidebar'); -%>
 
 <div id="container">
+  <h1 class="navbar-brand mb-5">Edit Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
   <div class="content">
     <form id="form" class="login100-form validate-form flex-sb flex-w" action="./<%= items.id %>?_method=PUT" method="POST">
       <input type="hidden" name="_method" value="PUT" />
@@ -19,7 +20,7 @@
       <div class="row input">
         <div class="col-sm-12 wrap-input100 validate-input textarea" data-validate="Isikan deskripsi CPMK">
           <h5 class="txt1">DESKRIPSI</h5>
-          <textarea class="input100" type="text" placeholder="<%= items.name %>" name="name" required wrap=""></textarea>
+          <textarea class="input100" type="text" placeholder="<%= items.name %>" name="name" required></textarea>
           <span class="focus-input100"></span>
         </div>
       </div>
