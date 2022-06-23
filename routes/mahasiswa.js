@@ -6,8 +6,12 @@ const userRouter = express.Router();
 
 userRouter.use(express.static('public'));
 
-userRouter.get('/mahasiwa',  (req, res) => {
+userRouter.get('/mahasiswa',  (req, res) => {
     res.send('ini Halaman mahasiswa');
 });
 
-module.exports = userRouter;
+
+userRouter.get("/homemhs", (req, res) => {
+    res.render("mahasiswa/mahasiswa");
+  });
+  module.exports = userRouter;
