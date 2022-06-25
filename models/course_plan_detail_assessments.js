@@ -18,7 +18,7 @@ const detail_assessment = db.define(
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
-        model: course_plans_details,
+        model: course_plan_details,
         key: "id",
       },
     },

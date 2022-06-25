@@ -5,6 +5,9 @@ const courses = require("./courses");
 const lecturers = require("./lecturers");
 const course_plan_lecturers = require("./course_plan_lecturers");
 const course_los = require("./course_los");
+const course_plan_references = require("./course_plan_references");
+const course_plan_details = require("./course_plan_details");
+const course_plan_assessments = require("./course_plan_assessments");
 
 const course_plans = db.define(
   "course_plans",
@@ -19,10 +22,6 @@ const course_plans = db.define(
     course_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      //   references: {
-      //     model: courses,
-      //     key: 'id'
-      //   }
     },
 
     rev: {
@@ -96,5 +95,11 @@ course_plans.belongsToMany(lecturers, { through: course_plan_lecturers, foreignK
 lecturers.belongsToMany(course_plans, { through: course_plan_lecturers, foreignKey: "lecturer_id" });
 
 course_plans.hasMany(course_los, { foreignKey: "course_plan_id" });
+
+course_plans.hasMany(course_plan_references, { foreignKey: "course_plan_id" });
+
+course_plans.hasMany(course_plan_details, { foreignKey: "course_plan_id" });
+
+course_plans.hasMany(course_plan_assessments, { foreignKey: "course_plan_id" });
 
 module.exports = course_plans;

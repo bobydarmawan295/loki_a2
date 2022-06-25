@@ -1,5 +1,7 @@
 const db = require("../config/conn");
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require("sequelize");
+const course_plan_details = require("./course_plan_details");
+const course_plan_detail_refs = require("./course_plan_detail_refs");
 
 const course_plan_references = db.define(
   "course_plan_references",
@@ -12,7 +14,6 @@ const course_plan_references = db.define(
 
     course_plan_id: {
       type: Sequelize.INTEGER,
-      autoIncrement: true,
       foreignKey: true,
     },
 
@@ -43,12 +44,10 @@ const course_plan_references = db.define(
 
     created_at: {
       type: Sequelize.DATE,
-      allowNull: false,
     },
 
     update_at: {
       type: Sequelize.DATE,
-      allowNull: false,
     },
   },
 
@@ -57,5 +56,8 @@ const course_plan_references = db.define(
     timestamps: false,
   }
 );
+
+course_plan_references.belongsToMany(course_plan_details, { through: course_plan_detail_refs, foreignKey: "course_plan_reference_id" });
+course_plan_details.belongsToMany(course_plan_references, { through: course_plan_detail_refs, foreignKey: "course_plan_detail_id" });
 
 module.exports = course_plan_references;
