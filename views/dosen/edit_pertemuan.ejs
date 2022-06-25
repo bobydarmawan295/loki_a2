@@ -1,0 +1,54 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <h1 class="navbar-brand mb-5">Edit Pertemuan Mingguan</h1>
+  <div class="content">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="./<%= items.id %>?_method=PUT" method="POST">
+      <input type="hidden" name="_method" value="PUT" />
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikkan minggu pertemuan">
+          <h5 class="txt1">MINGGU KE</h5>
+          <input class="input100" type="number" name="week" value="<%= items.week %>" required />
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-6 wrap-input100 validate-input" data-validate="Isikkan materi ajar">
+          <h5 class="txt1">MATERI AJAR</h5>
+          <input class="input100" type="text" name="material" value="<%= items.material %>" required />
+          <span class="focus-input100"></span>
+        </div>
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikkan metode pembelajaran ">
+          <h5 class="txt1">METODE PEMBELAJARAN</h5>
+          <input class="input100" type="text" name="method" value="<%= items.method %>" required />
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikkan pengalaman belajar mahasiswa">
+          <h5 class="txt1">PENGALAMAN BELAJAR MAHASISWA</h5>
+          <input class="input100" type="text" name="student_experience" value="<%= items.student_experience %>" required />
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+
+      <div class="container-button100-form-btn">
+        <button class="button100-form-btn" type="submit">SIMPAN</button>
+        <button class="button100-form-btn" type="button" onclick="page()">KEMBALI</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Data disimpan", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "../pertemuan";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+  function page() {
+    window.location = "../pertemuan";
+  }
+</script>
+<%- include('../partials/footer'); -%>

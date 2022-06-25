@@ -20,8 +20,10 @@
             <img src="/images/frame.png" class="card-img-top" alt="..." />
             <h4 class="card-title"><%= item.name %></h4>
             <h6 class="card-subtitle text-muted flexible">Semester <%= item.semester %></h6>
-            <a href="/dosen/coursesPlan/<%= item.id %>" class="card-link">Lihat</a>
-            <a href="#" class="card-link">detail</a>
+            <div class="mt-2">
+              <a href="/dosen/coursesPlan/<%= item.id %>" class="card-link">LIHAT</a>
+              <a href="#" class="card-link">DETAIL</a>  
+            </div>
           </div>
         </div>
       </div>

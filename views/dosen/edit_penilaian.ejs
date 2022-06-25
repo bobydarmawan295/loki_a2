@@ -1,0 +1,43 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <h1 class="navbar-brand mb-5">Edit Komponen Penilaian</h1>
+  <div class="content">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="./<%= items.id %>?_method=PUT" method="POST">
+      <input type="hidden" name="_method" value="PUT" />
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
+          <h5 class="txt1">KOMPONEN</h5>
+          <input class="input100" type="text" name="name" value="<%= items.name %>" required />
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikkan id pengarang">
+          <h5 class="txt1">PERSENTASE</h5>
+          <input class="input100" type="number" name="percentage" value="<%= items.percentage %>" required />
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+
+      <div class="container-button100-form-btn">
+        <button class="button100-form-btn" type="submit">SIMPAN</button>
+        <button class="button100-form-btn" type="button" onclick="page()">KEMBALI</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Data disimpan", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "../penilaian";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+  function page() {
+    window.location = "../penilaian";
+  }
+</script>
+<%- include('../partials/footer'); -%>

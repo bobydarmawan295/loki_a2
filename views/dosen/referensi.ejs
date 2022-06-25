@@ -1,0 +1,61 @@
+<%- include('../partials/sidebar'); -%>
+<link rel="stylesheet" href="/public/css/table.css" />
+<div id="container">
+  <div class="">
+    <h1 class="navbar-brand mb-3">Daftar Referensi</h1>
+    <div class="d-flex justify-content-end">
+      <button class="button100-form-btn btn-head">
+        <% items.forEach((item) => { %>
+        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-referensi" class=""><% }) %> TAMBAH </a>
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table id="table_id" class="table table-responsive-xl">
+            <thead class="thead">
+              <tr>
+                <th width="30%">JUDUL</th>
+                <th width="15%">PENGARANG</th>
+                <th width="10%">PENERBIT</th>
+                <th width="5%">TAHUN</th>
+                <th width="20%">DESKRIPSI</th>
+                <th width="10%">AKSI</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="alert">
+                <% items.forEach((item) => { %>
+                <td><%= item.title %></td>
+                <td><%= item.author %></td>
+                <td><%= item.publisher %></td>
+                <td><%= item.year %></td>
+                <td><%= item.description %></td>
+                <td width="250px">
+                  <a class="editb" href="/dosen/coursesPlan/<%= item.course_plan_id %>/edit-referensi/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <form action="/dosen/coursesPlan/<%= item.course_plan_id %>/referensi/<%= item.id %>?_method=DELETE" onsubmit="success()" class="d-inline" method="post">
+                    <button type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Referensi telah dihapus", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "./referensi";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+</script>
+<%- include('../partials/footer'); -%>

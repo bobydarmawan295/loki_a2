@@ -3,7 +3,7 @@
         <div id="container">
           <div class="content">
             <div class="row detail-rps">
-                <% items.forEach((item) => { %>
+                <% item.forEach((item) => { %>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div>
                         <h1 class="navbar-brand"><%= item.name %></h1>
@@ -11,24 +11,25 @@
                           <span class="navbar-toggler-icon"></span>
                         </button>
                     </div>
-                    
+                
                     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
                           <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/CPMK">CPMK  /</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Referensi  /</a>
+                          <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/referensi">Referensi  /</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Penilaian  /</a>
+                          <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/penilaian">Penilaian  /</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pertemuan</a>
+                            <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/pertemuan">Pertemuan</a>
                           </li>
                       </ul>
                     </div>
                   </nav>
+                  <% }) %>
             </div>
             
             <div class="tampil-rps">
@@ -64,24 +65,25 @@
                             <td>Semester </td>
                             <td align="center">Tgl Penyusunan </td>
                         </tr>
+                        <% item.forEach((item) => { %>
 
                         <tr>
                             <td colspan="2"><%= item.name %></td>
                             <td><%= item.code %></td>
                             <td colspan="2"> </td>
-                            <td >3</td>
-                            <td >4</td>
+                            <td ><%= item.credit %></td>
+                            <td ><%= item.semester %></td>
                             <td > </td>
                         </tr>
-
+                        <% }) %>
                         <tr>
-                            <td rowspan=2", colspan="2">OTORISASI </td>
+                            <td rowspan="2" colspan="2">OTORISASI </td>
                             <td colspan="2">Dosen Pengembang RPS </td>
                             <td colspan="2">Koordinator Rumpun MK </td>
                             <td colspan="2">KA Program Studi </td> 
                         </tr>
                         <tr>
-                            <td colspan="2"> </td>
+                            <td colspan="2"></td>
                             <td colspan="2"> </td>
                             <td colspan="2"> </td> 
                         </tr>
@@ -105,10 +107,15 @@
                         <tr>  
                             <td colspan="3">CP Mata Kuliah </td> 
                         </tr>
+                       
+
+                            <% item.forEach((data) => { 
+                                data.course_los.forEach((res) => { %>
                         <tr>
-                            <td>1 </td> 
-                            <td colspan="6">Mahasiswa mampu </td> 
+                            <td><%= res.code %> </td> 
+                            <td colspan="6"><%= res.name  %> </td> 
                         </tr>
+                        <% })}) %>
                         <tr>
                             <td>2 </td> 
                             <td colspan="6">Mahasiswa mampu </td> 
@@ -232,7 +239,7 @@
                     </tbody>
                 </table>
             </div>
-             <% }) %>
+
           </div>
         </div>
       </div>
