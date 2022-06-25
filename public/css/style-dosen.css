@@ -29,6 +29,21 @@
 div .all-card {
   margin-top: 40px;
 }
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+.flexible {
+  flex: 1 1 auto;
+}
+.link {
+}
+.card-link {
+  text-decoration: none;
+  color: #303677;
+  font-size: 16px;
+  font-weight: 500;
+}
 #logo-image {
   margin-left: 20px;
   margin-bottom: 2px;
