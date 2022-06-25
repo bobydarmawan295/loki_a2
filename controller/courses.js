@@ -4,7 +4,7 @@ const getAllCourses = async (req, res) => {
   try {
     await courses
       .findAll({
-        attributes: ["id", "name"],
+        attributes: ["id", "name", "semester"],
       })
       .then((result) => {
         if (result.length > 0) {

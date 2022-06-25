@@ -1,25 +1,44 @@
 const course_plans = require("../models/course_plans");
 const courses = require("../models/courses");
 const lecturers = require("../models/lecturers");
+const course_plan_assessments = require("../models/course_plan_assessments");
+const course_plan_details = require("../models/course_plan_details");
+const course_los = require("../models/course_los");
+const course_plan_references = require("../models/course_plan_references");
+const course_plan_lecturers = require("../models/course_plan_lecturers");
+
 // const curricula = require("../models/curricula");
 
 const getCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "name", "code"],
+        attributes: ["id", "name", "code", "semester", "credit"],
         include: [
           {
-            model: courses,
-            attributes: ["name", "semester", "curriculum_id"],
+            model: course_los,
+            as: "course_los",
+            attributes: ["id", "course_plan_id", "code", "name"],
             required: true,
           },
           {
-            model: lecturers,
-            attributes: ["id"],
-            through: {
-              attributes: ["updated_at", "created_at"],
-            },
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: true,
+          },
+          {
+            model: course_plan_references,
+            attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+            required: true,
+          },
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: true,
+          },
+          {
+            model: course_plan_references,
+            attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
             required: true,
           },
         ],
@@ -29,7 +48,7 @@ const getCourses = async (req, res) => {
       })
       .then((result) => {
         if (result.length > 0) {
-          res.render("dosen/course_plan", { items: result });
+          res.render("dosen/course_plan", { item: result });
         } else {
           res.status(200).json({
             message: "data tidak ada",
