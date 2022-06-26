@@ -90,7 +90,7 @@
               </div>
             </div>
             <div class="container-button100-form-btn m-t-30">
-              <button class="button100-form-btn" id="download">DOWNLOAD</button>
+              <button class="button100-form-btn" id="download" onclick="button()">DOWNLOAD</button>
               
             </div>
             
@@ -299,5 +299,26 @@
     </div>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/pdf.js"></script>
+    <script>
+      function button(){
+      window.onload=function(){
+    document.getElementById("download")
+    .addEventListener("click",()=>{
+        const invoice = this.document.getElementById("invoice");
+        console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 0.25,
+                filename: 'rps.pdf',
+                image: { type: 'jpeg', quality: 3 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'cm', format: 'tabloid', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+    })
+}
+      }
+    </script>
   </body>
 </html>

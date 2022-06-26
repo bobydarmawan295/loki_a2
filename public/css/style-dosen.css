@@ -388,10 +388,8 @@ h4 {
   border-style: solid;
 }
 table {
-  border: #000;
 }
-.rps-tabel thead,
-.rps-tabel td {
+.rps-tabel thead {
   border: #000;
   border-width: 1;
 }
@@ -418,10 +416,7 @@ tr {
 /* Table Header */
 .rps-tabel thead th {
   text-transform: uppercase;
-  border-right: 1px solid #818181;
-  border-left: 1px solid #818181;
-  border-bottom: 1px solid #818181;
-  border-top: 1px solid #818181;
+  border: 1px solid #818181;
 }
 
 .rps-tabel thead tr:first-child th:nth-child(1) {
@@ -429,10 +424,15 @@ tr {
 }
 
 /* Table Body */
-.rps-tabel tbody td {
-  color: #353535;
+tbody tr,
+tbody tr td {
+  border-top: 1px solid #818181;
+  border-left: 1px solid #818181;
   border-right: 1px solid #818181;
   border-bottom: 1px solid #818181;
+}
+
+tr .border-hidden {
 }
 .rps-tabel tbody tr:first-child td {
   background-color: #bec0be;
@@ -476,7 +476,7 @@ tr {
 .rps-tabel tbody td:last-child {
   text-align: left;
 }
-.rps-tabel tbody tr:hover td {
+.rps-tabel tbody tr td:hover {
   background-color: #ffffa2;
   border-color: #ffff0f;
   transition: all 0.2s;
@@ -896,3 +896,5 @@ div .btn-head {
 .btn-head:hover {
   color: #fff;
 }
+
+/*============================RPS==========================*/

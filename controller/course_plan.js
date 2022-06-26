@@ -13,7 +13,7 @@ const getCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "name", "code", "semester", "credit"],
+        attributes: ["id", "name", "code", "semester", "credit", "material", "description"],
         include: [
           {
             model: course_los,
@@ -39,6 +39,11 @@ const getCourses = async (req, res) => {
           {
             model: course_plan_references,
             attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+            required: true,
+          },
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
             required: true,
           },
         ],
