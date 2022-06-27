@@ -68,4 +68,27 @@ const getCourses = async (req, res) => {
   }
 };
 
-module.exports = { getCourses };
+const getRev = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        attributes: ["id", "rev", [Sequelize.fn("DISTINCT", Sequelize.col("course_id")), "course_id"], "code", "name", "credit", [Sequelize.fn("COUNT", Sequelize.col("course_id")), "total"]],
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.render("admin/home", { items: result });
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+module.exports = { getCourses, getRev };

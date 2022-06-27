@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8000;
 const methodOverride = require("method-override");
+const { getRev } = require("./controller/course_plan");
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
@@ -15,6 +16,8 @@ const admin = require("./routes/admin");
 
 const authRouter = require("./routes/auth");
 const { authenticateToken, checkUser } = require("./middleware/verifyToken");
+const { get } = require("./routes/dosen");
+const course_plans = require("./models/course_plans");
 // const router = require("./routes/index.js");
 
 app.use(express.static("public"));
@@ -31,8 +34,16 @@ app.use("/mahasiswa", mahasiswa);
 app.use("/dosen", dosen);
 app.use("/admin", admin);
 
-app.get("/", authenticateToken, (req, res) => {
-  res.render("home");
+app.get("/home", authenticateToken, (req, res) => {
+  const items = getRev.call;
+  const role = req.cookies.type;
+  if (role == "D") {
+    res.render("dosen/home");
+  } else if (role == "T") {
+    res.render("admin/home");
+  } else {
+    res.render("mahasiswa/home");
+  }
 });
 
 // app.get('/admin', adminAuth,  (req, res) => {

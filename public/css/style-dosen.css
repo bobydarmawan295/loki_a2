@@ -25,7 +25,17 @@
   cursor: pointer;
   margin-top: 40px;
 }
-
+.card h4,
+.card h6 {
+  text-decoration: none;
+  color: #000;
+}
+div a {
+  text-decoration: none;
+}
+a .card {
+  text-decoration: none;
+}
 div .all-card {
   margin-top: 40px;
 }
@@ -424,14 +434,16 @@ tr {
 }
 
 /* Table Body */
-tbody tr,
-tbody tr td {
+.rps-tabel tbody tr,
+.rps-tabel tbody tr td {
   border-top: 1px solid #818181;
   border-left: 1px solid #818181;
   border-right: 1px solid #818181;
   border-bottom: 1px solid #818181;
 }
-
+.grey {
+  background-color: #bec0be;
+}
 tr .border-hidden {
 }
 .rps-tabel tbody tr:first-child td {
@@ -455,20 +467,6 @@ tr .border-hidden {
 .rps-tabel tbody tr:nth-child(3) td:nth-child(4) {
   background-color: #bec0be;
   text-align: center;
-}
-
-.rps-tabel tbody tr:nth-child(5) td:nth-child(2) {
-  background-color: #bec0be;
-}
-.rps-tabel tbody tr:nth-child(9) td:nth-child(1) {
-  background-color: #bec0be;
-}
-
-.rps-tabel tbody tr:nth-child(19) td:nth-child(2) {
-  background-color: #bec0be;
-}
-.rps-tabel tbody tr:nth-child(22) td:nth-child(1) {
-  background-color: #bec0be;
 }
 
 .rps-tabel tbody td:nth-child(4),
@@ -874,6 +872,9 @@ button:hover {
   background: rgba(244, 247, 252, 0.75);
   backdrop-filter: blur(8px);
 }
+.back a i {
+  font-size: 25px;
+}
 
 /*=================HEADER========================= */
 .content-wrapper {
@@ -892,6 +893,13 @@ div .btn-head {
   width: 140px;
   text-decoration: none;
   border-radius: 5px;
+}
+div .back {
+  padding: 10px;
+  width: fit-content;
+  text-align: center;
+  border-radius: 3px;
+  margin-left: 0;
 }
 .btn-head:hover {
   color: #fff;

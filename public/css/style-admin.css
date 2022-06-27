@@ -1,79 +1,79 @@
 /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.sidebar{
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  background: #F0F0F0;
+  background: #f0f0f0;
   width: 230px;
   z-index: 2;
   transition: all 0.5s ease;
 }
-.sidebar.close{
+.sidebar.close {
   width: 78px;
 }
 
-.navbar.logo-details .bx-menu{
+.navbar.logo-details .bx-menu {
   cursor: pointer;
   margin-top: 40px;
 }
 
-#logo-image{
+#logo-image {
   margin-left: 20px;
   margin-bottom: 2px;
 }
 
-.navbar .nav-item .logo_name{
+.navbar .nav-item .logo_name {
   font-size: 22px;
-  color: #FFAA7B;
+  color: #ffaa7b;
   font-weight: 600;
   transition: 0.3s ease;
   transition-delay: 0.1s;
   margin-left: 7px;
 }
 
-.navbar-brand{
+.navbar-brand {
   margin-left: 20px;
   display: inline-block;
 }
 
-.sidebar.close .logo-details .logo_name{
+.sidebar.close .logo-details .logo_name {
   transition-delay: 0s;
   opacity: 0;
   pointer-events: none;
 }
-.sidebar .nav-links{
+.sidebar .nav-links {
   height: 100%;
   padding: 100px 0 150px 0;
   overflow: auto;
 }
-.sidebar.close .nav-links{
+.sidebar.close .nav-links {
   overflow: visible;
 }
-.sidebar .nav-links::-webkit-scrollbar{
+.sidebar .nav-links::-webkit-scrollbar {
   display: none;
 }
-.sidebar .nav-links li{
+.sidebar .nav-links li {
   position: relative;
   list-style: none;
   transition: all 0.4s ease;
   /* background: #F0F0F0; */
   padding-top: 5px;
 }
-.sidebar .nav-links li a:hover{
-  background-color: #FFAA7B;
+.sidebar .nav-links li a:hover {
+  background-color: #ffaa7b;
   color: #fff;
 }
 
-.sidebar .nav-links li i{
+.sidebar .nav-links li i {
   height: 50px;
   min-width: 78px;
   text-align: center;
@@ -87,34 +87,34 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #FFAA7B;
+  color: #ffaa7b;
 }
 
-.sidebar .nav-links li .logout a{
-  color: #FFAA7B;
+.sidebar .nav-links li .logout a {
+  color: #ffaa7b;
 }
 
-.sidebar .nav-links li a .link_name{
+.sidebar .nav-links li a .link_name {
   font-size: 18px;
   font-weight: 400;
   transition: all 0.4s ease;
 }
-.sidebar.close .nav-links li a .link_name{
+.sidebar.close .nav-links li a .link_name {
   opacity: 0;
   pointer-events: none;
 }
 
-.sidebar .nav-links li .sub-menu{
+.sidebar .nav-links li .sub-menu {
   padding: 6px 6px 14px 80px;
   margin-top: -10px;
-  background: #F0F0F0;
+  background: #f0f0f0;
   display: none;
 }
 
-.sidebar .nav-links li.showMenu .sub-menu{
+.sidebar .nav-links li.showMenu .sub-menu {
   display: block;
 }
-.sidebar .nav-links li .sub-menu a{
+.sidebar .nav-links li .sub-menu a {
   font-size: 15px;
   padding: 5px 0;
   white-space: nowrap;
@@ -122,18 +122,18 @@
   transition: all 0.3s ease;
 }
 
-.sidebar .nav-links li .sub-menu:hover{
-  background-color: #FFAA7B;
-  color: #F0F0F0;
+.sidebar .nav-links li .sub-menu:hover {
+  background-color: #ffaa7b;
+  color: #f0f0f0;
 }
 
-.sidebar .nav-links li .sub-menu a:hover{
+.sidebar .nav-links li .sub-menu a:hover {
   opacity: 1;
 }
-.sidebar.close .nav-links li .sub-menu{
+.sidebar.close .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
-  color: #FFAA7B;
+  color: #ffaa7b;
   top: -10px;
   margin-top: 0;
   padding: 10px 20px;
@@ -144,16 +144,16 @@
   transition: 0s;
   height: 50px;
 }
-.sidebar.close .nav-links li:hover .sub-menu{
+.sidebar.close .nav-links li:hover .sub-menu {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
 }
-.sidebar .nav-links li .sub-menu .link_name{
+.sidebar .nav-links li .sub-menu .link_name {
   display: none;
   margin-top: 12px;
 }
-.sidebar.close .nav-links li .sub-menu .link_name{
+.sidebar.close .nav-links li .sub-menu .link_name {
   font-size: 18px;
   opacity: 1;
   display: block;
@@ -169,13 +169,13 @@
   padding: 3px 10px;
   pointer-events: none;
   display: absolute;
-  top:0;
+  top: 0;
 }
-.sidebar .nav-links li:hover .sub-menu.blank{
+.sidebar .nav-links li:hover .sub-menu.blank {
   top: 50%;
   transform: translateY(-50%);
 }
-.sidebar .profile-details{
+.sidebar .profile-details {
   position: fixed;
   bottom: 0;
   width: 260px;
@@ -185,17 +185,17 @@
   padding: 12px 0;
   transition: all 0.5s ease;
 }
-.sidebar.close .profile-details{
+.sidebar.close .profile-details {
   background: none;
 }
-.sidebar.close .profile-details{
+.sidebar.close .profile-details {
   width: 78px;
 }
-.sidebar .profile-details .profile-content{
+.sidebar .profile-details .profile-content {
   display: flex;
   align-items: center;
 }
-.sidebar .profile-details img{
+.sidebar .profile-details img {
   height: 52px;
   width: 52px;
   object-fit: cover;
@@ -204,11 +204,11 @@
   background: #1d1b31;
   transition: all 0.5s ease;
 }
-.sidebar.close .profile-details img{
+.sidebar.close .profile-details img {
   padding: 10px;
 }
 .sidebar .profile-details .profile_name,
-.sidebar .profile-details .job{
+.sidebar .profile-details .job {
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -216,13 +216,13 @@
 }
 .sidebar.close .profile-details i,
 .sidebar.close .profile-details .profile_name,
-.sidebar.close .profile-details .job{
+.sidebar.close .profile-details .job {
   display: none;
 }
-.sidebar .profile-details .job{
+.sidebar .profile-details .job {
   font-size: 12px;
 }
-.home-section{
+.home-section {
   position: relative;
   background-color: #fff;
   min-height: 100vh;
@@ -231,112 +231,111 @@
   transition: all 0.5s ease;
   padding: 12px;
 }
-.sidebar.close ~ .home-section{
+.sidebar.close ~ .home-section {
   left: 78px;
   width: calc(100% - 78px);
 }
-.home-content{
+.home-content {
   display: flex;
   flex-wrap: wrap;
 }
 .home-section .home-content .bx-menu,
-.home-section .home-content .text{
+.home-section .home-content .text {
   color: #11101d;
   font-size: 35px;
 }
-.home-section .home-content .bx-menu{
+.home-section .home-content .bx-menu {
   cursor: pointer;
   margin-right: 10px;
 }
-.home-section .home-content .text{
+.home-section .home-content .text {
   font-size: 26px;
   font-weight: 600;
 }
 
-img{
+img {
   padding-bottom: 4px;
 }
 
-.main{
+.main {
   margin: 40px;
 }
 
-.navbar{
-  background-color: #F0F0F0;
+.navbar {
+  background-color: #f0f0f0;
 }
 
-.navbar-brand .logo-details{
+.navbar-brand .logo-details {
   margin-right: 20px;
   margin-bottom: 30px;
 }
 
-#user{
-  color: #FFAA7B;
+#user {
+  color: #ffaa7b;
   margin-left: 25px;
   cursor: pointer;
 }
 
-.welcome{
+.welcome {
   margin-top: 7px;
 }
 
-#container{
+#container {
   margin-top: 100px;
   margin-left: 90px;
 }
 
-.bg-light:hover{
-  background-color: #F0F0F0;
-  color: #55B8FF;
+.bg-light:hover {
+  background-color: #f0f0f0;
+  color: #55b8ff;
 }
 
-.jumbotron{
+.jumbotron {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color:  #D5EDFF;
+  background-color: #ffe3d4;
   min-height: 500px;
   min-width: 1000px;
-  box-shadow: 5px 5px 5px #55B8FF;
+  box-shadow: 5px 5px 5px #ffaa7b;
 }
 
-#rps{
-  background-color:#D5EDFF;
+#rps {
+  background-color: #d5edff;
 }
 
-
-.main .jumbotron .btn-primary{
+.main .jumbotron .btn-primary {
   display: block;
   justify-content: end;
 }
 
-.logout{
+.logout {
   position: absolute;
   bottom: 0;
   width: 100%;
 }
-@media screen and (max-width: 400px){
-  .sidebar{
+@media screen and (max-width: 400px) {
+  .sidebar {
     width: 240px;
   }
-  .sidebar.close{
+  .sidebar.close {
     width: 78px;
   }
-  .sidebar .profile-details{
+  .sidebar .profile-details {
     width: 240px;
   }
-  .sidebar.close .profile-details{
+  .sidebar.close .profile-details {
     background: none;
   }
-  .sidebar.close .profile-details{
+  .sidebar.close .profile-details {
     width: 78px;
   }
-  .home-section{
+  .home-section {
     left: 240px;
     width: calc(100% - 240px);
   }
-  .sidebar.close ~ .home-section{
+  .sidebar.close ~ .home-section {
     left: 78px;
     width: calc(100% - 78px);
   }

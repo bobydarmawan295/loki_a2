@@ -2,8 +2,12 @@
 <link rel="stylesheet" href="/public/css/table.css" />
 <div id="container">
   <div class="">
-    <h1 class="navbar-brand mb-3">Daftar Referensi</h1>
-    <div class="d-flex justify-content-end">
+    <h1 class="navbar-brand mb-5">Daftar Referensi</h1>
+    <div class="d-flex justify-content-between">
+      <button class="button100-form-btn back">
+        <% items.forEach((item) => { %>
+        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>" class=""><% }) %><i class="bx bx-subdirectory-left"></i></a>
+      </button>
       <button class="button100-form-btn btn-head">
         <% items.forEach((item) => { %>
         <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-referensi" class=""><% }) %> TAMBAH </a>

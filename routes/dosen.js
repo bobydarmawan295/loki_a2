@@ -22,6 +22,10 @@ router.get("/dosen", (req, res) => {
   res.send("ini Halaman dosen");
 });
 
+router.get("/home", (req, res) => {
+  res.render("dosen/home");
+});
+
 //course
 router.get("/courses", getAllCourses);
 router.get("/coursesPlan/:id", getCourses);
