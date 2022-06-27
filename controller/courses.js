@@ -1,14 +1,75 @@
+const course_plans = require("../models/course_plans");
 const courses = require("../models/courses");
+const db = require("../config/conn");
+const lecturers = require("../models/lecturers");
+const curricula = require("../models/curricula");
 
 const getAllCourses = async (req, res) => {
   try {
-    await courses
+    await course_plans
       .findAll({
-        attributes: ["id", "name", "semester"],
+        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester'],
+        group: ['course_id'],
+        include: [
+          {
+            model: courses,
+            attributes: ["name", "semester", "curriculum_id"],
+            required: true,
+          },
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required:false,
+            where: {
+              id: req.params.id,
+            }
+          },
+        ],
+       
+        // raw: true,
       })
       .then((result) => {
         if (result.length > 0) {
           res.render("dosen/courses", { items: result });
+          // res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+        } else {
+          res.render("dosen/no_rps");
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+const getMatkul= async (req, res) => {
+  try {
+    await courses
+      .findAll({
+        attributes: ["id", "name", "semester","code","alias_name"],
+        include: [
+          {
+            model: curricula,
+            attributes: ["id", "name"],
+            required: true,
+          },
+        ],
+      })
+      
+      .then((result) => {
+        if (result.length > 0) {
+          res.render("dosen/add_rps", { items: result });
+          // res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -25,12 +86,13 @@ const getAllCourses = async (req, res) => {
 
 const createCourse = async (req, res) => {
   try {
-    const { curriculum_id, code, name, alias, credit, semester, description } = req.body;
-    await courses.create({
-      curriculum_id: curriculum_id,
+    const { course_id,rev, code, name, alias_name, credit, semester, description } = req.body;
+    await course_plans.create({
+      course_id: course_id,
+      rev: rev,
       code: code,
       name: name,
-      alias_name: alias,
+      alias_name: alias_name,
       credit: credit,
       semester: semester,
       description: description,
@@ -42,47 +104,47 @@ const createCourse = async (req, res) => {
   }
 };
 
-// export const getProductById = async (req, res) => {
-//     try {
-//         const product = await Product.findAll({
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.json(product[0]);
-//     } catch (error) {
-//         res.json({ message: error.message });
-//     }
-// }
 
-// export const updateProduct = async (req, res) => {
-//     try {
-//         await Product.update(req.body, {
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.json({
-//             "message": "Product Updated"
-//         });
-//     } catch (error) {
-//         res.json({ message: error.message });
-//     }
-// }
+const coursesAdmin = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester'],
+        group: ['course_id'],
+        include: [
+          {
+            model: courses,
+            attributes: ["name", "semester", "curriculum_id"],
+            required: true,
+          },
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required:false,
+          },
+        ],
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.render("admin/courses", { items: result });
+          // res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+        } else {
+          res.render("dosen/no_rps");
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
 
-// export const deleteProduct = async (req, res) => {
-//     try {
-//         await Product.destroy({
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.json({
-//             "message": "Product Deleted"
-//         });
-//     } catch (error) {
-//         res.json({ message: error.message });
-//     }
-// }
 
-module.exports = { getAllCourses, createCourse };
+
+module.exports = { getAllCourses, createCourse, getMatkul,coursesAdmin};

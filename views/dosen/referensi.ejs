@@ -2,15 +2,11 @@
 <link rel="stylesheet" href="/public/css/table.css" />
 <div id="container">
   <div class="">
-    <h1 class="navbar-brand mb-5">Daftar Referensi</h1>
-    <div class="d-flex justify-content-between">
-      <button class="button100-form-btn back">
-        <% items.forEach((item) => { %>
-        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>" class=""><% }) %><i class="bx bx-subdirectory-left"></i></a>
-      </button>
+    <h1 class="navbar-brand mb-3">Daftar Referensi</h1>
+    <div class="d-flex justify-content-end">
       <button class="button100-form-btn btn-head">
         <% items.forEach((item) => { %>
-        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-referensi" class=""><% }) %> TAMBAH </a>
+        <a href="/dosen/<%= item.course_plan_id %>/add-referensi" class=""><% }) %> TAMBAH </a>
       </button>
     </div>
     <div class="row">
@@ -37,8 +33,8 @@
                 <td><%= item.year %></td>
                 <td><%= item.description %></td>
                 <td width="250px">
-                  <a class="editb" href="/dosen/coursesPlan/<%= item.course_plan_id %>/edit-referensi/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
-                  <form action="/dosen/coursesPlan/<%= item.course_plan_id %>/referensi/<%= item.id %>?_method=DELETE" onsubmit="success()" class="d-inline" method="post">
+                  <a class="editb" href="/dosen/<%= item.course_plan_id %>/edit-referensi/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <form action="/dosen/<%= item.course_plan_id %>/referensi/<%= item.id %>?_method=DELETE" onsubmit="hapus()" class="d-inline" method="post">
                     <button type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
                   </form>
                 </td>
@@ -60,6 +56,27 @@
         }, 700);
       })
       .catch((error) => console.log(error));
+  }
+  function hapus(){
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Good job!", "Data deleted", "success")
+          .then(function () {
+            window.setTimeout(function () {
+              window.location = "./referensi";
+            }, 700);
+          })
+          .catch((error) => console.log(error));
+        }
+      })
   }
 </script>
 <%- include('../partials/footer'); -%>

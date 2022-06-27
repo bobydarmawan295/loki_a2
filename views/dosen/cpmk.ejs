@@ -2,15 +2,11 @@
 <link rel="stylesheet" href="/public/css/table.css" />
 <div id="container">
   <div class="">
-    <h1 class="navbar-brand mb-5">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
-    <div class="d-flex justify-content-between">
-      <button class="button100-form-btn back">
-        <% items.forEach((item) => { %>
-        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>" class=""><% }) %><i class="bx bx-subdirectory-left"></i></a>
-      </button>
+    <h1 class="navbar-brand mb-3">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
+    <div class="d-flex justify-content-end">
       <button class="button100-form-btn btn-head">
         <% items.forEach((item) => { %>
-        <a href="/dosen/coursesPlan/<%= item.course_plan_id %>/add-cpmk" class=""><% }) %> TAMBAH </a>
+        <a href="/dosen/<%= item.course_plan_id %>/add-cpmk" class=""><% }) %> TAMBAH </a>
       </button>
     </div>
     <div class="row">
@@ -31,9 +27,9 @@
                 <td><%= item.code %></td>
                 <td><%= item.name %></td>
                 <td width="250px">
-                  <a class="editb" href="/dosen/coursesPlan/<%= item.course_plan_id %>/edit-cpmk/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
-                  <form action="/dosen/coursesPlan/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" class="d-inline" method="post">
-                    <button onclick="success()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
+                  <a class="editb" href="/dosen/<%= item.course_plan_id %>/edit-cpmk/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <form action="/dosen/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" class="d-inline" method="post">
+                    <button onclick="hapus()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
                   </form>
                 </td>
               </tr>
@@ -55,5 +51,7 @@
       })
       .catch((error) => console.log(error));
   }
+
+  c
 </script>
 <%- include('../partials/footer'); -%>

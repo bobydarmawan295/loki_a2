@@ -2,8 +2,34 @@
      
         <div id="container">
           <div class="content">
+
+            <% items.forEach((tes) => { %>
+               
+                <a class="btn btn-info btn-lg active" role="button" href="/dosen/<%= user.id %>/courses/">Kembali</a>
+
+                <a class="btn btn-info btn-lg active" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit">Edit</a>
+
+                <a class="btn btn-secondary btn-lg active" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a>
+            
+            <% }) %>
+            
+            
+                
+            <script>
+                function success() {
+                  Swal.fire("Good job!", "Data saved", "success")
+                    .then(function () {
+                      // document.getElementById('form').submit();
+                      window.setTimeout(function () {
+                        window.location = "/";
+                      }, 700);
+                    })
+                    .catch((error) => console.log(error));
+                }
+              </script>
+
             <div class="row detail-rps">
-                <% item.forEach((item) => { %>
+            <% items.forEach((item) => { %>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div>
                         <h1 class="navbar-brand"><%= item.name %></h1>
@@ -11,34 +37,31 @@
                           <span class="navbar-toggler-icon"></span>
                         </button>
                     </div>
-                
+                    
                     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                          <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/CPMK">CPMK  /</a>
+                          <a class="nav-link" href="/dosen/<%= item.id %>/CPMK">CPMK  /</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/referensi">Referensi  /</a>
+                            <a class="nav-link" href="/dosen/<%= item.id %>/referensi">Referensi  /</a>
+                          </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/dosen/<%= item.id %>/penilaian">Penilaian  /</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/penilaian">Penilaian  /</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/dosen/coursesPlan/<%= item.id %>/pertemuan">Pertemuan</a>
+                            <a class="nav-link" href="/dosen/<%= item.id %>/pertemuan">Pertemuan</a>
                           </li>
                       </ul>
                     </div>
                   </nav>
-                  <% }) %>
             </div>
             
             <div class="tampil-rps">
                 
                 <table class="rps-tabel">
-                     <thead>
-                        
+                     <thead>         
                         <tr>
-                            
                             <th rowspan="4", align="center"><img src="/images/logounand.png" alt="logounand"  /></th>
                             <th colspan="7">RENCANA PEMBELAJARAN SEMESTER (RPS) </th> 
                         </tr>
@@ -51,10 +74,7 @@
                         <tr>
                             <th colspan="7">UNIVERSITAS ANDALAS </th>
                         </tr>
-                       
-
-                        
-
+                    
                     </thead>
                     <tbody>
                         <tr>
@@ -65,32 +85,35 @@
                             <td>Semester </td>
                             <td align="center">Tgl Penyusunan </td>
                         </tr>
-                        <% item.forEach((item) => { %>
 
                         <tr>
                             <td colspan="2"><%= item.name %></td>
                             <td><%= item.code %></td>
                             <td colspan="2"> </td>
-                            <td ><%= item.credit %></td>
-                            <td ><%= item.semester %></td>
+                            <td >3</td>
+                            <td >4</td>
                             <td > </td>
                         </tr>
-                        <% }) %>
+
                         <tr>
-                            <td rowspan="2" colspan="2">OTORISASI </td>
+                            <td rowspan=2", colspan="2">OTORISASI </td>
                             <td colspan="2">Dosen Pengembang RPS </td>
                             <td colspan="2">Koordinator Rumpun MK </td>
                             <td colspan="2">KA Program Studi </td> 
                         </tr>
                         <tr>
-                            <td colspan="2"></td>
+                            <% var dosens = item.lecturers; %> 
+                            <% item.lecturers.forEach((dosen) => { %>
+                                <td colspan="2"><%= dosen.name %></td> 
+                            <% }) %> 
+                            <!-- <td colspan="2"></td> -->
                             <td colspan="2"> </td>
                             <td colspan="2"> </td> 
                         </tr>
 
                         <tr>
-                            <td rowspan="8">Capaian Pembelajaran (CP) </td>
-                            <td colspan="7" class="grey">CP Program Studi </td> 
+                            <td rowspan="12">Capaian Pembelajaran (CP) </td>
+                            <td colspan="3">CP Program Studi </td> 
                         </tr>
                         <tr>
                             <td>CP-1 </td> 
@@ -105,47 +128,87 @@
                             <td colspan="6">Menerapkan konsep </td> 
                         </tr>
                         <tr>  
-                            <td colspan="7" class="grey">CP Mata Kuliah </td> 
+                            <td colspan="3">CP Mata Kuliah </td> 
                         </tr>
-                       
 
-                            <% item.forEach((data) => { 
-                                data.course_los.forEach((res) => { %>
+                        <% item.course_los.forEach((res) => { %>
                         <tr>
                             <td><%= res.code %> </td> 
                             <td colspan="6"><%= res.name  %> </td> 
                         </tr>
-                        <% })}) %>
-                        <% item.forEach((item) => { %>
+                        <% }) %>
+
+                        <tr>
+                            <td>1 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                        <tr>
+                            <td>2 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                        <tr>
+                            <td>3 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                        <tr>
+                            <td>4 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                        <tr>
+                            <td>5 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                         <tr>
+                            <td>6 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr>
+                        <!--<tr>
+                            <td>7 </td> 
+                            <td colspan="6">Mahasiswa mampu </td> 
+                        </tr> -->
+
                         <tr>
                             <td >Deskripsi Singkat Mata Kuliah </td>
-                            <td colspan="7"><%= item.description %></td> 
+                            <td colspan="7">Mata kuliah pemrograman web merupakan mata kuliah yang membahas tentang teknik pengembangan website </td> 
                         </tr>
-  
+
                         <tr>
                             <td >Materi Pembelajaran/Pokok Bahasan </td>
-                            <td colspan="7"><%= item.material %></td> 
+                            <td colspan="7">Secara garis besar terdapat 2 materi yang akan </td> 
                         </tr>
 
                         <tr>
-                            <td colspan="10">Pustaka </td>
+                            <td rowspan="7">Pustaka </td>
+                            <td colspan="2">Utama: </td> 
                         </tr>
-                        <% }) %>
-                        <% item.forEach((data) => { 
-                            data.course_plan_references.forEach((res) => { var no = 0  %>
                         <tr>
-                            <td rowspan="1" class="border-bottom-0"></td>
-                            <td><%= res.id  %> </td> 
-                            <td colspan="6"><%= res.author  %>, <%= res.year  %>, "<%= res.title  %>", <%= res.publisher  %></td> 
+                            <td>1 </td> 
+                            <td colspan="6">Matt Doyle, 2009 </td> 
                         </tr>
-                        <% })}) %>
-
-
+                        <tr>
+                            <td>2 </td> 
+                            <td colspan="6">Nicholas Zakas, 2012</td> 
+                        </tr>
+                        <tr>  
+                            <td colspan="2">Pendukung: </td> 
+                        </tr>
+                        <tr>
+                            <td>3 </td> 
+                            <td colspan="6">Mark Pilgrim, 2010 </td> 
+                        </tr>
+                        <tr>
+                            <td>4 </td> 
+                            <td colspan="6">Steve Fulton, Jeff Fulton, 2011 </td> 
+                        </tr>
+                        <tr>
+                            <td>5 </td> 
+                            <td colspan="6">S. Stefanor , 2010 </td> 
+                        </tr>
 
                         <tr>
                             <td rowspan="8">Media Pembelajaran </td>
-                            <td colspan="3" class="grey">Perangkat Lunak: </td> 
-                            <td colspan="4" class="grey">Perangkat Keras: </td> 
+                            <td colspan="3">Perangkat Lunak: </td> 
+                            <td colspan="4">Perangkat Keras: </td> 
                         </tr>
                         <tr> 
                             <td colspan="3">Power point </td> 
@@ -180,26 +243,29 @@
                             <td>Team Teaching </td>
                             <td colspan="7">- </td> 
                         </tr>
-                        <tr>
-                            <td colspan="10">Assessment </td>
-                        </tr>
-                        <% item.forEach((data) => { 
-                            data.course_plan_assessments.forEach((res) => { var no = 0  %>
-                        <tr>
-                            <td rowspan="1" class="border-hidden"></td>
-                            <td colspan="7" rowspan=""><%= res.name  %>    : <%= res.percentage  %></td> 
-                            <% })}) %>
 
+                        <tr>
+                            <td>Assessment </td>
+                            <td colspan="7">Project, Tugas, Quiz, UTS, UAS </td> 
                         </tr>
 
                         <tr>
                             <td rowspan="3">Mata Kuliah Syarat </td>
+                            <td>1 </td>
+                            <td colspan="6">SDA </td> 
                         </tr>
- 
+                        <tr>
+                            <td>2 </td>
+                            <td colspan="6">DASPRO </td> 
+                        </tr>
+                        <tr>
+                            <td>3 </td>
+                            <td colspan="6">PBO </td> 
+                        </tr>  
                     </tbody>
                 </table>
             </div>
-
+             <% }) %>
           </div>
         </div>
       </div>

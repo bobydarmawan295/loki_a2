@@ -66,13 +66,7 @@
     <div class="sidebar close">
         <ul class="nav-links">
             <li>
-                <a href="<% if (user.type == "T") { %>
-                    /home
-                   <% } else if (user.type == "D") { %>
-                    /home
-                   <% } else {%>
-                    /mahasiswa/
-                   <% } %>">
+                <a href="/">
                 <i class='bx bx-home-alt bx-sm'></i>
                 <span class="link_name">Home</span>
                 </a>
@@ -82,9 +76,9 @@
             </li>
             <li>
                 <a href="<% if (user.type == "T") { %>
-                    /admin/rps
+                    /admin/coursesPlan
                    <% } else if (user.type == "D") { %>
-                    /dosen/courses
+                    /dosen/<%= user.id %>/courses
                    <% } else {%>
                     /mahasiswa/
                    <% } %>">
