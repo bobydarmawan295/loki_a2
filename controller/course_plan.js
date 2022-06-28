@@ -63,11 +63,11 @@ const getCourses = async (req, res) => {
       })
       .then((result) => {
         if (result.length > 0) {
-          res.render("dosen/course_plan", { items: result });
-          //  res.status(200).json({
-          //     message: 'mendapat data dosen',
-          //     data: result
-          // })
+          // res.render("dosen/course_plan", { items: result });
+           res.status(200).json({
+              message: 'mendapat data dosen',
+              data: result
+          })
         } else {
           res.status(200).json({
             message: "data tidak ada",
