@@ -31,6 +31,10 @@ app.use("/mahasiswa", mahasiswa);
 app.use("/dosen", dosen);
 app.use("/admin", admin);
 
+app.get("/home", (req, res) => {
+  res.render("mahasiswa/home");
+});
+
 app.get("/", authenticateToken, (req, res) => {
   res.render("home");
 });
@@ -42,9 +46,9 @@ app.get("/", authenticateToken, (req, res) => {
 //   });
 // });
 
-app.use('/', (req, res) => {
-    res.render("err404.ejs");
-})
+app.use("/", (req, res) => {
+  res.render("err404.ejs");
+});
 
 //connect dengan port
 app.listen(port, () => {
