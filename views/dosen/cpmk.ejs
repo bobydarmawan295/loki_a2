@@ -28,8 +28,8 @@
                 <td><%= item.name %></td>
                 <td width="250px">
                   <a class="editb" href="/dosen/<%= item.course_plan_id %>/edit-cpmk/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
-                  <form action="/dosen/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" class="d-inline" method="post">
-                    <button onclick="hapus()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
+                  <form action="/dosen/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" onsubmit="hapus()" class="d-inline" method="post">
+                    <button type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
                   </form>
                 </td>
               </tr>
@@ -51,7 +51,26 @@
       })
       .catch((error) => console.log(error));
   }
-
-  c
+  function hapus() {
+    Swal.fire({
+      title: "Yakin hapus data?",
+      text: "Data tidak bisa dikembalikan setelah dihapus",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, hapus!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Good job!", "Data dihapus", "berhasil")
+          .then(function () {
+            window.setTimeout(function () {
+              window.location = "./CPMK";
+            }, 700);
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  }
 </script>
 <%- include('../partials/footer'); -%>
