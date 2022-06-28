@@ -1,6 +1,6 @@
 const express = require("express");
-const { getAllCourses, createCourse, getMatkul} = require("../controller/courses");
-const { getCourses,editCoursePlan,updateCoursePlan,revisi,revisiRps} = require("../controller/course_plan");
+const { getAllCourses, createCourse, getMatkul } = require("../controller/courses");
+const { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps } = require("../controller/course_plan");
 const { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos, getCourseLosById } = require("../controller/course_los");
 const { getDetail, getDetailById, createDetail, updateDetail, deleteDetail } = require("../controller/course_plan_details");
 const { getReferences, createReference, getReferenceById, updateReference, deleteReference } = require("../controller/course_plan_references");
@@ -17,9 +17,9 @@ router.use("/", (req, res, next) => {
 router.get("/:id/courses", getAllCourses);
 router.get("/coursesPlan/:id/:rev", getCourses);
 router.post("/coursesPlan/:id/:rev/edit", updateCoursePlan);
-router.get("/coursesPlan/:id/:rev/edit", editCoursePlan)
+router.get("/coursesPlan/:id/:rev/edit", editCoursePlan);
 router.post("/coursesPlan/:id/:rev/revisi", revisi);
-router.get("/coursesPlan/:id/:rev/revisi", revisiRps)
+router.get("/coursesPlan/:id/:rev/revisi", revisiRps);
 router.get("/add-course", getMatkul);
 router.post("/add-course", createCourse);
 
@@ -30,7 +30,7 @@ router.get("/:id/add-cpmk", (req, res) => {
 });
 router.post("/:id/add-cpmk", createCourseLos);
 router.get("/:id/edit-cpmk/:id", getCourseLosById);
-router.put("/coursesPlan/:id/edit-cpmk/:id", updateCourseLos);
+router.put("/:id/edit-cpmk/:id", updateCourseLos);
 router.delete("/:id/CPMK/:id", deleteCourseLos);
 
 // Pertemuan Mingguan

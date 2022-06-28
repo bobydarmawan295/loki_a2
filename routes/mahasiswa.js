@@ -1,17 +1,19 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const jwt = require('jsonwebtoken');
-const { authenticateToken } = require('../middleware/verifyToken');
-const userRouter = express.Router();
+const express = require("express");
+const router = express.Router();
+const { getAllCoursePlan, getCourse, search } = require("../controller/course_plan");
 
-userRouter.use(express.static('public'));
+router.use(express.static("public"));
 
-userRouter.get('/mahasiswa',  (req, res) => {
-    res.send('ini Halaman mahasiswa');
+router.get("/mahasiswa", (req, res) => {
+  res.send("ini Halaman mahasiswa");
 });
 
+router.get("/home", (req, res) => {
+  res.render("mahasiswa/home");
+});
 
-userRouter.get("/homemhs", (req, res) => {
-    res.render("mahasiswa/mahasiswa");
-  });
-  module.exports = userRouter;
+router.get("/cari", search);
+router.get("/coursesPlan/:id/:rev", getCourse);
+router.get("/coursesPlan", getAllCoursePlan);
+
+module.exports = router;
