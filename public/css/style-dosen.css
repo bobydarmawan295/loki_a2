@@ -387,6 +387,9 @@ h4 {
   color: #111546;
 }
 
+.font-weight {
+  font-weight: 700;
+}
 .tampil-rps {
   font-family: "lucida Sans Unicode", "Lucida Grande", "Segoe UI", vardana;
   margin-top: 30px;
@@ -863,7 +866,8 @@ button i {
   margin-right: 8px;
   font-weight: 700;
 }
-button:hover {
+button:hover,
+.button100-form-btn:hover {
   text-decoration: none;
   background-color: #1b669d;
   transition: ease-in 0.2s;
@@ -893,6 +897,13 @@ div .btn-head {
   width: 140px;
   text-decoration: none;
   border-radius: 5px;
+}
+.btn-head i {
+  font-size: 35px;
+  color: #fff;
+}
+.btn {
+  padding: 10px;
 }
 div .back {
   padding: 10px;

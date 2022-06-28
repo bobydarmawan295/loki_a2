@@ -441,6 +441,9 @@ tr {
   border-right: 1px solid #818181;
   border-bottom: 1px solid #818181;
 }
+.font-weight {
+  font-weight: 700;
+}
 .grey {
   background-color: #bec0be;
 }

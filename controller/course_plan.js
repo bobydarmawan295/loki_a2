@@ -14,13 +14,8 @@ const getCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "code"],
+        attributes: ["id", "name", "code", "semester", "credit", "material", "description"],
         include: [
-          {
-            model: courses,
-            attributes: ["name", "semester", "curriculum_id"],
-            required: true,
-          },
           {
             model: lecturers,
             attributes: ["id", "name"],
@@ -33,41 +28,42 @@ const getCourses = async (req, res) => {
             model: course_los,
             as: "course_los",
             attributes: ["id", "course_plan_id", "code", "name"],
-            required: false,
+            required: true,
           },
           {
             model: course_plan_details,
             attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
-            required: false,
+            required: true,
           },
           {
             model: course_plan_references,
             attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
-            required: false,
+            required: true,
           },
           {
             model: course_plan_details,
             attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
-            required: false,
+            required: true,
           },
           {
             model: course_plan_references,
             attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
-            required: false,
+            required: true,
+          },
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
+            required: true,
           },
         ],
         where: {
-          course_id: req.params.id,
-          rev: req.params.rev,
+          id: req.params.id,
         },
       })
       .then((result) => {
         if (result.length > 0) {
-          // res.render("dosen/course_plan", { items: result });
-           res.status(200).json({
-              message: 'mendapat data dosen',
-              data: result
-          })
+          res.render("dosen/course_plan", { item: result });
+
         } else {
           res.status(200).json({
             message: "data tidak ada",
