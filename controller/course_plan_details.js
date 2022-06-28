@@ -14,10 +14,11 @@ const getDetail = async (req, res) => {
         if (result.length > 0) {
           res.render("dosen/pertemuan", { items: result });
         } else {
-          res.status(200).json({
-            message: "data tidak ada",
-            data: [],
-          });
+          res.render("dosen/add_pertemuan", { items: result });
+          // res.status(200).json({
+          //   message: "data tidak ada",
+          //   data: [],
+          // });
         }
       });
   } catch (error) {
@@ -40,6 +41,7 @@ const getDetailById = async (req, res) => {
         if (result) {
           res.render("dosen/edit_pertemuan", { items: result });
         } else {
+          
           res.status(200).json({
             message: "data tidak ada",
             data: [],
