@@ -3,40 +3,38 @@ const { Op, where } = require("sequelize");
 const lecturers = require("../models/lecturers");
 const course_plans = require("../models/course_plans");
 
-const getDosen= async (req, res) => {
-  
-    const pengampu = await course_plan_lecturers.findAll({
-        attributes: ["id", "course_plan_id", "lecturer_id", "creator"],
-        include: [
-            {
-              model: lecturers,
-              attributes: ["id", "name","phone","reg_id"],
-              required: false,
-            },
-        ],
-          where: {
-            course_plan_id: req.params.id,
-          },    
-      });
-    const dosen = await lecturers.findAll({ order: [['name','ASC']] ,attributes: ['id', 'name']});
-    const id = req.params.id;
-    const rps = await course_plans.findOne({where: { course_id: id },attributes:['id']});
-     res.render("admin/dosenPengampu", { pengampu, dosen, rps});
+const getDosen = async (req, res) => {
+  const pengampu = await course_plan_lecturers.findAll({
+    attributes: ["id", "course_plan_id", "lecturer_id", "creator"],
+    include: [
+      {
+        model: lecturers,
+        attributes: ["id", "name", "phone", "reg_id"],
+        required: false,
+      },
+    ],
+    where: {
+      course_plan_id: req.params.id,
+    },
+  });
+  const dosen = await lecturers.findAll({ order: [["name", "ASC"]], attributes: ["id", "name"] });
+  const id = req.params.id;
+  const rps = await course_plans.findOne({ where: { course_id: id }, attributes: ["id"] });
+  res.render("admin/dosenPengampu", { pengampu, dosen, rps });
 };
 
-
 const tambahDosen = async (req, res) => {
-    const {id_rps, id_dosen } = req.body;
-    // const dosenExist = await course_plan_lecturers.findOne({ 
-    //     where:{[Op.and]: [{ course_plan_id: id_rps }, { lecturer_id: id_dosen }]} });
-    // if (dosenExist) return res.status(400).send('Dosen sudah ada');
-   try {
+  const { id_rps, id_dosen } = req.body;
+  // const dosenExist = await course_plan_lecturers.findOne({
+  //     where:{[Op.and]: [{ course_plan_id: id_rps }, { lecturer_id: id_dosen }]} });
+  // if (dosenExist) return res.status(400).send('Dosen sudah ada');
+  try {
     await course_plan_lecturers.create({
       course_plan_id: id_rps,
-     lecturer_id:id_dosen,
-     creator:0
+      lecturer_id: id_dosen,
+      creator: 0,
     });
-    res.redirect('back');
+    res.redirect("back");
   } catch (error) {
     res.json({ message: error.message });
     // res.redirect("/dosen/add-course");
@@ -44,16 +42,16 @@ const tambahDosen = async (req, res) => {
 };
 
 const hapusDosen = async (req, res) => {
-    try {
-      await course_plan_lecturers.destroy({
-        where: {
-          id: req.params.id,
-        },
-      });
-    } catch (error) {
-      res.json({ message: error.message });
-    }
-  };
+  try {
+    await course_plan_lecturers.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+};
 
 // const updateDetail = async (req, res) => {
 //   try {
@@ -76,10 +74,4 @@ const hapusDosen = async (req, res) => {
 //   }
 // };
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 97d4035ebba8f583353908307564722ab000428d
 module.exports = { getDosen, tambahDosen, hapusDosen };
