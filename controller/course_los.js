@@ -1,6 +1,7 @@
 const course_los = require("../models/course_los");
 const { Op, where } = require("sequelize");
 
+
 const getCourseLos = async (req, res) => {
   try {
     await course_los
@@ -14,10 +15,11 @@ const getCourseLos = async (req, res) => {
         if (result.length > 0) {
           res.render("dosen/cpmk", { items: result });
         } else {
-          res.status(200).json({
-            message: "data tidak ada",
-            data: [],
-          });
+          res.render("dosen/add_cpmk", { items: result });
+          // res.status(200).json({
+          //   message: "data tidak ada",
+          //   data: [],
+          // });
         }
       });
   } catch (error) {
@@ -32,6 +34,10 @@ const getCourseLosById = async (req, res) => {
     await course_los
       .findOne({
         attributes: ["id", "code", "name", "parent_id"],
+        where: {
+          course_id: req.params.id,
+          rev: req.params.rev
+        },
         where: {
           id: req.params.id,
         },

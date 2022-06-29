@@ -74,6 +74,7 @@
             <option value="">Pilih</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
+                  <option value="2">3</option>
                   <option value="3">4</option>
                   <option value="3">5</option>
                   <option value="3">6</option>
@@ -99,7 +100,7 @@
 
       <div class="container-button100-form-btn m-t-30">
         <button class="button100-form-btn" type="submit"  >SIMPAN</button>
-        <button class="button100-form-btn" type="button" onclick="page()" ><a href="/dosen/<%= user.id %>/courses/">KEMBALI</a></button>
+        <button class="button100-form-btn" type="button"  ><a href="/dosen/<%= user.id %>/courses/">KEMBALI</a></button>
       </div>
     </form>
   </div>
@@ -116,7 +117,7 @@
       .catch((error) => console.log(error));
   }
   function page() {
-    window.location = "/dosen/courses";
+    window.location = "/dosen/<%= user.id %>/courses/";
   }
 </script>
 <%- include('../partials/footer'); -%>

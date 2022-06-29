@@ -44,3 +44,6 @@ GET http://localhost:8000/dosen/coursesPlan/1
 
 ###
 GET http://localhost:8000/dosen/courses
+
+###
+GET http://localhost:8000/mahasiswa/cari?term=pem

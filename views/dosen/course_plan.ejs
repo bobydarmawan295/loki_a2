@@ -4,7 +4,7 @@
           <div class="content">
  
             <div class="row detail-rps mb-3">
-            <% item.forEach((item) => { %>
+            <% items.forEach((item) => { %>
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div>
                         <h1 class="navbar-brand"><%= item.name %></h1>
@@ -33,14 +33,16 @@
             </div>
              <% }) %>
 
-             <% item.forEach((tes) => { %>
+             <% items.forEach((tes) => { %>
                <div class="d-flex justify-content-between">
                    <div>
                     <a class="button100-form-btn btn-head back ms-0" role="button" href="/dosen/<%= user.id %>/courses/"><i class='bx bx-subdirectory-left'></i></a>
                    </div>
                    <div>
                     <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit">Edit</a>
-                    <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a> 
+                    <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a>
+                    <a class="btn btn-secondary btn-lg" role="button" onclick="window.open('/dosen/<%= tes.course_id %>/<%= tes.rev %>/cetakRps')"><i class=' bx-fw bx-sm bx bx-printer'></i></a>
+                   
                    </div>
                </div>
             <% }) %>
@@ -70,7 +72,7 @@
                       <td>Semester</td>
                       <td align="center">Tgl Penyusunan</td>
                     </tr>
-                    <% item.forEach((item) => { %>
+                    <% items.forEach((item) => { %>
           
                     <tr>
                       <td colspan="2"><%= item.name %></td>
@@ -88,7 +90,7 @@
                       <td colspan="2" class="grey">KA Program Studi</td>
                     </tr>
                     <tr>
-                      <% item.forEach((data) => { data.lecturers.forEach((res) => { %>
+                      <% items.forEach((data) => { data.lecturers.forEach((res) => { %>
                       <td colspan="2"><%= res.name %></td>
                       <% })}) %>
                       <!-- <td colspan="2"></td> -->
@@ -115,13 +117,13 @@
                       <td colspan="7" class="grey">CP Mata Kuliah</td>
                     </tr>
           
-                    <% item.forEach((data) => { data.course_los.forEach((res) => { %>
+                    <% items.forEach((data) => { data.course_los.forEach((res) => { %>
                     <tr>
                       <td colspan="2"></td>
                       <td><%= res.code %></td>
                       <td colspan="6"><%= res.name %></td>
                     </tr>
-                    <% })}) %> <% item.forEach((item) => { %>
+                    <% })}) %> <% items.forEach((item) => { %>
                     <tr>
                       <td colspan="2" class="font-weight">Deskripsi Singkat Mata Kuliah</td>
                       <td colspan="7"><%= item.description %></td>
@@ -135,7 +137,7 @@
                     <tr>
                       <td colspan="10" class="font-weight">Pustaka</td>
                     </tr>
-                    <% }) %> <% item.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
+                    <% }) %> <% items.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
                     <tr>
                       <td colspan="2" class="border-bottom-0"></td>
                       <td><%= res.id %></td>
@@ -184,7 +186,7 @@
                     <tr>
                       <td colspan="10"class="font-weight">Assessment</td>
                     </tr>
-                    <% item.forEach((data) => { data.course_plan_assessments.forEach((res) => { var no = 0 %>
+                    <% items.forEach((data) => { data.course_plan_assessments.forEach((res) => { var no = 0 %>
                     <tr>
                       <td rowspan="1" class="border-hidden"></td>
                       <td colspan="7" rowspan=""><%= res.name %> : <%= res.percentage %></td>
@@ -219,7 +221,7 @@
                       <td>(6)</td>
                       <td>(7)</td>
                     </tr>
-                    <% item.forEach((data) => { data.course_plan_details.forEach((res) => { var no = 0 %>
+                    <% items.forEach((data) => { data.course_plan_details.forEach((res) => { var no = 0 %>
                     <tr>
                       <td><%= res.week %></td>
                       <td>Mahasiswa mampu menjelaskan</td>

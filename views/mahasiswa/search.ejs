@@ -11,7 +11,7 @@
     <div class="row all-card">
         <% items.forEach((item) => { %>
       <div class="col-md-3 mb-3">
-        <a href="/mahasiswa/coursePlan/<%= items.id %>">
+        <a href="/mahasiswa/coursePlan/<%= items.id %>/<%= items.rev %>">
           <div class="card text-center h-100">
             <div class="card-body" onclick="page()">
               <img src="/images/frame.png" class="card-img-top" alt="..." />

@@ -8,12 +8,12 @@ const getAllCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "code", "name", "semester"],
-        group: ["course_id"],
+        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester'],
+        group: ['course_id'],
         include: [
           {
             model: courses,
-            attributes: ["name", "code", "semester", "curriculum_id"],
+            attributes: ["name", "semester", "curriculum_id"],
             required: true,
           },
           {
@@ -22,13 +22,13 @@ const getAllCourses = async (req, res) => {
             through: {
               attributes: ["updated_at", "created_at"],
             },
-            required: false,
+            required:false,
             where: {
               id: req.params.id,
-            },
+            }
           },
         ],
-
+       
         // raw: true,
       })
       .then((result) => {
@@ -49,11 +49,11 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-const getMatkul = async (req, res) => {
+const getMatkul= async (req, res) => {
   try {
     await courses
       .findAll({
-        attributes: ["id", "name", "semester", "code", "alias_name"],
+        attributes: ["id", "name", "semester","code","alias_name"],
         include: [
           {
             model: curricula,
@@ -62,7 +62,7 @@ const getMatkul = async (req, res) => {
           },
         ],
       })
-
+      
       .then((result) => {
         if (result.length > 0) {
           res.render("dosen/add_rps", { items: result });
@@ -86,7 +86,7 @@ const getMatkul = async (req, res) => {
 
 const createCourse = async (req, res) => {
   try {
-    const { course_id, rev, code, name, alias_name, credit, semester, description } = req.body;
+    const { course_id,rev, code, name, alias_name, credit, semester, description } = req.body;
     await course_plans.create({
       course_id: course_id,
       rev: rev,
@@ -104,44 +104,6 @@ const createCourse = async (req, res) => {
   }
 };
 
-const coursesAdmin = async (req, res) => {
-  try {
-    await course_plans
-      .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester"],
-        group: ["course_id"],
-        include: [
-          {
-            model: courses,
-            attributes: ["name", "semester", "curriculum_id"],
-            required: true,
-          },
-          {
-            model: lecturers,
-            attributes: ["id", "name"],
-            through: {
-              attributes: ["updated_at", "created_at"],
-            },
-            required: false,
-          },
-        ],
-      })
-      .then((result) => {
-        if (result.length > 0) {
-          res.render("admin/courses", { items: result });
-          // res.status(200).json({
-          //     message: 'mendapat data dosen',
-          //     data: result
-          // })
-        } else {
-          res.render("dosen/no_rps");
-        }
-      });
-  } catch (error) {
-    res.status(404).json({
-      message: error,
-    });
-  }
-};
 
-module.exports = { getAllCourses, createCourse, getMatkul, coursesAdmin };
+
+module.exports = { getAllCourses, createCourse, getMatkul};

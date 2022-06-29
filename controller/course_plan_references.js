@@ -14,10 +14,11 @@ const getReferences = async (req, res) => {
         if (result.length > 0) {
           res.render("dosen/referensi", { items: result });
         } else {
-          res.status(200).json({
-            message: "data tidak ada",
-            data: [],
-          });
+          res.render("dosen/add_referensi", { items: result });
+          // res.status(200).json({
+          //   message: "data tidak ada",
+          //   data: [],
+          // });
         }
       });
   } catch (error) {

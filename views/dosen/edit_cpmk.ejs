@@ -3,7 +3,7 @@
 <div id="container">
   <h1 class="navbar-brand mb-5">Edit Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
   <div class="content">
-    <form id="form" class="login100-form validate-form flex-sb flex-w" action="./<%= items.id %>?_method=PUT" method="POST">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" action="./<%= items.id %>?_method=PUT" onsubmit="success2()" method="POST">
       <input type="hidden" name="_method" value="PUT" />
       <div class="row input">
         <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
@@ -26,7 +26,7 @@
       </div>
 
       <div class="container-button100-form-btn m-t-30">
-        <button class="button100-form-btn" type="submit" onclick="success2()">SIMPAN</button>
+        <button class="button100-form-btn" type="submit" >SIMPAN</button>
         <button class="button100-form-btn" type="button" type="button" onclick="page()">KEMBALI</button>
       </div>
     </form>

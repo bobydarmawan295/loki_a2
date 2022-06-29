@@ -4,7 +4,7 @@
   <h1 class="navbar-brand mb-5">Edit Rencana Pembelajaran Semester (RPS)</h1>
   <div class="content">
     <% items.forEach((tes) => { %>
-    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi" method="post">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit" method="post">
       <div class="row input">
     <% }) %>
         
@@ -60,6 +60,9 @@
             <% }) %>
           </div>
       </div>
+      <% items.forEach((tes) => { %>
+        <input class="input100" type="hidden" name="course_id"  value="<%= tes.course_id %>"/>
+        <% }) %>
       
 
       <div class="container-button100-form-btn m-t-30">
