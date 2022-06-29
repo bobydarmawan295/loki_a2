@@ -7,15 +7,13 @@
       <div class="col-12">
         <span class="d-flex justify-content-between">
           <h1 class="navbar-brand head mb-3 ms-2"><%= item.name %></h1>
+          <a class="button100-form-btn btn-head back" role="button" onclick="window.open('/mahasiswa/<%= item.course_id %>/<%= item.rev %>/cetakRps')"><i class="bx-fw bx-sm bx bx-printer"></i></a>
         </span>
       </div>
     </div>
     <% }) %>
 
     <div class="tampil-rps">
-      <% item.forEach((item) => { %>
-      <a class="btn btn-secondary btn-lg" role="button" onclick="window.open('/mahasiswa/<%= item.course_id %>/<%= item.rev %>/cetakRps')"><i class=' bx-fw bx-sm bx bx-printer'></i></a>
-      <% }) %>
       <table class="rps-tabel">
         <thead>
           <tr>
@@ -108,7 +106,6 @@
           <% }) %> <% item.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
           <tr>
             <td colspan="2" class="border-bottom-0"></td>
-            <td><%= res.id %></td>
             <td colspan="6"><%= res.author %>, <%= res.year %>, "<%= res.title %>", <%= res.publisher %></td>
           </tr>
           <% })}) %>

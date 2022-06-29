@@ -41,8 +41,7 @@
                    <div>
                     <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit">Edit</a>
                     <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a>
-                    <a class="btn btn-secondary btn-lg" role="button" onclick="window.open('/dosen/<%= tes.course_id %>/<%= tes.rev %>/cetakRps')"><i class=' bx-fw bx-sm bx bx-printer'></i></a>
-                   
+                    <a class="button100-form-btn btn-head back ms-0" role="button" onclick="window.open('/dosen/<%= tes.course_id %>/<%= tes.rev %>/cetakRps')"><i class=' bx-fw bx-sm bx bx-printer'></i></a>   
                    </div>
                </div>
             <% }) %>
@@ -140,7 +139,6 @@
                     <% }) %> <% items.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
                     <tr>
                       <td colspan="2" class="border-bottom-0"></td>
-                      <td><%= res.id %></td>
                       <td colspan="6"><%= res.author %>, <%= res.year %>, "<%= res.title %>", <%= res.publisher %></td>
                     </tr>
                     <% })}) %>

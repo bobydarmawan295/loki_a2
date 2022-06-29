@@ -7,6 +7,7 @@ const course_plan_assessments = require("../models/course_plan_assessments");
 const course_plan_details = require("../models/course_plan_details");
 const course_los = require("../models/course_los");
 const course_plan_references = require("../models/course_plan_references");
+const { Op } = require("sequelize");
 
 // const curricula = require("../models/curricula");
 
@@ -14,7 +15,7 @@ const getCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester','code','semester','credit','description'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
 
         include: [
           {
@@ -59,7 +60,7 @@ const getCourses = async (req, res) => {
         ],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
       })
       .then((result) => {
@@ -87,7 +88,7 @@ const cetakRps = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester','code','semester','credit','description'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -131,7 +132,7 @@ const cetakRps = async (req, res) => {
         ],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
       })
       .then((result) => {
@@ -159,7 +160,7 @@ const cetakRpsMahasiswa = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester','code','semester','credit','description'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -208,7 +209,7 @@ const cetakRpsMahasiswa = async (req, res) => {
         ],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
       })
       .then((result) => {
@@ -236,7 +237,7 @@ const editCoursePlan = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','alias_name','semester','code','semester','credit','description'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "alias_name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -277,22 +278,19 @@ const editCoursePlan = async (req, res) => {
             attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
             required: false,
           },
-
         ],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
       })
       .then((result) => {
         if (result.length > 0) {
-
-          res.render("dosen/edit_rps", { items: result })
+          res.render("dosen/edit_rps", { items: result });
           // res.status(200).json({
           //     message: 'mendapat data dosen',
           //     data: result
           // })
-          
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -300,7 +298,6 @@ const editCoursePlan = async (req, res) => {
           });
         }
       });
-
   } catch (error) {
     res.status(404).json({
       message: error,
@@ -308,12 +305,11 @@ const editCoursePlan = async (req, res) => {
   }
 };
 
-
-const revisiRps= async (req, res) => {
+const revisiRps = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','alias_name','semester','code','semester','credit','description'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "alias_name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: lecturers,
@@ -325,26 +321,24 @@ const revisiRps= async (req, res) => {
           },
           {
             model: courses,
-            attributes: ["id","name", "semester", "curriculum_id","alias_name"],
+            attributes: ["id", "name", "semester", "curriculum_id", "alias_name"],
             right: true,
-          }
+          },
         ],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
         // raw:true
       })
       .then((result) => {
         if (result.length > 0) {
-
-          res.render("dosen/revisi", { items: result })
+          res.render("dosen/revisi", { items: result });
 
           // res.status(200).json({
           //     message: 'mendapat data dosen',
           //     data: result
           // })
-          
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -352,7 +346,6 @@ const revisiRps= async (req, res) => {
           });
         }
       });
-
   } catch (error) {
     res.status(404).json({
       message: error,
@@ -362,24 +355,25 @@ const revisiRps= async (req, res) => {
 
 const updateCoursePlan = async (req, res) => {
   try {
-    const { code, name, alias_name, credit, semester, description,rev,course_id} = req.body;
-    await course_plans.create({
-      code: code,
-      name: name,
-      course_id:course_id,
-      rev: parseInt(rev)+1,
+    const { code, name, alias_name, credit, semester, description, rev, course_id } = req.body;
+    await course_plans.create(
+      {
+        code: code,
+        name: name,
+        course_id: course_id,
+        rev: parseInt(rev) + 1,
 
-      alias_name: alias_name,
-      credit: credit,
-      semester: semester,
-      description: description,
-    },
-    {
-      where: {
-        course_id: req.params.id,
-        rev: req.params.rev
+        alias_name: alias_name,
+        credit: credit,
+        semester: semester,
+        description: description,
       },
-    }
+      {
+        where: {
+          course_id: req.params.id,
+          rev: req.params.rev,
+        },
+      }
     );
   } catch (error) {
     res.json({ message: error.message });
@@ -391,8 +385,8 @@ const coursesAdmin = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester','code','semester','credit'],
-        group: ['course_id'],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit"],
+        group: ["course_id"],
         include: [
           {
             model: courses,
@@ -405,7 +399,7 @@ const coursesAdmin = async (req, res) => {
             through: {
               attributes: ["updated_at", "created_at"],
             },
-            required:false,
+            required: false,
           },
         ],
       })
@@ -433,40 +427,30 @@ const coursesAdmin = async (req, res) => {
 // ================================Mahasiswa============================
 
 const search = async (req, res) => {
-
   try {
+    const { term } = req.query;
     await course_plans
       .findAll({
-        include: [
-          {
-            model: lecturers,
-            attributes: ["id", "name"],
-            through: {
-              attributes: ["updated_at", "created_at"],
-            },
-            required: false,
-          },
-          {
-            model: courses,
-            attributes: ["id","name", "semester", "curriculum_id","alias_name"],
-            right: true,
-          }
-        ],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "code", "semester"],
+        group: ["course_id"],
         where: {
-          course_id: req.params.id,
-          rev: req.params.rev
+          [Op.or]: [
+            {
+              name: {
+                [Op.like]: term + "%",
+              },
+            },
+            {
+              code: {
+                [Op.like]: term + "%",
+              },
+            },
+          ],
         },
-        // raw:true
       })
       .then((result) => {
-        if (result.length > 0) {
-
-          res.render("dosen/revisi", { items: result })
-          // res.status(200).json({
-          //     message: 'mendapat data dosen',
-          //     data: result
-          // })
-          
+        if (result.length >= 0) {
+          res.render("mahasiswa/search", { items: result });
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -474,7 +458,6 @@ const search = async (req, res) => {
           });
         }
       });
-
   } catch (error) {
     res.status(404).json({
       message: error,
@@ -484,25 +467,25 @@ const search = async (req, res) => {
 
 const revisi = async (req, res) => {
   try {
-    const { code, name, alias_name, credit, semester, description,rev,course_id} = req.body;
-    await course_plans.create({
-      code: code,
-      name: name,
-      course_id:course_id,
-      rev: parseInt(rev)+1,
-      alias_name: alias_name,
-      credit: credit,
-      semester: semester,
-      description: description,
-    },
-    {
-      where: {
-        course_id: req.params.id,
-        rev: req.params.rev
+    const { code, name, alias_name, credit, semester, description, rev, course_id } = req.body;
+    await course_plans.create(
+      {
+        code: code,
+        name: name,
+        course_id: course_id,
+        rev: parseInt(rev) + 1,
+        alias_name: alias_name,
+        credit: credit,
+        semester: semester,
+        description: description,
       },
-    }
+      {
+        where: {
+          course_id: req.params.id,
+          rev: req.params.rev,
+        },
+      }
     );
-
   } catch (error) {
     res.json({ message: error.message });
     // res.redirect("/dosen/add-course");
@@ -519,10 +502,10 @@ const getAllCoursePlan = async (req, res) => {
       .then((result) => {
         if (result.length > 0) {
           res.render("mahasiswa/courses", { items: result });
-        //   res.status(200).json({
-        //     message: 'mendapat data dosen',
-        //     data: result
-        // })
+          //   res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
         } else {
           res.status(200).json({
             message: "data tidak ada",
@@ -537,57 +520,57 @@ const getAllCoursePlan = async (req, res) => {
   }
 };
 
-const getCourseMahasiswa= async (req, res) => {
+const getCourseMahasiswa = async (req, res) => {
   try {
     await course_plans
-    .findAll({
-      attributes: ['id','course_id',[db.fn('MAX', db.col('rev')),'rev'],'name','semester','code','semester','credit','description'],
-      include: [
-        {
-          model: courses,
-          attributes: ["name", "semester", "curriculum_id"],
-          required: true,
-        },
-        {
-          model: lecturers,
-          attributes: ["id", "name"],
-          through: {
-            attributes: ["updated_at", "created_at"],
+      .findAll({
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
+        include: [
+          {
+            model: courses,
+            attributes: ["name", "semester", "curriculum_id"],
+            required: true,
           },
-          required: false,
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required: false,
+          },
+          {
+            model: course_los,
+            as: "course_los",
+            attributes: ["id", "course_plan_id", "code", "name"],
+            required: false,
+          },
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: false,
+          },
+          {
+            model: course_plan_references,
+            attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+            required: false,
+          },
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: false,
+          },
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
+            required: false,
+          },
+        ],
+        where: {
+          id: req.params.id,
+          rev: req.params.rev,
         },
-        {
-          model: course_los,
-          as: "course_los",
-          attributes: ["id", "course_plan_id", "code", "name"],
-          required: false,
-        },
-        {
-          model: course_plan_details,
-          attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
-          required: false,
-        },
-        {
-          model: course_plan_references,
-          attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
-          required: false,
-        },
-        {
-          model: course_plan_details,
-          attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
-          required: false,
-        },
-        {
-          model: course_plan_assessments,
-          attributes: ["id", "course_plan_id", "name", "percentage"],
-          required: false,
-        },
-      ],
-      where: {
-        course_id: req.params.id,
-        rev: req.params.rev
-      },
-    })
+      })
       .then((result) => {
         if (result.length > 0) {
           res.render("mahasiswa/course_plan", { item: result });
@@ -609,5 +592,4 @@ const getCourseMahasiswa= async (req, res) => {
   }
 };
 
-module.exports = { getCourses,editCoursePlan,updateCoursePlan,revisi,revisiRps,cetakRps,coursesAdmin,getCourseMahasiswa,search,getAllCoursePlan,cetakRpsMahasiswa};
-
+module.exports = { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps, coursesAdmin, getCourseMahasiswa, search, getAllCoursePlan, cetakRpsMahasiswa };
