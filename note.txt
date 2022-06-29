@@ -1,83 +1,67 @@
-models
-// const { Sequelize, DataTypes } = require('sequelize');
+   <!-- <% var dosens = item.lecturers; %> -->
+<!-- <% item.lecturers.forEach((dosen) => { %> -->
+<!-- <td colspan="2"><%= dosen.name %></td> -->
+<td colspan="2"></td>
+<!-- <% }) %> -->
 
-const Sequelize = require('sequelize');
-const db= require('../database/conn');
 
-const lecturers = db.define('lecturers', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    reg_id: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    phone: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    status: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    created_at: {
-        type: Sequelize.DATE,
-    },
-    updated_at: {
-        type: Sequelize.DATE,
-    }
-},
+            <!-- <form action="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev%>" method="post" onsubmit="success()">
+                    <button class="btn btn-info text-white" type="submit">revisi</button>
+            </form> -->
 
-{  
 
-    tableName: 'lecturers',
-    timestamps: false  //Karena created_at dan update_at akan dibuat otomatis oleh sequelize
-    // freezeTableName: true
-    
-});
+const revisi = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        include: [
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required: false,
+          },
+        ],
+        where: {
+          course_id: req.params.id,
+          rev: req.params.rev
+        },
+        // raw:true
+      })
+      .then((result) => {
+        if (result.length > 0) {
 
-// const lecturers = db.define('lecturers', {
-//     id: {
-//         type: DataTypes.INTEGER,
-//         autoIncrement: true,
-//         primaryKey: true
-//     },
-//     name: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     reg_id: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     phone: {
-//         type: DataTypes.STRING,
-//         allowNull: false
-//     },
-//     status: {
-//         type: DataTypes.INTEGER,
-//         allowNull: false
-//     },
-//     created_at: {
-//         type: DataTypes.DATE,
-//     },
-//     updated_at: {
-//         type: DataTypes.DATE,
-//     }
-// },
+          res.render("dosen/revisi", { items: result });
+          //  res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+          
+          // delete result[0].id; //<---------- 2
+          // course_plans.create({
+          // course_id: result[0].course_id,
+          // rev : result[0].rev + 1,
+          // code: result[0].code,
+          // name: result[0].name,
+          // alias_name: result[0].alias_name,
+          // credit: result[0].credit,
+          // semester: result[0].semester,
+          // description: result[0].description,
+          // });
+          // res.redirect("/")  
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
 
-// {  
-
-//     tableName: 'lecturers',
-//     timestamps: true
-//     // freezeTableName: true
-    
-// });
-
-module.exports = lecturers;
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};

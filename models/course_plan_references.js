@@ -2,7 +2,6 @@ const db = require("../config/conn");
 const { Sequelize, DataTypes } = require("sequelize");
 const course_plan_details = require("./course_plan_details");
 const course_plan_detail_refs = require("./course_plan_detail_refs");
-const course_plans = require("./course_plans");
 
 const course_plan_references = db.define(
   "course_plan_references",
@@ -14,12 +13,17 @@ const course_plan_references = db.define(
     },
 
     course_plan_id: {
+<<<<<<< HEAD
+      type: Sequelize.INTEGER,
+      foreignKey: true,
+=======
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: course_plans,
         key: "id",
       },
+>>>>>>> 97d4035ebba8f583353908307564722ab000428d
     },
 
     title: {

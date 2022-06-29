@@ -77,4 +77,9 @@ const hapusDosen = async (req, res) => {
 // };
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 97d4035ebba8f583353908307564722ab000428d
 module.exports = { getDosen, tambahDosen, hapusDosen };

@@ -1,8 +1,10 @@
 // skema orm course_plan_lectures
 const db = require("../config/conn");
 const { Sequelize, DataTypes } = require('sequelize');
+const lecturers = require("./lecturers");
+const course_plans = require("./course_plans");
 
-const course_plans = require("./course_plans")
+
 
 const course_plan_lecturers = db.define(
     "course_plan_lecturers",
@@ -31,12 +33,12 @@ const course_plan_lecturers = db.define(
 
       created_at: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
       },
 
       update_at: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: true,
       },
     },
 
@@ -45,5 +47,5 @@ const course_plan_lecturers = db.define(
       timestamps: false,
     }
     );
-  
+
 module.exports = course_plan_lecturers;

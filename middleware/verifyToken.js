@@ -16,27 +16,6 @@ function authenticateToken(req, res, next) {
   })
 }
 
-
-
-function authDosen(req, res, next) {
-  const token = req.cookies.jwt;
-
-  if (token == null) return res.status(401).send(`Akses ditolak`);
-
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedToken) => {
-    console.log(err)
-    if (err) return res.status(403).send(`Token tidak valid`)
-    if(decodedToken.type == "D"){
-      next();
-    }else{
-      res.sendStatus(401).send('Unathorized')
-      // res.redirect('/auth/login')
-    }
-    
-  })
-}
-
-
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
