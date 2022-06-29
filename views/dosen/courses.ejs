@@ -1,0 +1,35 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <div class="content-wrapper">
+      <div class="col-12">
+        <span class="d-flex justify-content-between">
+          <h1 class="navbar-brand head mb-3">Rencana Pembelajaran Semester (RPS)</h1>
+          <div>
+            <a href="/dosen/add-course" class="button100-form-btn btn-head">Tambah RPS</a>
+            <!-- <a href="" target="_blank" class="button100-form-btn btn-head">Revisi RPS</a> -->
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="row all-card">
+      <% items.forEach((item) => { %>
+        <div class="col-md-3 mb-3">
+          <a href="/dosen/coursesPlan/<%= item.course_id %>/<%= item.rev %>">
+            <div class="card text-center h-100">
+              <div class="card-body" onclick="page()">
+                <img src="/images/frame.png" class="card-img-top" alt="..." />
+                <h4 class="card-title flexible"><%= item.name %></h4>
+                <h6 class="card-subtitle text-muted mt-2">Semester <%= item.semester %></h6>
+              </div>
+            </div>  
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  
+</div>
+
+<%- include('../partials/footer'); -%>

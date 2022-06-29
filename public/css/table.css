@@ -1,0 +1,111 @@
+div .table-wrap {
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+.table-wrap .table {
+  width: 100%;
+  -webkit-box-shadow: 0 5px 12px -12px rgb(0 0 0 / 29%);
+  -moz-box-shadow: 0 5px 12px -12px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 6%);
+  padding: 20px;
+  margin: 10px auto;
+}
+.table-wrap .table tbody tr {
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f8f9fd;
+}
+
+.table-wrap .table thead th,
+.table-wrap .table tbody td {
+  border: none;
+  padding: 18px;
+  font-size: 14px;
+  vertical-align: middle;
+  font-family: "Montserrat";
+}
+.editb {
+  font-size: 23px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+}
+th {
+  text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 20px;
+}
+.table tr:nth-child(even) {
+  background-color: #f7f6fe;
+}
+.func {
+  justify-content: space-between;
+}
+
+.add1 {
+  padding: 10px;
+  text-align: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  color: #fff;
+  background: #624de3;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+}
+.add1 a {
+  text-decoration: none;
+  color: #fff;
+}
+.add1 i {
+  margin-right: 0px;
+}
+.add {
+  padding: 12px 30px;
+  text-align: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  color: #fff;
+  background: #624de3;
+  border-radius: 18px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+}
+.add i {
+  margin-right: 10px;
+}
+.add a {
+  text-decoration: none;
+  color: #fff;
+}
+.add {
+  display: flex;
+  justify-content: end;
+}
+button i {
+  margin-right: 8px;
+  font-weight: 700;
+}
+button:hover {
+  text-decoration: none;
+  background-color: #372f68;
+  transition: ease-in 0.2s;
+}
+.thead {
+  background: rgba(244, 247, 252, 0.75);
+  backdrop-filter: blur(8px);
+}

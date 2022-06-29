@@ -1,0 +1,123 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <h1 class="navbar-brand mb-5">Tambah Rencana Pembelajaran Semester (RPS)</h1>
+  <div class="content">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="/dosen/add-course" method="post">
+      <div class="row input">
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">id Matkul</h5>
+          <select name="course_id" id="" class="input100">
+            <option value="">Pilih</option>
+            <% items.forEach((tes) => { %>
+              <option value="<%= tes.id %>"><%= tes.id %>&nbsp;-<%= tes.alias_name %></option>
+            <% }) %>
+          </select>
+          <!-- <h5 class="txt1">id Kurikulum</h5>
+          <input class="input100" type="number" name="curriculum_id" placeholder="Pilih id kurikulum" required />
+          <span class="focus-input100"></span> -->
+        </div>
+        
+        <input class="input100" type="hidden" name="rev" placeholder="Pilih id kurikulum" value="1" required />
+
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Kode Matkul</h5>
+          <select name="code" id="" class="input100">
+            <option value="">Pilih</option>
+            <% items.forEach((tes) => { %>
+                  <option value="<%= tes.code %>"><%= tes.code %>&nbsp;-<%= tes.alias_name %></option>
+            <% }) %>
+          </select>
+         
+        </div>
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Nama Alias</h5>
+          <select name="alias_name" id="" class="input100">
+            <option value="">Pilih</option>
+            <% items.forEach((tes) => { %>
+                  <option value="<%= tes.alias_name %>"><%= tes.alias_name %></option>
+            <% }) %>
+          </select>
+          <!-- <input class="input100" type="text" name="alias" />
+          <span class="focus-input100"></span> -->
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Mata Kuliah</h5>
+          <select name="name" id="" class="input100">
+            <option value="">Pilih</option>
+            <% items.forEach((tes) => { %>
+                  <option ><%= tes.name %></option>
+            <% }) %>
+          </select>
+          <!-- <h5 class="txt1">Mata Kuliah</h5>
+          <input class="input100" type="text" name="name" required />
+          <span class="focus-input100"></span> -->
+        </div>
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Sks</h5>
+          <select name="credit" id="" class="input100">
+            <option value="">Pilih</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="3">4</option>
+          </select>
+          <!-- <h5 class="txt1">Sks</h5>
+          <input class="input100" type="number" name="credit" required />
+          <span class="focus-input100"></span> -->
+        </div>
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Semester</h5>
+          <select name="semester" id="" class="input100">
+            <option value="">Pilih</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="2">3</option>
+                  <option value="3">4</option>
+                  <option value="3">5</option>
+                  <option value="3">6</option>
+                  <option value="3">7</option>
+          </select>
+          <!-- <input class="input100" type="number" name="semester" required />
+          <span class="focus-input100"></span> -->
+        </div>
+      </div>
+      <div class="row input">
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Deskripsi</h5>
+          <input class="input100" type="text" name="description" />
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+
+      <!-- <div class="wrap-input100 validate-input" data-validate="text is required">
+            <h5 class="txt1">Materi</h5>
+            <input class="input100" type="text" name="pass"/>
+            <span class="focus-input100"></span>
+          </div> -->
+
+      <div class="container-button100-form-btn m-t-30">
+        <button class="button100-form-btn" type="submit"  >SIMPAN</button>
+        <button class="button100-form-btn" type="button"  ><a href="/dosen/<%= user.id %>/courses/">KEMBALI</a></button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Data saved", "success")
+      .then(function () {
+        // document.getElementById('form').submit();
+        window.setTimeout(function () {
+          window.location = "/";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+  function page() {
+    window.location = "/dosen/<%= user.id %>/courses/";
+  }
+</script>
+<%- include('../partials/footer'); -%>

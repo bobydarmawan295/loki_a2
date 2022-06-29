@@ -1,0 +1,88 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <h1 class="navbar-brand mb-5">Revisi Rencana Pembelajaran Semester (RPS)</h1>
+  <div class="content">
+    <% items.forEach((tes) => { %>
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi" method="post">
+      <div class="row input">
+    <% }) %>
+        
+        <div class="col-sm-4 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Nama Matkul</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="text" name="name"  value="<%= tes.name %>"/>
+          <% }) %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="col-sm-2 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">revisi</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="number" name="rev" placeholder="Pilih id kurikulum" value="<%= tes.rev %>" readonly />
+          <% }) %>
+          <span class="focus-input100"></span>
+        </div>
+        
+        <div class="col-sm-2 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Kode Matkul</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="text" name="code"  value="<%= tes.code %>"/>
+          <% }) %>
+          <span class="focus-input100"></span>
+        </div>
+        
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Nama Alias</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="text" name="alias_name"  value="<%= tes.alias_name %>"/>
+          <% }) %>
+        </div>
+      </div>
+      <div class="row input">
+        
+        <div class="col-sm-3 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Sks</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="number" name="credit"  value="<%= tes.credit %>"/>
+          <% }) %>
+        </div>
+        <div class="col-sm-2 wrap-input100 validate-input" data-validate="Password is required">
+          <h5 class="txt1">Semester</h5>
+          <% items.forEach((tes) => { %>
+            <input class="input100" type="number" name="semester"  value="<%= tes.semester %>"/>
+          <% }) %>
+        </div>
+          <div class="col-sm-6 wrap-input100 validate-input" data-validate="Password is required">
+            <h5 class="txt1">Deskripsi</h5>
+            <% items.forEach((tes) => { %>
+              <input class="input100" type="text" name="description"  value="<%= tes.description %>"/>
+            <% }) %>
+          </div>
+      </div>
+      <% items.forEach((tes) => { %>
+      <input class="input100" type="hidden" name="course_id"  value="<%= tes.course_id %>"/>
+      <% }) %>
+      
+
+      <div class="container-button100-form-btn m-t-30">
+        <button class="button100-form-btn" type="submit">SIMPAN</button>
+        <button class="button100-form-btn" type="button" ><a href="/dosen/<%= user.id %>/courses/">KEMBALI</a></button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Rps berhasil direvisi", "success")
+      .then(function () {
+        // document.getElementById('form').submit();
+        window.setTimeout(function () {
+          window.location = "/dosen/<%= user.id %>/courses/";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+ 
+</script>
+<%- include('../partials/footer'); -%>

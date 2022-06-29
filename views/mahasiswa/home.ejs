@@ -1,0 +1,15 @@
+<%- include('sidebar'); -%>
+
+<div id="container">
+  <div class="jumbotron">
+    <br />
+    <h4>Cari Rencana Pembelajaran Semester (RPS)</h4>
+    <form action="/mahasiswa/cari" class="search-form">
+      <i class="bx bx-search"></i>
+      <input type="search" name="term" placeholder="Cari kode atau nama mata kuliah" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer'); -%>

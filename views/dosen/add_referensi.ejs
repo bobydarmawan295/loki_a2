@@ -1,0 +1,58 @@
+<%- include('../partials/sidebar'); -%>
+
+<div id="container">
+  <h1 class="navbar-brand mb-5">Tambah Referensi</h1>
+  <div class="content">
+    <form id="form" class="login100-form validate-form flex-sb flex-w" onsubmit="success()" action="./add-referensi" method="post">
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikkan kode sesuai format">
+          <h5 class="txt1">JUDUL</h5>
+          <input class="input100" type="text" name="title" required />
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-5 wrap-input100 validate-input" data-validate="Isikkan id pengarang">
+          <h5 class="txt1">PENGARANG</h5>
+          <input class="input100" type="text" name="author" required />
+          <span class="focus-input100"></span>
+        </div>
+        <div class="col-sm-4 wrap-input100 validate-input" data-validate="Isikkan penerbit">
+          <h5 class="txt1">PENERBIT</h5>
+          <input class="input100" type="text" name="publisher" required />
+        </div>
+        <div class="col-sm-2 wrap-input100 validate-input" data-validate="Isikkan tahun">
+          <h5 class="txt1">TAHUN</h5>
+          <input class="input100" type="number" name="year" required />
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+      <div class="row input">
+        <div class="col-sm-12 wrap-input100 validate-input" data-validate="Isikan deskripsi">
+          <h5 class="txt1">DESKRIPSI</h5>
+          <input class="input100" type="text" name="description" required />
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+
+      <div class="container-button100-form-btn">
+        <button class="button100-form-btn" type="submit">SIMPAN</button>
+        <button class="button100-form-btn" type="button" onclick="page()">KEMBALI</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function success() {
+    Swal.fire("Good job!", "Data saved", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "./referensi";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+  function page() {
+    window.location = "./referensi";
+  }
+</script>
+<%- include('../partials/footer'); -%>

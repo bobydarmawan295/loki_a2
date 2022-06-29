@@ -1,0 +1,67 @@
+   <!-- <% var dosens = item.lecturers; %> -->
+<!-- <% item.lecturers.forEach((dosen) => { %> -->
+<!-- <td colspan="2"><%= dosen.name %></td> -->
+<td colspan="2"></td>
+<!-- <% }) %> -->
+
+
+            <!-- <form action="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev%>" method="post" onsubmit="success()">
+                    <button class="btn btn-info text-white" type="submit">revisi</button>
+            </form> -->
+
+
+const revisi = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        include: [
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required: false,
+          },
+        ],
+        where: {
+          course_id: req.params.id,
+          rev: req.params.rev
+        },
+        // raw:true
+      })
+      .then((result) => {
+        if (result.length > 0) {
+
+          res.render("dosen/revisi", { items: result });
+          //  res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+          
+          // delete result[0].id; //<---------- 2
+          // course_plans.create({
+          // course_id: result[0].course_id,
+          // rev : result[0].rev + 1,
+          // code: result[0].code,
+          // name: result[0].name,
+          // alias_name: result[0].alias_name,
+          // credit: result[0].credit,
+          // semester: result[0].semester,
+          // description: result[0].description,
+          // });
+          // res.redirect("/")  
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
+
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
