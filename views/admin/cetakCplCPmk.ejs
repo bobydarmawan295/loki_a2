@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="<% if (user.type == "T") { %>
+        /css/style-admin.css
+       <% } else if (user.type == "D") { %>
+       /css/style-dosen.css
+       <% } else {%>
+       /css/style-mahasiswa.css
+       <% } %> ">
+    
+    <!-- Boxiocns CDN Link -->
+    <link rel="stylesheet" href="/public/css/table.css">
+    <link href="/vendor/sweetalert2.all.min.css"></link>
+    <script src="/vendor/sweetalert2.all.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+
+  
+    <div id="container">
+  
+        <h2 class="text-center">Peta CPL Ke CPMK</h2>
+         <table class="table table-striped table-bordered table-hover mt-3">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No</th>
+              <th class="text-center" scope="col" >CP Program Studi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CP-1</td>
+              <td>Mengidentifikasi, memformulasikan dan memecahkan  permasalahan kebutuhan informasi dari suatu organisasi
+              </td>
+            </tr>
+            <tr>
+              <td>CP-2</td>
+              <td> Mengintegrasikan solusi berbasis teknologi informasi secara efektif pada suatu organisasi
+              </td>
+            </tr>
+            <tr>
+              <td>CP-3</td>
+              <td>  
+                Menerapkan konsep-konsep dasar dalam merencanakan Sistem Informasi, merancang Sistem Informasi, membangun Sistem Informasi, mengoperasikan Sistem Informasi, dan mengevaluasi Sistem Informasi 
+              </td>
+            </tr>
+           
+        </tbody>
+        </table>
+      
+        
+      
+          <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center" scope="col"></th>
+                  <th class="text-center" scope="col">Capaian Pembelajaran Mata Kuliah (CPMK)</th>
+                  <th class="text-center" scope="col">CP-1</th>
+                  <th class="text-center" scope="col">CP-2</th>
+                  <th class="text-center" scope="col">CP-3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mahasiswa mampu menjelaskan konsep dasar dan komponen aplikasi berbasis web (CP-1, CP-2)</td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Mahasiswa mampu menggunakan salah satu technology stack untuk membangun aplikasi berbasis web (CP-1, CP-2)</td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Mahasiswa mampu menggunakan pemograman asynchronous . (CP-2, CP-3)</td>
+                  <td></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Mahasiswa mampu menerapkan keamanan untuk situs web . (CP-2, CP-3)</td>
+                  <td></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Mahasiswa mampu menggunakan dan mendesain format data JSON. (CP-2, CP-3)</td>
+                  <td></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Mahasiswa mampu deploy aplikasi web ke internet. (CP-2)</td>
+                  <td></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Mahasiswa mampu mendemonstrasikan keterampilan bekerja sama dengan tim (CP-3)</td>
+                  <td></td>
+                  <td></td>
+                  <td><i class='bx-fw bx-sm bx bx-check'></i></td>
+                </tr>
+      
+                
+            </tbody>
+            </table>
+      </div>
+ <script>window.print()</script>
+
+ <%- include('../partials/footer'); -%>

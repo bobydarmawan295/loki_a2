@@ -32,7 +32,12 @@
         <td class="text-center" scope="col"><%= item.lecturer.name %></td>
         <td class="text-center" scope="col"><%= item.lecturer.reg_id %></td>
         <td class="text-center" scope="col"><%= item.lecturer.phone %></td>
-        <td class="text-center" scope="col"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></td>       
+        <!-- <form action="/admin/hapusdosen/<% item.id %>" method="post">
+          <td class="text-center" scope="col"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></td>   
+        </form> -->
+        <form action="/admin/hapusdosen/<%= item.id %>?_method=DELETE"  method="post">
+          <td class="text-center" scope="col"><button type="submit" class="editb"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></button></td>
+        </form>
       </tr>
       <% }) %>
       </tbody>
@@ -82,7 +87,7 @@
       </div>
   </div>
 </div>  
-  <a href="/admin/coursesPlan" class="btn btn-success" type="button">Kembali</a>
+  <a href="/admin/coursesPlan" class="btn btn-success rounded-pill" type="button">Kembali</a>
     
 </div>
 
@@ -96,7 +101,29 @@
       })
       .catch((error) => console.log(error));
   }
+  function hapus(){
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Good job!", "Data deleted", "success")
+          .then(function () {
+            window.setTimeout(function () {
+              window.location = "./CPMK";
+            }, 700);
+          })
+          .catch((error) => console.log(error));
+        }
+      })
+    }
 
 </script>
+
 
 <%- include('../partials/footer'); -%>

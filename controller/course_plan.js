@@ -385,7 +385,7 @@ const coursesAdmin = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit"],
+        attributes: ["id", "course_id", [db.fn("COUNT", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit"],
         group: ["course_id"],
         include: [
           {
@@ -406,6 +406,49 @@ const coursesAdmin = async (req, res) => {
       .then((result) => {
         if (result.length > 0) {
           res.render("admin/coursesPlan", { items: result });
+          // res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+const cetakListRps = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        attributes: ["id", "course_id", [db.fn("COUNT", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit"],
+        group: ["course_id"],
+        include: [
+          {
+            model: courses,
+            attributes: ["name", "semester", "curriculum_id"],
+            required: true,
+          },
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required: false,
+          },
+        ],
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.render("admin/cetakListRps", { items: result });
           // res.status(200).json({
           //     message: 'mendapat data dosen',
           //     data: result
@@ -524,7 +567,7 @@ const getCourseMahasiswa = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -592,4 +635,76 @@ const getCourseMahasiswa = async (req, res) => {
   }
 };
 
-module.exports = { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps, coursesAdmin, getCourseMahasiswa, search, getAllCoursePlan, cetakRpsMahasiswa };
+const getCourseAdmin = async (req, res) => {
+  try {
+    await course_plans
+      .findAll({
+        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
+        include: [
+          {
+            model: courses,
+            attributes: ["name", "semester", "curriculum_id"],
+            required: true,
+          },
+          {
+            model: lecturers,
+            attributes: ["id", "name"],
+            through: {
+              attributes: ["updated_at", "created_at"],
+            },
+            required: false,
+          },
+          {
+            model: course_los,
+            as: "course_los",
+            attributes: ["id", "course_plan_id", "code", "name"],
+            required: false,
+          },
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: false,
+          },
+          {
+            model: course_plan_references,
+            attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+            required: false,
+          },
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+            required: false,
+          },
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
+            required: false,
+          },
+        ],
+        where: {
+          id: req.params.id,
+          rev: req.params.rev,
+        },
+      })
+      .then((result) => {
+        if (result.length > 0) {
+          res.render("admin/lihatRps", { item: result });
+          // res.status(200).json({
+          //     message: 'mendapat data dosen',
+          //     data: result
+          // })
+        } else {
+          res.status(200).json({
+            message: "data tidak ada",
+            data: [],
+          });
+        }
+      });
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+  }
+};
+
+module.exports = { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps, coursesAdmin, getCourseMahasiswa, search, getAllCoursePlan, cetakRpsMahasiswa,cetakListRps,getCourseAdmin };

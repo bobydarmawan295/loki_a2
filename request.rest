@@ -39,11 +39,10 @@ Content-Type: application/json
 } 
 
 ###
-<<<<<<< HEAD
-GET http://localhost:8000/dosen/coursesPlan/1/
+GET http://localhost:8000/dosen/coursesPlan/1/1
 
 ###
-GET http://localhost:8000/dosen/coursesPlan/1/1
+GET http://localhost:8000/dosen/coursesPlan/1/4
 
 ###
 GET http://localhost:8000/dosen/2/courses
@@ -52,13 +51,7 @@ GET http://localhost:8000/dosen/coursesPlan/1/4/edit
 
 ###
 GET http://localhost:8000/mahasiswa/coursesPlan/1/4/cetakRps
-=======
-GET http://localhost:8000/dosen/coursesPlan/1/1
-
-
 ###
-GET http://localhost:8000/dosen/courses
+GET http://localhost:8000/admin/coursesPlan/1/1
 
-###
-GET http://localhost:8000/mahasiswa/cari?term=pem
->>>>>>> 97d4035ebba8f583353908307564722ab000428d
+
