@@ -12,7 +12,7 @@ router.use("/", (req, res, next) => {
 });
 
 router.get("/coursesPlan", coursesAdmin);
-router.get("/coursesPlan/:id/:rev", getDosen);
+router.get("/coursesPlan/:id", getDosen);
 router.post("/tambahDosen", tambahDosen);
 router.delete("/hapusdosen/:id", hapusDosen);
 router.get("/coursesPlan/:id/:rev/cetakRps", getCourseAdmin);

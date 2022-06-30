@@ -2,7 +2,6 @@ const course_plan_lecturers = require("../models/course_plan_lecturers");
 const { Op, where } = require("sequelize");
 const lecturers = require("../models/lecturers");
 const course_plans = require("../models/course_plans");
-const db = require("../config/conn");
 
 const getDosen = async (req, res) => {
   const pengampu = await course_plan_lecturers.findAll({
@@ -12,14 +11,6 @@ const getDosen = async (req, res) => {
         model: lecturers,
         attributes: ["id", "name", "phone", "reg_id"],
         required: false,
-      },
-      {
-        model: course_plans,
-        attributes: ["id", [db.fn('MAX', db.col('rev')),'rev']],
-        required: false,
-        where: {
-          rev: req.params.rev,
-        },
       },
     ],
     where: {
