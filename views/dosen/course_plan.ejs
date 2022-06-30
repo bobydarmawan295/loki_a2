@@ -89,10 +89,12 @@
                       <td colspan="2" class="grey">KA Program Studi</td>
                     </tr>
                     <tr>
+                      <td colspan="2">
                       <% items.forEach((data) => { data.lecturers.forEach((res) => { %>
-                      <td colspan="2"><%= res.name %></td>
+                      <%= res.name %>
                       <% })}) %>
-                      <!-- <td colspan="2"></td> -->
+                      </td>
+                      <td colspan="2"></td>
                       <td colspan="2"></td>
                       <td colspan="2"></td>
                     </tr>
@@ -193,6 +195,7 @@
           
                     <tr>
                       <td rowspan="3" class="font-weight">Mata Kuliah Syarat</td>
+                      <td></td>
                     </tr>
                   </tbody>
                 </table>

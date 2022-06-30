@@ -612,7 +612,7 @@ const getCourseMahasiswa = async (req, res) => {
           },
         ],
         where: {
-          id: req.params.id,
+          course_id: req.params.id,
           rev: req.params.rev,
         },
       })
