@@ -1,6 +1,6 @@
 const express = require("express");
-const { getAllCourses, createCourse, getMatkul} = require("../controller/courses");
-const { getCourses,editCoursePlan,updateCoursePlan,revisi,revisiRps,cetakRps} = require("../controller/course_plan");
+const { getAllCourses, createCourse, getMatkul } = require("../controller/courses");
+const { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps } = require("../controller/course_plan");
 const { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos, getCourseLosById } = require("../controller/course_los");
 const { getDetail, getDetailById, createDetail, updateDetail, deleteDetail } = require("../controller/course_plan_details");
 const { getReferences, createReference, getReferenceById, updateReference, deleteReference } = require("../controller/course_plan_references");
@@ -16,10 +16,10 @@ router.use("/", (req, res, next) => {
 
 router.get("/:id/courses", getAllCourses);
 router.get("/coursesPlan/:id/:rev", getCourses);
-router.post("/coursesPlan/:id/:rev/edit", updateCoursePlan);
-router.get("/coursesPlan/:id/:rev/edit", editCoursePlan)
+router.put("/coursesPlan/:id/:rev/edit", updateCoursePlan);
+router.get("/coursesPlan/:id/:rev/edit", editCoursePlan);
 router.post("/coursesPlan/:id/:rev/revisi", revisi);
-router.get("/coursesPlan/:id/:rev/revisi", revisiRps)
+router.get("/coursesPlan/:id/:rev/revisi", revisiRps);
 router.get("/add-course", getMatkul);
 router.post("/add-course", createCourse);
 router.get("/:id/:rev/cetakRps", cetakRps);

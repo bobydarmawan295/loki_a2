@@ -94,13 +94,14 @@ course_plans.belongsTo(courses, { foreignKey: "course_id" });
 course_plans.belongsToMany(lecturers, { through: course_plan_lecturers, foreignKey: "course_plan_id" });
 lecturers.belongsToMany(course_plans, { through: course_plan_lecturers, foreignKey: "lecturer_id" });
 
-lecturers.hasMany(course_plan_lecturers)
-course_plan_lecturers.belongsTo(lecturers,{ foreignKey: "lecturer_id" })
+lecturers.hasMany(course_plan_lecturers);
+course_plan_lecturers.belongsTo(lecturers, { foreignKey: "lecturer_id" });
 
-course_plans.hasMany(course_plan_lecturers)
-course_plan_lecturers.belongsTo(course_plans,{ foreignKey: "course_plan_id" })
+course_plans.hasMany(course_plan_lecturers);
+course_plan_lecturers.belongsTo(course_plans, { foreignKey: "course_plan_id" });
 
-course_plans.hasMany(course_los, { foreignKey: "course_plan_id" });
+course_plans.hasMany(course_los);
+course_los.belongsTo(course_plans, { foreignKey: "coursePlanId" });
 
 course_plans.hasMany(course_plan_references, { foreignKey: "course_plan_id" });
 
@@ -112,7 +113,7 @@ course_plans.hasMany(course_plan_assessments, { foreignKey: "course_plan_id" });
 
 course_plans.hasMany(course_plan_lecturers, { foreignKey: "course_plan_id" });
 
-course_plans.hasMany(course_los, { foreignKey: 'course_plan_id' });
+course_plans.hasMany(course_los, { foreignKey: "course_plan_id" });
 course_los.belongsTo(course_plans);
 
 module.exports = course_plans;

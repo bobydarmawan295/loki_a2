@@ -359,14 +359,12 @@ const revisiRps = async (req, res) => {
 
 const updateCoursePlan = async (req, res) => {
   try {
-    const { code, name, alias_name, credit, semester, description, rev, course_id } = req.body;
-    await course_plans.create(
+    const { code, name, alias_name, credit, semester, description, course_id } = req.body;
+    await course_plans.update(
       {
         code: code,
         name: name,
         course_id: course_id,
-        rev: parseInt(rev) + 1,
-
         alias_name: alias_name,
         credit: credit,
         semester: semester,

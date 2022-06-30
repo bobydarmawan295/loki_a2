@@ -1,6 +1,6 @@
 const course_los = require("../models/course_los");
 const { Op, where } = require("sequelize");
-
+const course_plans = require("../models/course_plans");
 
 const getCourseLos = async (req, res) => {
   try {
@@ -36,7 +36,7 @@ const getCourseLosById = async (req, res) => {
         attributes: ["id", "code", "name", "parent_id"],
         where: {
           course_id: req.params.id,
-          rev: req.params.rev
+          rev: req.params.rev,
         },
         where: {
           id: req.params.id,
