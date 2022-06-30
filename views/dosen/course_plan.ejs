@@ -48,19 +48,19 @@
             <div class="tampil-rps">
               <table class="rps-tabel" >
                 <thead>
-                  <tr>
-                    <th rowspan="4" , align="center"><img src="/images/logounand.png" alt="logounand" width="100px"/></th>
-                    <th colspan="9" class="text-center">RENCANA PEMBELAJARAN SEMESTER (RPS)</th>
-                  </tr>
-                  <tr>
-                    <th colspan="9" class="text-center">PROGRAM STUDI: Sistem Informasi</th>
-                  </tr>
-                  <tr>
-                    <th colspan="9" class="text-center">FAKULTAS/PPs: Teknologi Informasi</th>
-                  </tr>
-                  <tr>
-                    <th colspan="9" class="text-center">UNIVERSITAS ANDALAS</th>
-                  </tr>
+                 <tr>
+              <th rowspan="4" , align="center"><img src="/images/logounand.png" alt="logounand" width="100px"/></th>
+              <th colspan="9" class="text-center">RENCANA PEMBELAJARAN SEMESTER (RPS)</th>
+            </tr>
+            <tr>
+              <th colspan="9" class="text-center">PROGRAM STUDI: Sistem Informasi</th>
+            </tr>
+            <tr>
+              <th colspan="9" class="text-center">FAKULTAS/PPs: Teknologi Informasi</th>
+            </tr>
+            <tr>
+              <th colspan="9" class="text-center">UNIVERSITAS ANDALAS</th>
+            </tr>
                 </thead>
                 <tbody>
                   <tr>
@@ -85,8 +85,8 @@
                   <tr>
                     <td rowspan="2" colspan="2" class="font-weight">OTORISASI</td>
                     <td colspan="2" class="grey">Dosen Pengembang RPS</td>
-                    <td colspan="3" class="grey">Koordinator Rumpun MK</td>
-                    <td colspan="3" class="grey">KA Program Studi</td>
+                    <td colspan="2" class="grey">Koordinator Rumpun MK</td>
+                    <td colspan="4" class="grey">KA Program Studi</td>
                   
                   </tr>
                   <tr>
@@ -95,8 +95,8 @@
                     <%= res.name %>
                     <% })}) %>
                     </td>
-                    <td colspan="3"></td>
-                    <td colspan="3"></td>
+                    <td colspan="2"></td>
+                    <td colspan="4"></td>
                     
                   </tr>
         
@@ -105,35 +105,35 @@
                     
                   </tr>
                   <tr>
-                      <td colspan="2"></td>
-                      <td colspan="8" class="grey">CP Program Studi</td>
+                      <td colspan="1"></td>
+                      <td colspan="9" class="grey">CP Program Studi</td>
                   </tr>
                   <tr>
-                    <td colspan="2" class="hidden" ></td>
+                    <td  class="hidden" ></td>
                     <td>CP-1</td>
-                    <td colspan="7">Mengidentifikasi</td>
+                    <td colspan="8">Mengidentifikasi</td>
                   </tr>
 
                   <tr>
-                    <td colspan="2"></td>
-                    <td colspan="8" class="grey">CP Mata Kuliah</td>
+                    <td ></td>
+                    <td colspan="9" class="grey">CP Mata Kuliah</td>
                   </tr>
         
                   <% items.forEach((data) => { data.course_los.forEach((res) => { %>
                   <tr>
-                    <td colspan="2"></td>
+                    <td ></td>
                     <td><%= res.code %></td>
-                    <td colspan="7"><%= res.name %></td>
+                    <td colspan="8"><%= res.name %></td>
                   </tr>
                   <% })}) %> <% items.forEach((item) => { %>
                   <tr>
-                    <td colspan="2" class="font-weight">Deskripsi Singkat Mata Kuliah</td>
-                    <td colspan="8"><%= item.description %></td>
+                    <td  class="font-weight">Deskripsi Singkat Mata Kuliah</td>
+                    <td colspan="9"><%= item.description %></td>
                   </tr>
         
                   <tr>
-                    <td colspan="2" class="font-weight">Materi Pembelajaran/Pokok Bahasan</td>
-                    <td colspan="8"><%= item.material %></td>
+                    <td  class="font-weight">Materi Pembelajaran/Pokok Bahasan</td>
+                    <td colspan="9"><%= item.material %></td>
                   </tr>
         
                   <tr>

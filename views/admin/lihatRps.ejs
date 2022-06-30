@@ -21,209 +21,209 @@
     <div class="main">
           <div class="content">
             <% items.forEach((item) => { %>
-                <div class="tampil-rps">
-                    <table class="rps-tabel" >
-                      <thead>
-                        <tr>
-                          <th rowspan="4" , align="center"><img src="/images/logounand.png" alt="logounand" width="100px"/></th>
-                          <th colspan="9" class="text-center">RENCANA PEMBELAJARAN SEMESTER (RPS)</th>
-                        </tr>
-                        <tr>
-                          <th colspan="9" class="text-center">PROGRAM STUDI: Sistem Informasi</th>
-                        </tr>
-                        <tr>
-                          <th colspan="9" class="text-center">FAKULTAS/PPs: Teknologi Informasi</th>
-                        </tr>
-                        <tr>
-                          <th colspan="9" class="text-center">UNIVERSITAS ANDALAS</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td colspan="2">MATA KULIAH</td>
-                          <td>KODE</td>
-                          <td colspan="2">Rumpun/Kelompok MK</td>
-                          <td>BOBOT(sks)</td>
-                          <td>Semester</td>
-                          <td align="center" colspan="3">Tgl Penyusunan</td>
-                        </tr>
-                        <% items.forEach((item) => { %>
-              
-                        <tr>
-                          <td colspan="2"><%= item.name %></td>
-                          <td><%= item.code %></td>
-                          <td colspan="2"></td>
-                          <td><%= item.credit %></td>
-                          <td><%= item.semester %></td>
-                          <td colspan="3"></td>
-                        </tr>
-                        <% }) %>
-                        <tr>
-                          <td rowspan="2" colspan="2" class="font-weight">OTORISASI</td>
-                          <td colspan="2" class="grey">Dosen Pengembang RPS</td>
-                          <td colspan="3" class="grey">Koordinator Rumpun MK</td>
-                          <td colspan="3" class="grey">KA Program Studi</td>
-                        
-                        </tr>
-                        <tr>
-                          <td colspan="2">
-                          <% items.forEach((data) => { data.lecturers.forEach((res) => { %>
-                          <%= res.name %>
-                          <% })}) %>
-                          </td>
-                          <td colspan="3"></td>
-                          <td colspan="3"></td>
-                          
-                        </tr>
-              
-                        <tr>
-                          <td colspan="10" class="font-weight">Capaian Pembelajaran (CP)</td>
-                          
-                        </tr>
-                        <tr>
-                            <td colspan="2"></td>
-                            <td colspan="8" class="grey">CP Program Studi</td>
-                        </tr>
-                        <tr>
-                          <td colspan="2" class="hidden" ></td>
-                          <td>CP-1</td>
-                          <td colspan="7">Mengidentifikasi</td>
-                        </tr>
-    
-                        <tr>
-                          <td colspan="2"></td>
-                          <td colspan="8" class="grey">CP Mata Kuliah</td>
-                        </tr>
-              
-                        <% items.forEach((data) => { data.course_los.forEach((res) => { %>
-                        <tr>
-                          <td colspan="2"></td>
-                          <td><%= res.code %></td>
-                          <td colspan="7"><%= res.name %></td>
-                        </tr>
-                        <% })}) %> <% items.forEach((item) => { %>
-                        <tr>
-                          <td colspan="2" class="font-weight">Deskripsi Singkat Mata Kuliah</td>
-                          <td colspan="8"><%= item.description %></td>
-                        </tr>
-              
-                        <tr>
-                          <td colspan="2" class="font-weight">Materi Pembelajaran/Pokok Bahasan</td>
-                          <td colspan="8"><%= item.material %></td>
-                        </tr>
-              
-                        <tr>
-                          <td colspan="10" class="font-weight">Pustaka</td>
-                        </tr>
-                        <% }) %> <% items.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
-                        <tr>
-                          <td class="border-bottom-0"></td>
-                          <td colspan="9"><%= res.author %>, <%= res.year %>, "<%= res.title %>", <%= res.publisher %></td>
-                        </tr>
-                        <% })}) %>
-              
-                        <tr>
-                          <td rowspan="8" class="font-weight">Media Pembelajaran</td>
-                          <td colspan="4" class="grey">Perangkat Lunak:</td>
-                          <td colspan="5" class="grey">Perangkat Keras:</td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Power point</td>
-                          <td colspan="5">Projector</td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Code Editor</td>
-                          <td colspan="5">Laptop</td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Browser</td>
-                          <td colspan="5"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">NodeJs</td>
-                          <td colspan="5"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Rest Clien (Postman)</td>
-                          <td colspan="5"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Database Server (MYSQL)</td>
-                          <td colspan="5"></td>
-                        </tr>
-                        <tr>
-                          <td colspan="4">Version Control (GIT)</td>
-                          <td colspan="5"></td>
-                        </tr>
-              
-                        <tr>
-                          <td class="font-weight">Team Teaching</td>
-                          <td colspan="9">-</td>
-                        </tr>
-                        <tr>
-                          <td colspan="10"class="font-weight">Assessment</td>
-                        </tr>
-                        <% items.forEach((data) => { data.course_plan_assessments.forEach((res) => { var no = 0 %>
-                        <tr>
-                          <td rowspan="1" class="border-hidden"></td>
-                          <td colspan="9"><%= res.name %> : <%= res.percentage %></td>
-                          <% })}) %>
-                        </tr>
-              
-                      <tr>
-                          <td rowspan="3" class="font-weight">Mata Kuliah Syarat </td>
-                          <td>1 </td>
-                          <td colspan="8">SDA </td> 
-                      </tr>
-                      <tr>
-                          <td>2 </td>
-                          <td colspan="8">DASPRO </td> 
-                      </tr>
-                      <tr>
-                          <td>3 </td>
-                          <td colspan="8">PBO </td> 
-                      </tr>  
-                      </tbody>
-                    </table>
+              <div class="tampil-rps">
+                <table class="rps-tabel" >
+                  <thead>
+                   <tr>
+                <th rowspan="4" , align="center"><img src="/images/logounand.png" alt="logounand" width="100px"/></th>
+                <th colspan="9" class="text-center">RENCANA PEMBELAJARAN SEMESTER (RPS)</th>
+              </tr>
+              <tr>
+                <th colspan="9" class="text-center">PROGRAM STUDI: Sistem Informasi</th>
+              </tr>
+              <tr>
+                <th colspan="9" class="text-center">FAKULTAS/PPs: Teknologi Informasi</th>
+              </tr>
+              <tr>
+                <th colspan="9" class="text-center">UNIVERSITAS ANDALAS</th>
+              </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="2">MATA KULIAH</td>
+                      <td>KODE</td>
+                      <td colspan="2">Rumpun/Kelompok MK</td>
+                      <td>BOBOT(sks)</td>
+                      <td>Semester</td>
+                      <td align="center" colspan="3">Tgl Penyusunan</td>
+                    </tr>
+                    <% items.forEach((item) => { %>
+          
+                    <tr>
+                      <td colspan="2"><%= item.name %></td>
+                      <td><%= item.code %></td>
+                      <td colspan="2"></td>
+                      <td><%= item.credit %></td>
+                      <td><%= item.semester %></td>
+                      <td colspan="3"></td>
+                    </tr>
+                    <% }) %>
+                    <tr>
+                      <td rowspan="2" colspan="2" class="font-weight">OTORISASI</td>
+                      <td colspan="2" class="grey">Dosen Pengembang RPS</td>
+                      <td colspan="2" class="grey">Koordinator Rumpun MK</td>
+                      <td colspan="4" class="grey">KA Program Studi</td>
                     
-                    <table class="rps-tabel mt-3">
-                      <thead>
-                        <tr>
-                          <th>Mg ke-</th>
-                          <th>Kemampuan akhir yg diharapkan-</th>
-                          <th>Bahan Kajian (Materi Ajar) Dan Referensi</th>
-                          <th>Metode Pembelajaran dan Alokasi Waktu</th>
-                          <th>Pengalaman Belajar Mahasiswa</th>
-                          <th>Kriteria (indikator) Penilaian</th>
-                          <th>Bobot Penilaian (%)</th>
-                        </tr>
-                      </thead>
-              
-                      <tbody>
-                        <tr>
-                          <td>(1)</td>
-                          <td>(2)</td>
-                          <td>(3)</td>
-                          <td>(4)</td>
-                          <td>(5)</td>
-                          <td>(6)</td>
-                          <td>(7)</td>
-                        </tr>
-                        <% items.forEach((data) => { data.course_plan_details.forEach((res) => { var no = 0 %>
-                        <tr>
-                          <td><%= res.week %></td>
-                          <td>Mahasiswa mampu menjelaskan</td>
-                          <td><%= res.material %></td>
-                          <td><%= res.method %></td>
-                          <td><%= res.student_experience %></td>
-                          <td>Keaktifan dan partisipasi</td>
-                          <td></td>
-                        </tr>
-                        <% })}) %>
-                      </tbody>
-                    </table>
-                  </div>
-    
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                      <% items.forEach((data) => { data.lecturers.forEach((res) => { %>
+                      <%= res.name %>
+                      <% })}) %>
+                      </td>
+                      <td colspan="2"></td>
+                      <td colspan="4"></td>
+                      
+                    </tr>
+          
+                    <tr>
+                      <td colspan="10" class="font-weight">Capaian Pembelajaran (CP)</td>
+                      
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td colspan="9" class="grey">CP Program Studi</td>
+                    </tr>
+                    <tr>
+                      <td  class="hidden" ></td>
+                      <td>CP-1</td>
+                      <td colspan="8">Mengidentifikasi</td>
+                    </tr>
+
+                    <tr>
+                      <td ></td>
+                      <td colspan="9" class="grey">CP Mata Kuliah</td>
+                    </tr>
+          
+                    <% items.forEach((data) => { data.course_los.forEach((res) => { %>
+                    <tr>
+                      <td ></td>
+                      <td><%= res.code %></td>
+                      <td colspan="8"><%= res.name %></td>
+                    </tr>
+                    <% })}) %> <% items.forEach((item) => { %>
+                    <tr>
+                      <td  class="font-weight">Deskripsi Singkat Mata Kuliah</td>
+                      <td colspan="9"><%= item.description %></td>
+                    </tr>
+          
+                    <tr>
+                      <td  class="font-weight">Materi Pembelajaran/Pokok Bahasan</td>
+                      <td colspan="9"><%= item.material %></td>
+                    </tr>
+          
+                    <tr>
+                      <td colspan="10" class="font-weight">Pustaka</td>
+                    </tr>
+                    <% }) %> <% items.forEach((data) => { data.course_plan_references.forEach((res) => { var no = 0 %>
+                    <tr>
+                      <td class="border-bottom-0"></td>
+                      <td colspan="9"><%= res.author %>, <%= res.year %>, "<%= res.title %>", <%= res.publisher %></td>
+                    </tr>
+                    <% })}) %>
+          
+                    <tr>
+                      <td rowspan="8" class="font-weight">Media Pembelajaran</td>
+                      <td colspan="4" class="grey">Perangkat Lunak:</td>
+                      <td colspan="5" class="grey">Perangkat Keras:</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Power point</td>
+                      <td colspan="5">Projector</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Code Editor</td>
+                      <td colspan="5">Laptop</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Browser</td>
+                      <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">NodeJs</td>
+                      <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Rest Clien (Postman)</td>
+                      <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Database Server (MYSQL)</td>
+                      <td colspan="5"></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Version Control (GIT)</td>
+                      <td colspan="5"></td>
+                    </tr>
+          
+                    <tr>
+                      <td class="font-weight">Team Teaching</td>
+                      <td colspan="9">-</td>
+                    </tr>
+                    <tr>
+                      <td colspan="10"class="font-weight">Assessment</td>
+                    </tr>
+                    <% items.forEach((data) => { data.course_plan_assessments.forEach((res) => { var no = 0 %>
+                    <tr>
+                      <td rowspan="1" class="border-hidden"></td>
+                      <td colspan="9"><%= res.name %> : <%= res.percentage %></td>
+                      <% })}) %>
+                    </tr>
+          
+                  <tr>
+                      <td rowspan="3" class="font-weight">Mata Kuliah Syarat </td>
+                      <td>1 </td>
+                      <td colspan="8">SDA </td> 
+                  </tr>
+                  <tr>
+                      <td>2 </td>
+                      <td colspan="8">DASPRO </td> 
+                  </tr>
+                  <tr>
+                      <td>3 </td>
+                      <td colspan="8">PBO </td> 
+                  </tr>  
+                  </tbody>
+                </table>
+                
+                <table class="rps-tabel mt-3">
+                  <thead>
+                    <tr>
+                      <th>Mg ke-</th>
+                      <th>Kemampuan akhir yg diharapkan-</th>
+                      <th>Bahan Kajian (Materi Ajar) Dan Referensi</th>
+                      <th>Metode Pembelajaran dan Alokasi Waktu</th>
+                      <th>Pengalaman Belajar Mahasiswa</th>
+                      <th>Kriteria (indikator) Penilaian</th>
+                      <th>Bobot Penilaian (%)</th>
+                    </tr>
+                  </thead>
+          
+                  <tbody>
+                    <tr>
+                      <td>(1)</td>
+                      <td>(2)</td>
+                      <td>(3)</td>
+                      <td>(4)</td>
+                      <td>(5)</td>
+                      <td>(6)</td>
+                      <td>(7)</td>
+                    </tr>
+                    <% items.forEach((data) => { data.course_plan_details.forEach((res) => { var no = 0 %>
+                    <tr>
+                      <td><%= res.week %></td>
+                      <td>Mahasiswa mampu menjelaskan</td>
+                      <td><%= res.material %></td>
+                      <td><%= res.method %></td>
+                      <td><%= res.student_experience %></td>
+                      <td>Keaktifan dan partisipasi</td>
+                      <td></td>
+                    </tr>
+                    <% })}) %>
+                  </tbody>
+                </table>
+              </div>
+
              <% }) %>
           </div>
         </div>

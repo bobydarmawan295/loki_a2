@@ -12,10 +12,19 @@ const getDosen = async (req, res) => {
         attributes: ["id", "name", "phone", "reg_id"],
         required: false,
       },
+      {
+        model: course_plans,
+        attributes: ["id", "rev"],
+        required: false,
+        where :{
+          id: req.params.id,
+          rev : req.params.rev
+        }
+      },
     ],
-    where: {
-      course_plan_id: req.params.id,
-    },
+    where:{
+      course_plan_id : req.params.id
+    }
   });
   const dosen = await lecturers.findAll({ 
     order: [["name", "ASC"]], 
@@ -29,6 +38,10 @@ const getDosen = async (req, res) => {
     }
   });
   res.render("admin/dosenPengampu", { pengampu, dosen, rps });
+  //  res.status(200).json({
+  //             message: 'mendapat data dosen',
+  //             data: rps
+  //         })
 };
 
 const tambahDosen = async (req, res) => {
@@ -46,7 +59,6 @@ const tambahDosen = async (req, res) => {
     res.redirect("back");
   } catch (error) {
     res.json({ message: error.message });
-    // res.redirect("/dosen/add-course");
   }
 };
 
