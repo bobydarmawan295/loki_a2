@@ -87,7 +87,7 @@ const cetakRps = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -128,6 +128,11 @@ const cetakRps = async (req, res) => {
             attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
             required: false,
           },
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
+            required: false,
+          },
         ],
         where: {
           course_id: req.params.id,
@@ -159,7 +164,7 @@ const cetakRpsMahasiswa = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
