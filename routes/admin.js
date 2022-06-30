@@ -12,10 +12,10 @@ router.use("/", (req, res, next) => {
 });
 
 router.get("/coursesPlan", coursesAdmin);
-router.get("/coursesPlan/:id", getDosen);
+router.get("/coursesPlan/:id/:rev", getDosen);
 router.post("/tambahDosen", tambahDosen);
 router.delete("/hapusdosen/:id", hapusDosen);
-router.get("/coursesPlan/:id/:rev", getCourseAdmin);
+router.get("/coursesPlan/:id/:rev/cetakRps", getCourseAdmin);
 router.get('/persentaseRps',(req,res) => {
     res.render('admin/persentaseRps')
 })
