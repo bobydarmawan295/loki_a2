@@ -15,8 +15,7 @@ const getCourses = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
-
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -567,7 +566,7 @@ const getCourseMahasiswa = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,
@@ -707,4 +706,4 @@ const getCourseAdmin = async (req, res) => {
   }
 };
 
-module.exports = { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps, coursesAdmin, getCourseMahasiswa, search, getAllCoursePlan, cetakRpsMahasiswa,cetakListRps,getCourseAdmin };
+module.exports = { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps, coursesAdmin, getCourseMahasiswa, search, getAllCoursePlan, cetakRpsMahasiswa, cetakListRps, getCourseAdmin };
