@@ -31,14 +31,15 @@
     <tbody>
       <% items.forEach((item,i) => { %>
       <tr>
-        
         <td scope="row"><%= i+1 %></td>
         <td class="text-center"><%= item.name %></td>
         <td class="text-center"><%= item.code %></td>
         <td class="text-center"><%= item.credit %></td>
         <td class="text-center"><%= item.semester %></td>
         <td class="text-center"><%= item.rev %></td>
-        <td class="text-center"><a href="/admin/coursesPlan/<%= item.id%>/1" class="link-primary"><i class='bx bx-sm bx-printer bx-border'></i></a></i></td>
+        <td class="text-center">
+          <a onclick="window.open('/admin/coursesPlan/<%= item.id%>/1')"class="link-primary"><i class='bx bx-sm bx-printer bx-border'></i></a>
+          </td>
         <td class="text-center">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Details
@@ -49,13 +50,10 @@
               <a class="dropdown-item" href="/admin/persentaseRps">Persentase RPS</a>
             </div>
         </td>
-       
       </tr>
       <% }) %>
       </tbody>
   </table>
-    
-    
 </div>
 
 <%- include('../partials/footer'); -%>

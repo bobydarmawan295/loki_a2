@@ -12,7 +12,6 @@ router.use("/", (req, res, next) => {
 });
 
 router.get("/coursesPlan", coursesAdmin);
-
 router.get("/coursesPlan/:id", getDosen);
 router.post("/tambahDosen", tambahDosen);
 router.delete("/hapusdosen/:id", hapusDosen);

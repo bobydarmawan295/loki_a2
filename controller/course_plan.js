@@ -218,7 +218,7 @@ const cetakRpsMahasiswa = async (req, res) => {
       })
       .then((result) => {
         if (result.length > 0) {
-          res.render("mahasiswa/cetakRps", { item: result });
+          res.render("mahasiswa/cetakRps", { items: result });
           //  res.status(200).json({
           //     message: 'mendapat data dosen',
           //     data: result
@@ -690,7 +690,7 @@ const getCourseAdmin = async (req, res) => {
       })
       .then((result) => {
         if (result.length > 0) {
-          res.render("admin/lihatRps", { item: result });
+          res.render("admin/lihatRps", { items: result });
           // res.status(200).json({
           //     message: 'mendapat data dosen',
           //     data: result
