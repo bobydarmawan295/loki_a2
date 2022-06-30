@@ -35,6 +35,10 @@ app.get("/", authenticateToken, (req, res) => {
   res.render("home");
 });
 
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
 // app.get('/admin', adminAuth,  (req, res) => {
 //   model.findAll()
 //   .then(results => {
@@ -42,9 +46,9 @@ app.get("/", authenticateToken, (req, res) => {
 //   });
 // });
 
-app.use('/', (req, res) => {
-    res.render("err404.ejs");
-})
+app.use("/", (req, res) => {
+  res.render("err404.ejs");
+});
 
 //connect dengan port
 app.listen(port, () => {
