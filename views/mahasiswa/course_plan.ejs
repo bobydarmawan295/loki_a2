@@ -32,39 +32,39 @@
         </thead>
         <tbody>
           <tr>
-            <td colspan="2">MATA KULIAH</td>
+            <td>MATA KULIAH</td>
             <td>KODE</td>
             <td colspan="2">Rumpun/Kelompok MK</td>
             <td>BOBOT(sks)</td>
             <td>Semester</td>
-            <td align="center" colspan="3">Tgl Penyusunan</td>
+            <td align="center" colspan="4">Tgl Penyusunan</td>
           </tr>
           <% item.forEach((item) => { %>
 
           <tr>
-            <td colspan="2"><%= item.name %></td>
+            <td><%= item.name %></td>
             <td><%= item.code %></td>
             <td colspan="2"></td>
             <td><%= item.credit %></td>
             <td><%= item.semester %></td>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
           </tr>
           <% }) %>
           <tr>
-            <td rowspan="2" colspan="2" class="font-weight">OTORISASI</td>
+            <td rowspan="2" class="font-weight">OTORISASI</td>
             <td colspan="2" class="grey">Dosen Pengembang RPS</td>
             <td colspan="2" class="grey">Koordinator Rumpun MK</td>
-            <td colspan="4" class="grey">KA Program Studi</td>
+            <td colspan="5" class="grey">KA Program Studi</td>
           
           </tr>
           <tr>
             <td colspan="2">
             <% item.forEach((data) => { data.lecturers.forEach((res) => { %>
-            <%= res.name %>
+            <%= res.name %><br>
             <% })}) %>
             </td>
             <td colspan="2"></td>
-            <td colspan="4"></td>
+            <td colspan="5"></td>
             
           </tr>
 
