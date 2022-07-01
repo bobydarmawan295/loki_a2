@@ -56,6 +56,7 @@ const course_los = db.define(
   {
     tableName: "course_los",
     timestamps: false,
+    underscored: true,
   }
 );
 

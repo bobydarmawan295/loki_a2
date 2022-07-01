@@ -25,14 +25,14 @@ router.post("/add-course", createCourse);
 router.get("/:id/:rev/cetakRps", cetakRps);
 
 // CPMK
-router.get("/:id/CPMK", getCourseLos);
-router.get("/:id/add-cpmk", (req, res) => {
+router.get("/:id/:rev/CPMK", getCourseLos);
+router.get("/:id/:rev/add-cpmk", (req, res) => {
   res.render("dosen/add_cpmk");
 });
-router.post("/:id/add-cpmk", createCourseLos);
-router.get("/:id/edit-cpmk/:id", getCourseLosById);
-router.put("/:id/edit-cpmk/:id", updateCourseLos);
-router.delete("/:id/CPMK/:id", deleteCourseLos);
+router.post("/:id/:rev/add-cpmk", createCourseLos);
+router.get("/:id/:rev/edit-cpmk/:id", getCourseLosById);
+router.put("/:id/:rev/edit-cpmk/:id", updateCourseLos);
+router.delete("/:id/:rev/CPMK/:id", deleteCourseLos);
 
 // Pertemuan Mingguan
 

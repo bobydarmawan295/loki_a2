@@ -2,11 +2,14 @@
 <link rel="stylesheet" href="/public/css/table.css" />
 <div id="container">
   <div class="">
-    <h1 class="navbar-brand mb-3">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
-    <div class="d-flex justify-content-end">
+    <h1 class="navbar-brand mb-5">Capaian Pembelajaran Mata Kuliah (CPMK)</h1>
+    <div class="d-flex justify-content-between">
+      <% items.forEach((item) => { %>
+      <a class="button100-form-btn btn-head back ms-0" role="button" href="/dosen/coursesPlan/<%= item.id %>/<%= item.rev %>/"><% }) %><i class="bx bx-subdirectory-left"></i></a>
+
       <button class="button100-form-btn btn-head">
         <% items.forEach((item) => { %>
-        <a href="/dosen/<%= item.course_plan_id %>/add-cpmk" class=""><% }) %> TAMBAH </a>
+        <a href="/dosen/<%= item.id %>/<%= item.rev %>/add-cpmk" class=""><% }) %> TAMBAH </a>
       </button>
     </div>
     <div class="row">
@@ -23,17 +26,17 @@
 
             <tbody>
               <tr class="alert">
-                <% items.forEach((item) => { %>
-                <td><%= item.code %></td>
-                <td><%= item.name %></td>
+                <% items.forEach((item) => { item.course_los.forEach((res) => {%>
+                <td><%= res.code %></td>
+                <td><%= res.name %></td>
                 <td width="250px">
-                  <a class="editb" href="/dosen/<%= item.course_plan_id %>/edit-cpmk/<%= item.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
-                  <form action="/dosen/<%= item.course_plan_id %>/CPMK/<%= item.id %>?_method=DELETE" onsubmit="hapus()" class="d-inline" method="post">
+                  <a class="editb" href="/dosen/<%= res.course_plan_id %>/<%= item.rev %>/edit-cpmk/<%= res.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
+                  <form action="/dosen/<%= res.course_plan_id %>/<%= item.rev %>/CPMK/<%= res.id %>?_method=DELETE" onsubmit="hapus()" class="d-inline" method="post">
                     <button onclick="hapus()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>
                   </form>
                 </td>
               </tr>
-              <% }) %>
+              <% })}) %>
             </tbody>
           </table>
         </div>

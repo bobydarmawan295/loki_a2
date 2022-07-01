@@ -810,6 +810,9 @@ div .table-wrap {
   text-align: center;
   margin-right: 10px;
 }
+.editb:hover {
+  background-color: inherit;
+}
 th {
   text-align: center;
   font-family: "Montserrat";
@@ -830,12 +833,17 @@ th {
   text-decoration: none;
   color: #fff;
 }
+.button100-form-btn i {
+  font-size: 35px;
+}
 
 .button100-form-btn a:hover {
   text-decoration: none;
   color: #fff;
 }
-
+.align {
+  align-items: flex-end;
+}
 .add {
   padding: 12px 30px;
   text-align: center;
@@ -899,7 +907,7 @@ div .btn-head {
   border-radius: 5px;
 }
 .btn-head i {
-  font-size: 35px;
+  font-size: 30px;
   color: #fff;
 }
 .btn {

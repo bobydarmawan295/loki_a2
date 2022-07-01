@@ -4,11 +4,18 @@ const course_plans = require("../models/course_plans");
 
 const getCourseLos = async (req, res) => {
   try {
-    await course_los
+    await course_plans
       .findAll({
-        attributes: ["id", "course_plan_id", "code", "name"],
+        attributes: ["id", "rev", "course_id", "name", "semester"],
+        include: [
+          {
+            model: course_los,
+            attributes: ["id", "course_plan_id", "code", "name"],
+          },
+        ],
         where: {
-          course_plan_id: req.params.id,
+          rev: req.params.rev,
+          id: req.params.id,
         },
       })
       .then((result) => {
@@ -35,10 +42,6 @@ const getCourseLosById = async (req, res) => {
       .findOne({
         attributes: ["id", "code", "name", "parent_id"],
         where: {
-          course_id: req.params.id,
-          rev: req.params.rev,
-        },
-        where: {
           id: req.params.id,
         },
       })
@@ -61,6 +64,7 @@ const getCourseLosById = async (req, res) => {
 const createCourseLos = async (req, res) => {
   try {
     const course_plan_id = req.params.id;
+    const rev = req.params.id;
     const { code, name, parent_id } = req.body;
     await course_los.create({
       course_plan_id: course_plan_id,

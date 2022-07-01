@@ -16,7 +16,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                          <a class="nav-link" href="/dosen/<%= item.id %>/CPMK">CPMK  /</a>
+                          <a class="nav-link" href="/dosen/<%= item.id %>/<%= item.rev %>/CPMK">CPMK  /</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/dosen/<%= item.id %>/referensi">Referensi  /</a>
@@ -35,13 +35,13 @@
 
              <% items.forEach((tes) => { %>
                <div class="d-flex justify-content-between">
-                   <div>
+                   <div class="d-flex align">
                     <a class="button100-form-btn btn-head back ms-0" role="button" href="/dosen/<%= user.id %>/courses/"><i class='bx bx-subdirectory-left'></i></a>
                    </div>
-                   <div>
-                    <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit">Edit</a>
-                    <a class="button100-form-btn btn-head ms-0" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a>
-                    <a class="button100-form-btn btn-head back ms-0" role="button" onclick="window.open('/dosen/<%= tes.course_id %>/<%= tes.rev %>/cetakRps')"><i class=' bx-fw bx-sm bx bx-printer'></i></a>   
+                   <div class="d-flex align">
+                    <a class="button100-form-btn btn-head ms-1" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/edit">Edit</a>
+                    <a class="button100-form-btn btn-head ms-1" role="button" href="/dosen/coursesPlan/<%= tes.course_id %>/<%= tes.rev %>/revisi">Revisi</a>
+                    <a class="button100-form-btn btn-head back ms-1 " role="button" onclick="window.open('/dosen/<%= tes.course_id %>/<%= tes.rev %>/cetakRps')"><i class='bx bx-printer'></i></a>   
                    </div>
                </div>
             <% }) %>
