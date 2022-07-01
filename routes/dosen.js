@@ -36,33 +36,33 @@ router.delete("/:id/:rev/CPMK/:id", deleteCourseLos);
 
 // Pertemuan Mingguan
 
-router.get("/:id/pertemuan", getDetail);
-router.get("/:id/add-pertemuan", (req, res) => {
+router.get("/:id/:rev/pertemuan", getDetail);
+router.get("/:id/:rev/add-pertemuan", (req, res) => {
   res.render("dosen/add_pertemuan");
 });
-router.post("/:id/add-pertemuan", createDetail);
-router.delete("/:id/pertemuan/:id", deleteDetail);
-router.get("/:id/edit-pertemuan/:id", getDetailById);
-router.put("/:id/edit-pertemuan/:id", updateDetail);
+router.post("/:id/:rev/add-pertemuan", createDetail);
+router.delete("/:id/:rev/pertemuan/:id", deleteDetail);
+router.get("/:id/:rev/edit-pertemuan/:id", getDetailById);
+router.put("/:id/:rev/edit-pertemuan/:id", updateDetail);
 
 //reference
-router.get("/:id/referensi", getReferences);
-router.get("/:id/add-referensi", (req, res) => {
+router.get("/:id/:rev/referensi", getReferences);
+router.get("/:id/:rev/add-referensi", (req, res) => {
   res.render("dosen/add_referensi");
 });
-router.post("/:id/add-referensi", createReference);
-router.delete("/:id/referensi/:id", deleteReference);
-router.get("/:id/edit-referensi/:id", getReferenceById);
-router.put("/:id/edit-referensi/:id", updateReference);
+router.post("/:id/:rev/add-referensi", createReference);
+router.delete("/:id/:rev/referensi/:id", deleteReference);
+router.get("/:id/:rev/edit-referensi/:id", getReferenceById);
+router.put("/:id/:rev/edit-referensi/:id", updateReference);
 
 //Penilaian
-router.get("/:id/penilaian", getAssessments);
-router.get("/:id/add-penilaian", (req, res) => {
+router.get("/:id/:rev/penilaian", getAssessments);
+router.get("/:id/:rev/add-penilaian", (req, res) => {
   res.render("dosen/add_penilaian");
 });
-router.post("/:id/add-penilaian", createAssessments);
-router.delete("/:id/penilaian/:id", deleteAssessments);
-router.get("/:id/edit-penilaian/:id", getAssessmentsById);
-router.put("/:id/edit-penilaian/:id", updateAssessments);
+router.post("/:id/:rev/add-penilaian", createAssessments);
+router.delete("/:id/:rev/penilaian/:id", deleteAssessments);
+router.get("/:id/:rev/edit-penilaian/:id", getAssessmentsById);
+router.put("/:id/:rev/edit-penilaian/:id", updateAssessments);
 
 module.exports = router;
