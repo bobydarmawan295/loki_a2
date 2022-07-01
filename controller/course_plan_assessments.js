@@ -1,13 +1,21 @@
 const course_plan_assessments = require("../models/course_plan_assessments");
 const { Op, where } = require("sequelize");
+const course_plans = require("../models/course_plans");
 
 const getAssessments = async (req, res) => {
   try {
-    await course_plan_assessments
+    await course_plans
       .findAll({
-        attributes: ["id", "course_plan_id", "name", "percentage"],
+        attributes: ["id", "rev", "course_id", "name", "semester"],
+        include: [
+          {
+            model: course_plan_assessments,
+            attributes: ["id", "course_plan_id", "name", "percentage"],
+          },
+        ],
         where: {
-          course_plan_id: req.params.id,
+          rev: req.params.rev,
+          id: req.params.id,
         },
       })
       .then((result) => {

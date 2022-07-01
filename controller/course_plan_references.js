@@ -1,13 +1,21 @@
 const course_plan_references = require("../models/course_plan_references");
 const { Op, where } = require("sequelize");
+const course_plans = require("../models/course_plans");
 
 const getReferences = async (req, res) => {
   try {
-    await course_plan_references
+    await course_plans
       .findAll({
-        attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+        attributes: ["id", "rev", "course_id", "name", "semester"],
+        include: [
+          {
+            model: course_plan_references,
+            attributes: ["id", "course_plan_id", "title", "author", "publisher", "year", "description"],
+          },
+        ],
         where: {
-          course_plan_id: req.params.id,
+          rev: req.params.rev,
+          id: req.params.id,
         },
       })
       .then((result) => {

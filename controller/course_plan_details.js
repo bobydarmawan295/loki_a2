@@ -1,13 +1,21 @@
 const course_plan_details = require("../models/course_plan_details");
 const { Op, where } = require("sequelize");
+const course_plans = require("../models/course_plans");
 
 const getDetail = async (req, res) => {
   try {
-    await course_plan_details
+    await course_plans
       .findAll({
-        attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+        attributes: ["id", "rev", "course_id", "name", "semester"],
+        include: [
+          {
+            model: course_plan_details,
+            attributes: ["id", "course_plan_id", "week", "material", "method", "student_experience"],
+          },
+        ],
         where: {
-          course_plan_id: req.params.id,
+          rev: req.params.rev,
+          id: req.params.id,
         },
       })
       .then((result) => {
@@ -41,7 +49,6 @@ const getDetailById = async (req, res) => {
         if (result) {
           res.render("dosen/edit_pertemuan", { items: result });
         } else {
-          
           res.status(200).json({
             message: "data tidak ada",
             data: [],
