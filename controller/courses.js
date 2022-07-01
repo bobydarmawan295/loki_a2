@@ -22,7 +22,7 @@ const getAllCourses = async (req, res) => {
             through: {
               attributes: ["updated_at", "created_at"],
             },
-            required:false,
+            required:true,
             where: {
               id: req.params.id,
             }

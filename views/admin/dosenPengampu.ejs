@@ -28,10 +28,17 @@
     <tbody>
       <% pengampu.forEach((item,i) => { %>
       <tr>
+        <% if(item.id == null) {  %>
         <td scope="row"><%= i+1 %></td>
-        <td class="text-center" scope="col"><%= item.lecturer.name %></td>
-        <td class="text-center" scope="col"><%= item.lecturer.reg_id %></td>
-        <td class="text-center" scope="col"><%= item.lecturer.phone %></td>
+        <td class="text-center" scope="col"></td>
+        <td class="text-center" scope="col"></td>
+        <td class="text-center" scope="col"></td>
+        <% }else {  %>
+          <td scope="row"><%= i+1 %></td>
+          <td class="text-center" scope="col"><%= item.lecturer.name %></td>
+          <td class="text-center" scope="col"><%= item.lecturer.reg_id %></td>
+          <td class="text-center" scope="col"><%= item.lecturer.phone %></td>
+        <% } %>
         <!-- <form action="/admin/hapusdosen/<% item.id %>" method="post">
           <td class="text-center" scope="col"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></td>   
         </form> -->
