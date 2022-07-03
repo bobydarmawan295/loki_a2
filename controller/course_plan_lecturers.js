@@ -16,40 +16,41 @@ const getDosen = async (req, res) => {
         model: course_plans,
         attributes: ["id", "rev"],
         required: false,
-        where :{
+        where: {
           id: req.params.id,
-          rev : req.params.rev
-        }
+          rev: req.params.rev,
+        },
       },
     ],
-    where:{
-      course_plan_id : req.params.id
-    }
+    where: {
+      course_plan_id: req.params.id,
+    },
   });
-  const dosen = await lecturers.findAll({ 
-    order: [["name", "ASC"]], 
+  const dosen = await lecturers.findAll({
+    order: [["name", "ASC"]],
     attributes: ["id", "name"],
   });
   const id = req.params.id;
-  const rps = await course_plans.findOne({ 
-    attributes: ["id","course_id"] ,
-    where: { 
-      id: id 
-    }
+  const rps = await course_plans.findOne({
+    attributes: ["id", "course_id"],
+    where: {
+      id: id,
+    },
   });
   res.render("admin/dosenPengampu", { pengampu, dosen, rps });
-  //  res.status(200).json({
-  //             message: 'mendapat data dosen',
-  //             data: rps
-  //         })
+  // res.status(200).json({
+  //   message: "mendapat data dosen",
+  //   data: pengampu,
+  // });
 };
 
 const tambahDosen = async (req, res) => {
   const { id_rps, id_dosen } = req.body;
   const dosenExist = await course_plan_lecturers.findOne({
-      attributes: ["course_plan_id", "lecturer_id"],
-      where:{[Op.and]: [{ course_plan_id: id_rps }, { lecturer_id: id_dosen }]} });
-  if (dosenExist) return res.status(400).send('Dosen sudah ada');
+    attributes: ["course_plan_id", "lecturer_id"],
+    where: { [Op.and]: [{ course_plan_id: id_rps }, { lecturer_id: id_dosen }] },
+  });
+  if (dosenExist) return res.status(400).send("Dosen sudah ada");
   try {
     await course_plan_lecturers.create({
       course_plan_id: id_rps,
@@ -69,7 +70,7 @@ const hapusDosen = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.redirect('back');
+    res.redirect("back");
   } catch (error) {
     res.json({ message: error.message });
   }

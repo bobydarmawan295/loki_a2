@@ -1,5 +1,6 @@
 const express = require("express");
 const { getAllCourses, createCourse, getMatkul } = require("../controller/courses");
+const { getCurriculumLos, hapusCP, tambahCP } = require("../controller/course_lo_details");
 const { getCourses, editCoursePlan, updateCoursePlan, revisi, revisiRps, cetakRps } = require("../controller/course_plan");
 const { getCourseLos, createCourseLos, updateCourseLos, deleteCourseLos, getCourseLosById } = require("../controller/course_los");
 const { getDetail, getDetailById, createDetail, updateDetail, deleteDetail } = require("../controller/course_plan_details");
@@ -34,6 +35,10 @@ router.get("/:id/:rev/edit-cpmk/:id", getCourseLosById);
 router.put("/:id/:rev/edit-cpmk/:id", updateCourseLos);
 router.delete("/:id/:rev/CPMK/:id", deleteCourseLos);
 
+//CPL
+router.get("/:id/:rev/cpl/:cl", getCurriculumLos);
+router.delete("/cpl/:id", hapusCP);
+router.post("/cpl/tambah", tambahCP);
 // Pertemuan Mingguan
 
 router.get("/:id/:rev/pertemuan", getDetail);

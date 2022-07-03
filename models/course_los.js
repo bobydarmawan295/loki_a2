@@ -5,6 +5,7 @@ const db = require("../config/conn");
 const course_plan_detail_outcomes = require("./course_plan_detail_outcomes");
 const course_plans = require("./course_plans");
 const course_plan_details = require("./course_plan_details");
+
 const course_los = db.define(
   "course_los",
   {
@@ -18,13 +19,7 @@ const course_los = db.define(
     course_plan_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      foreignKey: true,
-      references: {
-        model: course_plans,
-        key: "id",
-      },
     },
-
     type: {
       type: DataTypes.INTEGER,
       allowNull: false,
