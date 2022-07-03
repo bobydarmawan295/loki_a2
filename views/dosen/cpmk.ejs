@@ -20,7 +20,7 @@
               <tr>
                 <th width="1%">KODE</th>
                 <th width="30%">DESKRIPSI</th>
-                <th width="3%">AKSI</th>
+                <th width="5%">AKSI</th>
               </tr>
             </thead>
 
@@ -30,6 +30,7 @@
                 <td><%= res.code %></td>
                 <td><%= res.name %></td>
                 <td width="250px">
+                  <a class="editb" href="/dosen/<%= res.course_plan_id %>/<%= item.rev %>/cpl/<%= res.id %>"><i class="bx bx-detail" style="color: #132c89"></i></a>
                   <a class="editb" href="/dosen/<%= res.course_plan_id %>/<%= item.rev %>/edit-cpmk/<%= res.id %>"><i class="bx bxs-edit" style="color: #624de3"></i></a>
                   <form action="/dosen/<%= res.course_plan_id %>/<%= item.rev %>/CPMK/<%= res.id %>?_method=DELETE" onsubmit="hapus()" class="d-inline" method="post">
                     <button onclick="hapus()" type="submit" class="editb"><i class="bx bx-trash" style="color: #a30d11"></i></button>

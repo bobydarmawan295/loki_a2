@@ -1,101 +1,106 @@
 <%- include('../partials/sidebar'); -%>
 
 <div id="container">
-  
-  <h3><i class="fa-solid fa-list me-2"></i>List RPS</h3><hr>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-2"><h6>Tahun Akademik</h6></div>
-                        <div class="col-2"><h6>: 2021/2022</h6></div>
-                      </div>
-                    <div class="row">
-                      <div class="col-2"><h6>Semester</h6></div>
-                      <div class="col-3"><h6>: Genap</h6></div>
-                    </div><br>
-                </div>
-              
-              
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col">No</th>
-        <th class="text-center" scope="col">Nama Dosen</th>
-        <th class="text-center" scope="col">NIP</th>
-        <th class="text-center" scope="col">Telepon</th>
-        <th class="text-center" scope="col">Hapus</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% pengampu.forEach((item,i) => { %>
-      <tr>
-        <% if(item.id == null) {  %>
-        <td scope="row"><%= i+1 %></td>
-        <td class="text-center" scope="col"></td>
-        <td class="text-center" scope="col"></td>
-        <td class="text-center" scope="col"></td>
-        <% }else {  %>
-          <td scope="row"><%= i+1 %></td>
-          <td class="text-center" scope="col"><%= item.lecturer.name %></td>
-          <td class="text-center" scope="col"><%= item.lecturer.reg_id %></td>
-          <td class="text-center" scope="col"><%= item.lecturer.phone %></td>
-        <% } %>
-        <!-- <form action="/admin/hapusdosen/<% item.id %>" method="post">
-          <td class="text-center" scope="col"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></td>   
-        </form> -->
-        <form action="/admin/hapusdosen/<%= item.id %>?_method=DELETE"  method="post">
-          <td class="text-center" scope="col"><button type="submit" class="editb"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></button></td>
-        </form>
-      </tr>
-      <% }) %>
-      </tbody>
-  </table>
-  <!-- Button trigger for tambah dosen form modal -->
-  <button type="button" class="btn btn-secondary rounded-pill" data-bs-toggle="modal"
-  data-bs-target="#inlineForm">
-  + Tambah Dosen
-</button>
-
-<!--tambah dosen form Modal -->
-<div class="modal fade text-left" id="inlineForm" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable"
-      role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel33">Tambah Dosen </h4>
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                  <i data-feather="x"></i>
-              </button>
-          </div>
-          <form action="/admin/tambahDosen" method="post" >
-              <div class="modal-body">
-                  <label>Nama </label>
-                  <div class="form-group">
-                      <input type="hidden" name="id_rps" value="<%= rps.id %>">
-                      <select class="form-select" name="id_dosen">
-                                                                            
-    <% dosen.forEach(dsn => { %>                                                     
-                          <option value="<%= dsn.id %>"><%= dsn.name %> </option>
-                        <% }) %>
-                         
-                      </select>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="reset" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                      <i class="bx bx-x d-block d-sm-none"></i>
-                      <span class="d-none d-sm-block">Batal</span>
-                  </button>
-                  <button type="submit" class="btn btn-primary ml-1">
-                      <i class="bx bx-check d-block d-sm-none"></i>
-                      <span class="d-none d-sm-block">Tambah</span>
-                  </button>
-              </div>
-          </form>
-      </div>
+  <h3><i class="fa-solid fa-list me-2"></i><%= rps.name %></h3>
+  <hr />
+  <div class="container">
+    <div class="row">
+      <div class="col-2"><h6>Tahun Akademik</h6></div>
+      <div class="col-2"><h6>: 2021/2022</h6></div>
+    </div>
+    <div class="row">
+      <div class="col-2"><h6>Semester</h6></div>
+      <div class="col-3"><h6>: <%= rps.semester %></h6></div>
+    </div>
+    <br />
   </div>
-</div>  
-  <a href="/admin/coursesPlan" class="btn btn-success rounded-pill" type="button">Kembali</a>
-    
+  <div class="d-flex justify-content-between">
+    <a href="/admin/coursesPlan" class="button100-form-btn btn-head back" type="button"><i class="bx bx-subdirectory-left"></i></a>
+    <!-- Button trigger for tambah dosen form modal -->
+    <button type="button" class="button100-form-btn btn-head" data-bs-toggle="modal" data-bs-target="#inlineForm">TAMBAH</button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-wrap">
+        <table class="table table-responsive-xl">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">No</th>
+              <th class="text-center" scope="col">Nama Dosen</th>
+              <th class="text-center" scope="col">NIP</th>
+              <th class="text-center" scope="col">Telepon</th>
+              <th class="text-center" scope="col">Hapus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pengampu.forEach((item,i) => { %>
+            <tr>
+              <% if(item.id == null) { %>
+              <td class="text-center" scope="row"><%= i+1 %></td>
+              <td class="text-center" scope="col"></td>
+              <td class="text-center" scope="col"></td>
+              <td class="text-center" scope="col"></td>
+              <% }else { %>
+              <td class="text-center" scope="row"><%= i+1 %></td>
+              <td class="text-center" scope="col"><%= item.lecturer.name %></td>
+              <td class="text-center" scope="col"><%= item.lecturer.reg_id %></td>
+              <td class="text-center" scope="col"><%= item.lecturer.phone %></td>
+              <% } %>
+              <!-- <form action="/admin/hapusdosen/<% item.id %>" method="post">
+                              <td class="text-center" scope="col"><a href="" class="link-danger"><i class='bx bx-sm bx-trash'></i></a></td>   
+                            </form> -->
+              <form action="/admin/hapusdosen/<%= item.id %>?_method=DELETE" method="post">
+                <td class="text-center" scope="col">
+                  <button type="submit" class="editb">
+                    <a href="" class="link-danger"><i class="bx bx-sm bx-trash"></i></a>
+                  </button>
+                </td>
+              </form>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--tambah dosen form Modal -->
+  <div class="modal fade text-left" id="inlineForm" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel33">Tambah Dosen</h4>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i data-feather="x"></i>
+          </button>
+        </div>
+        <form action="/admin/tambahDosen" method="post">
+          <div class="modal-body">
+            <label class="mb-2 label">Nama Dosen </label>
+            <div class="form-group">
+              <input type="hidden" name="id_rps" value="<%= rps.id %>" />
+              <select class="form-select" name="id_dosen">
+                <% dosen.forEach(dsn => { %>
+                <option value="<%= dsn.id %>"><%= dsn.name %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="button100-form-btn btn-head back" data-bs-dismiss="modal">
+              <i class="bx bx-x d-block d-sm-none"></i>
+              <span class="d-none d-sm-block">Batal</span>
+            </button>
+            <button type="submit" class="button100-form-btn btn-head back">
+              <i class="bx bx-check d-block d-sm-none"></i>
+              <span class="d-none d-sm-block">Tambah</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -108,29 +113,27 @@
       })
       .catch((error) => console.log(error));
   }
-  function hapus(){
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire("Good job!", "Data deleted", "success")
+  function hapus() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Good job!", "Data deleted", "success")
           .then(function () {
             window.setTimeout(function () {
               window.location = "./CPMK";
             }, 700);
           })
           .catch((error) => console.log(error));
-        }
-      })
-    }
-
+      }
+    });
+  }
 </script>
-
 
 <%- include('../partials/footer'); -%>

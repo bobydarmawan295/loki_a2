@@ -2,7 +2,7 @@
 
 <div id="container">
   
-  <h3><i class="fa-solid fa-list me-2"></i>List RPS</h3><hr>
+  <h3 class="admin-title">List RPS</h3><hr>
                 <div class="container">
                     <div class="row">
                         <div class="col-2"><h6>Tahun Akademik</h6></div>
@@ -13,47 +13,56 @@
                       <div class="col-3"><h6>: Genap</h6></div>
                     </div><br>
                 </div>
-                <a class="btn btn-info mb-2" href="#" role="button" onclick="window.open('/admin/cetakListRps')"><i class="bx-sm bx bx-printer"></i></a>
-              
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col">No.</th>
-        <th class="text-center" scope="col">Nama Mata Kuliah</th>
-        <th class="text-center" scope="col">Kode Mata Kuliah</th>
-        <th class="text-center" scope="col">SKS</th>
-        <th class="text-center" scope="col">Semester</th>
-        <th class="text-center" scope="col">Jumlah Revisi</th>
-        <th class="text-center" scope="col">Cetak</th>
-        <th class="text-center" scope="col">Detail</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% items.forEach((item,i) => { %>
-      <tr>
-        <td scope="row"><%= i+1 %></td>
-        <td class="text-center"><%= item.name %></td>
-        <td class="text-center"><%= item.code %></td>
-        <td class="text-center"><%= item.credit %></td>
-        <td class="text-center"><%= item.semester %></td>
-        <td class="text-center"><%= item.rev %></td>
-        <td class="text-center">
-          <a onclick="window.open('/admin/coursesPlan/<%= item.id%>/<%= item.rev %>/cetakRps')"class="link-primary"><i class='bx bx-sm bx-printer bx-border'></i></a>
-          </td>
-        <td class="text-center">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Details
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/admin/coursesPlan/<%= item.id %>/<%= item.rev %>">Kelola Dosen</a>
-              <a class="dropdown-item" href="/admin/petaCplCpmk/<%= item.id%>/<%= item.rev %>"">Peta CPMK ke CPL</a>
-              <a class="dropdown-item" href="/admin/persentaseRps">Persentase RPS</a>
-            </div>
-        </td>
-      </tr>
-      <% }) %>
-      </tbody>
-  </table>
+                <div class="d-flex justify-content-end">
+                  <a class="button100-form-btn btn-head back mb-2" href="#" role="button" onclick="window.open('/admin/cetakListRps')"><i class="bx-sm bx bx-printer"></i></a>
+                </div>
+   
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-wrap">
+                      <table id="table_id" class="table table-responsive-xl">
+                        <thead>
+                          <tr>
+                            <th class="text-center" scope="col">No.</th>
+                            <th class="text-center" scope="col">Nama Mata Kuliah</th>
+                            <th class="text-center" scope="col">Kode Mata Kuliah</th>
+                            <th class="text-center" scope="col">SKS</th>
+                            <th class="text-center" scope="col">Semester</th>
+                            <th class="text-center" scope="col">Jumlah Revisi</th>
+                            <th class="text-center" scope="col">Cetak</th>
+                            <th class="text-center" scope="col">Detail</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% items.forEach((item,i) => { %>
+                          <tr>
+                            <td class="text-center" scope="row"><%= i+1 %></td>
+                            <td class="text-center"><%= item.name %></td>
+                            <td class="text-center"><%= item.code %></td>
+                            <td class="text-center"><%= item.credit %></td>
+                            <td class="text-center"><%= item.semester %></td>
+                            <td class="text-center"><%= item.rev %></td>
+                            <td class="text-center">
+                              <a onclick="window.open('/admin/coursesPlan/<%= item.id%>/<%= item.rev %>/cetakRps')" class="editb"><i class='bx bx-sm bx-printer'></i></a>
+                              </td>
+                            <td class="text-center">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Details
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="/admin/coursesPlan/<%= item.id %>/<%= item.rev %>">Kelola Dosen</a>
+                                  <a class="dropdown-item" href="/admin/petaCplCpmk/<%= item.id%>/<%= item.rev %>"">Peta CPMK ke CPL</a>
+                                  <a class="dropdown-item" href="/admin/persentaseRps">Persentase RPS</a>
+                                </div>
+                            </td>
+                          </tr>
+                          <% }) %>
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+  
 </div>
 
 <%- include('../partials/footer'); -%>

@@ -1,51 +1,65 @@
 <%- include('../partials/sidebar'); -%>
 
 <div id="container">
-  <div>
-    <a class="btn btn-info mb-3" href="/admin/coursesPlan" role="button"><i class="bx-sm bx-fw bx bx-arrow-back"></i>Kembali</a>
-    <a class="btn btn-secondary mb-3" onclick="window.open('/admin/cetakCplCpmk')" role="button"><i class="bx-sm bx-fw bx bx-printer"></i></a>
+  <h3 class="admin-title">Peta CPL ke CPMK - <%= course_plan.name %></h3>
+  <hr />
+  <div class="d-flex justify-content-between mb-1 mt-5">
+    <a href="/admin/coursesPlan" class="button100-form-btn btn-head back" type="button"><i class="bx bx-subdirectory-left"></i></a>
+    <a class="button100-form-btn btn-head back" onclick="window.open('/admin/cetakCplCpmk/<%= course_plan.id %>/<%= course_plan.rev %>')" role="button"><i class="bx-sm bx-fw bx bx-printer"></i></a>
   </div>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col">No</th>
-        <th class="text-center" scope="col">CP Program Studi</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>CP-1</td>
-        <td>Mengidentifikasi, memformulasikan dan memecahkan permasalahan kebutuhan informasi dari suatu organisasi</td>
-      </tr>
-      <tr>
-        <td>CP-2</td>
-        <td>Mengintegrasikan solusi berbasis teknologi informasi secara efektif pada suatu organisasi</td>
-      </tr>
-      <tr>
-        <td>CP-3</td>
-        <td>Menerapkan konsep-konsep dasar dalam merencanakan Sistem Informasi, merancang Sistem Informasi, membangun Sistem Informasi, mengoperasikan Sistem Informasi, dan mengevaluasi Sistem Informasi</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-wrap">
+        <table class="table table-responsive-xl">
+          <thead>
+            <tr>
+              <th width="10%" class="text-center" scope="col">CP</th>
+              <th class="text-center" scope="col">CP Program Studi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">CP-1</td>
+              <td>Mengidentifikasi, memformulasikan dan memecahkan permasalahan kebutuhan informasi dari suatu organisasi</td>
+            </tr>
+            <tr>
+              <td class="text-center">CP-2</td>
+              <td>Mengintegrasikan solusi berbasis teknologi informasi secara efektif pada suatu organisasi</td>
+            </tr>
+            <tr>
+              <td class="text-center">CP-3</td>
+              <td>Menerapkan konsep-konsep dasar dalam merencanakan Sistem Informasi, merancang Sistem Informasi, membangun Sistem Informasi, mengoperasikan Sistem Informasi, dan mengevaluasi Sistem Informasi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th width="7%" class="text-center" scope="col"></th>
-        <th width="75%" class="text-center" scope="col">Capaian Pembelajaran Mata Kuliah (CPMK)</th>
-        <th class="text-center" scope="col">CP</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% cpmkAll.forEach(item => { %>
-      <tr>
-        <td><%= item.code %></td>
-        <td><%= item.name %></td>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-wrap">
+        <table class="table table-responsive-xl">
+          <thead>
+            <tr>
+              <th width="10%" class="text-center" scope="col">CPMK</th>
+              <th width="70%" class="text-center" scope="col">Capaian Pembelajaran Mata Kuliah (CPMK)</th>
+              <th class="text-center" scope="col">CP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% cpmkAll.forEach(item => { %>
+            <tr>
+              <td class="text-center"><%= item.code %></td>
+              <td><%= item.name %></td>
 
-        <td class="text-center"><% item.curriculum_los.forEach(a => { %><%= a.code %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<% }) %></td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
+              <td class="text-center"><% item.curriculum_los.forEach(a => { %><%= a.code %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<% }) %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <%- include('../partials/footer'); -%>

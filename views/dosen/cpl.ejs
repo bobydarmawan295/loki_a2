@@ -1,0 +1,121 @@
+<%- include('../partials/sidebar'); -%>
+<link rel="stylesheet" href="/public/css/table.css" />
+<div id="container">
+  <div class="">
+    <h1 class="navbar-brand mb-5">Capaian Pembelajaran (CP)</h1>
+    <div class="d-flex justify-content-between">
+      <% course_plan.forEach((item) => { %>
+      <a class="button100-form-btn btn-head back ms-0" role="button" href="/dosen/<%= item.id %>/<%= item.rev %>/CPMK"><% }) %><i class="bx bx-subdirectory-left"></i></a>
+      <button type="button" class="button100-form-btn btn-head" data-bs-toggle="modal" data-bs-target="#inlineForm">TAMBAH</button>
+      <div class="modal fade text-left" id="inlineForm" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel33">Tambah CP</h4>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <i data-feather="x"></i>
+              </button>
+            </div>
+            <% course_plan.forEach((item) => { %>
+
+            <form action="/dosen/cpl/tambah" method="post">
+              <% }) %>
+              <div class="modal-body">
+                <label>CP </label>
+                <div class="form-group">
+                  <input type="hidden" name="id_cpmk" value="<%= cpmk.id %>" />
+                  <select class="form-select" name="id_cpl">
+                    <% cp.forEach(cpl => { %>
+                    <option value="<%= cpl.id %>"><%= cpl.code %> - <%= cpl.name %></option>
+                    <% }) %>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="reset" class="button100-form-btn btn-head" data-bs-dismiss="modal">
+                  <i class="bx bx-x d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Batal</span>
+                </button>
+                <button type="submit" class="button100-form-btn btn-head ml-1">
+                  <i class="bx bx-check d-block d-sm-none"></i>
+                  <span class="d-none d-sm-block">Tambah</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table id="table_id" class="table table-responsive-xl">
+            <thead class="thead">
+              <tr>
+                <th width="1%">KODE</th>
+                <th width="90%">DESKRIPSI</th>
+                <th width="5%">AKSI</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% cld.forEach((item,i) => { %>
+              <tr>
+                <% if(item.id == null) { %>
+                <td class="text-center" scope="col"></td>
+                <td class="text-center" scope="col"></td>
+
+                <% }else { %>
+                <td class="text-center" scope="col"><%= item.curriculum_lo.code %></td>
+                <td><%= item.curriculum_lo.name %></td>
+                <% } %>
+                <td class="text-center">
+                  <form action="/dosen/cpl/<%= item.id %>?_method=DELETE" method="post">
+                    <button type="submit" class="editb">
+                      <a href="" class="link-danger"><i class="bx bx-sm bx-trash"></i></a>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function success1() {
+    Swal.fire("Good job!", "Data saved", "success")
+      .then(function () {
+        window.setTimeout(function () {
+          window.location = "/coursesPlan";
+        }, 700);
+      })
+      .catch((error) => console.log(error));
+  }
+  function hapus() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Good job!", "Data deleted", "success")
+          .then(function () {
+            window.setTimeout(function () {
+              window.location = "./CPMK";
+            }, 700);
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  }
+</script>
+
+<%- include('../partials/footer'); -%>
