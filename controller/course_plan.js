@@ -641,7 +641,7 @@ const getCourseAdmin = async (req, res) => {
   try {
     await course_plans
       .findAll({
-        attributes: ["id", "course_id", [db.fn("MAX", db.col("rev")), "rev"], "name", "semester", "code", "semester", "credit", "description"],
+        attributes: ["id", "course_id", "rev", "name", "semester", "code", "semester", "credit", "description"],
         include: [
           {
             model: courses,

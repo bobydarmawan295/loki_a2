@@ -1,7 +1,7 @@
 const express = require("express");
 const { coursesAdmin, cetakListRps, getCourseAdmin } = require("../controller/course_plan");
 const { getDosen, tambahDosen, hapusDosen } = require("../controller/course_plan_lecturers");
-const { getPeta } = require("../controller/course_lo_details");
+const { cetak, getPeta } = require("../controller/course_lo_details");
 
 const router = express.Router();
 router.use(express.static("public"));
@@ -23,9 +23,7 @@ router.get("/persentaseRps", (req, res) => {
 
 router.get("/petaCplCpmk/:id/:rev", getPeta);
 
-router.get("/cetakCplCpmk", (req, res) => {
-  res.render("admin/cetakCplCpmk");
-});
+router.get("/cetakCplCpmk/:id/:rev", cetak);
 
 router.get("/cetakListRps", cetakListRps);
 module.exports = router;

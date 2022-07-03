@@ -32,7 +32,7 @@ const getDosen = async (req, res) => {
   });
   const id = req.params.id;
   const rps = await course_plans.findOne({
-    attributes: ["id", "course_id"],
+    attributes: ["id", "course_id", "name", "semester"],
     where: {
       id: id,
     },

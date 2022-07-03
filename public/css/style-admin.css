@@ -4,17 +4,29 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
-button, input[type="submit"], input[type="reset"] {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+.admin-title {
+  font-weight: 600;
+  color: #575050;
+}
+.label {
+  font-weight: 600;
+}
+div h6 {
+  font-size: 17px;
+  font-weight: 400;
+}
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .mingguan-tabel {
@@ -23,7 +35,6 @@ button, input[type="submit"], input[type="reset"] {
   width: 100%;
   border-style: solid;
   margin-top: 80px;
-  
 }
 .sidebar {
   position: fixed;
@@ -57,7 +68,6 @@ button, input[type="submit"], input[type="reset"] {
   transition-delay: 0.1s;
   margin-left: 7px;
 }
-
 
 .welcome {
   margin-top: 7px;
@@ -476,6 +486,71 @@ input {
   border-radius: 14px;
 }
 
+.button100-form-btn {
+  padding: 0 15px;
+  width: 13%;
+  height: 45px;
+  background-color: #ffaa7b;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  font-family: "Poppins";
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  position: relative;
+  z-index: 1;
+}
+.button100-form-btn:hover {
+  text-decoration: none;
+  background-color: #c05115;
+  transition: ease-in 0.2s;
+}
+.button100-form-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 45px;
+  background-color: hsl(221, 50%, 31%);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+div .btn-head {
+  display: inline-flex;
+  text-align: center;
+  width: 140px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.btn-head i {
+  font-size: 30px;
+  color: #fff;
+}
+div .back {
+  padding: 10px;
+  width: fit-content;
+  text-align: center;
+  border-radius: 3px;
+  margin-left: 0;
+}
+
 @media screen and (max-width: 400px) {
   .sidebar {
     width: 240px;
@@ -500,4 +575,115 @@ input {
     left: 78px;
     width: calc(100% - 78px);
   }
+}
+
+div .table-wrap {
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto;
+}
+.table-wrap .table {
+  width: 100%;
+  -webkit-box-shadow: 0 5px 12px -12px rgb(0 0 0 / 29%);
+  -moz-box-shadow: 0 5px 12px -12px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 6%);
+  padding: 20px;
+  margin: 10px auto;
+}
+.table-wrap .table tbody tr {
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f8f9fd;
+}
+
+.table-wrap .table thead th,
+.table-wrap .table tbody td {
+  border: none;
+  padding: 18px;
+  font-size: 14px;
+  vertical-align: middle;
+  font-family: "Montserrat";
+}
+.editb {
+  font-size: 23px;
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+}
+th {
+  text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 20px;
+}
+.table tr:nth-child(even) {
+  background-color: #f7f6fe;
+}
+.func {
+  justify-content: space-between;
+}
+
+.add1 {
+  padding: 10px;
+  text-align: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  color: #fff;
+  background: #624de3;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+}
+.add1 a {
+  text-decoration: none;
+  color: #fff;
+}
+.add1 i {
+  margin-right: 0px;
+}
+.add {
+  padding: 12px 30px;
+  text-align: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+  color: #fff;
+  background: #624de3;
+  border-radius: 18px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+}
+.add i {
+  margin-right: 10px;
+}
+.add a {
+  text-decoration: none;
+  color: #fff;
+}
+.add {
+  display: flex;
+  justify-content: end;
+}
+button i {
+  margin-right: 8px;
+  font-weight: 700;
+}
+button:hover {
+  text-decoration: none;
+  transition: ease-in 0.2s;
+}
+.thead {
+  background: rgba(244, 247, 252, 0.75);
+  backdrop-filter: blur(8px);
 }

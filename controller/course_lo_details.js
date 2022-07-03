@@ -81,7 +81,7 @@ const hapusCP = async (req, res) => {
 
 const getPeta = async (req, res) => {
   const course_plan = await course_plans.findOne({
-    attributes: ["id", "rev"],
+    attributes: ["id", "rev", "name"],
     where: {
       id: req.params.id,
       rev: req.params.rev,
@@ -108,6 +108,36 @@ const getPeta = async (req, res) => {
   res.render("admin/cplToCpmk", { course_plan, cp, cpmkAll });
   //res.json(cpmkAll);
 };
+
+const cetak = async (req, res) => {
+  const course_plan = await course_plans.findOne({
+    attributes: ["id", "rev", "name"],
+    where: {
+      id: req.params.id,
+      rev: req.params.rev,
+    },
+  });
+  const cp = await curriculum_los.findAll({
+    order: [["id", "ASC"]],
+    attributes: ["id", "curriculum_id", "code", "name"],
+  });
+  const course_plan_id = req.params.id;
+  const cpmkAll = await course_los.findAll({
+    attributes: ["id", "course_plan_id", "code", "name"],
+    include: [
+      {
+        model: curriculum_los,
+        attributes: ["id", "code", "name"],
+        required: false,
+      },
+    ],
+    where: {
+      course_plan_id: course_plan_id,
+    },
+  });
+  res.render("admin/cetakCplCPmk", { course_plan, cp, cpmkAll });
+  //res.json(cpmkAll);
+};
 // const updateDetail = async (req, res) => {
 //   try {
 //     const { week, material, method, student_experience } = req.body;
@@ -129,4 +159,4 @@ const getPeta = async (req, res) => {
 //   }
 // };
 
-module.exports = { getPeta, getCurriculumLos, tambahCP, hapusCP };
+module.exports = { cetak, getPeta, getCurriculumLos, tambahCP, hapusCP };
